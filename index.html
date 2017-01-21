@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Estimate it</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <!-- Put the next line into your html head to enable the Vector library -->
+  <script src="https://tatomyr.github.io/discrete-vector/discrete-vector.js"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+  <!-- jQuery cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- App logic -->
+  <script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head><body>
+  <h1>Estimate It!</h1>
+
+  <table id="table">
+    <thead>
+      <tr>
+        <th>
+          Task
+        </th>
+        <th>
+          Min Developing Efforts (h)
+        </th>
+        <th>
+          Max Developing Efforts (h)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="task 0">
+        <td>
+          <input type="text" class="description" placeholder="Task..." />
+        </td>
+        <td>
+          <input type="number" class="min" />
+        </td>
+        <td>
+          <input type="number" class="max" />
+        </td>
+      </tr>
+
+      <tr class="task 1">
+        <td>
+          <input type="text" class="description" placeholder="Task..." />
+        </td>
+        <td>
+          <input type="number" class="min" />
+        </td>
+        <td>
+          <input type="number" class="max" />
+        </td>
+      </tr>
+
+      <tr class="task 2">
+        <td>
+          <input type="text" class="description" placeholder="Task..." />
+        </td>
+        <td>
+          <input type="number" class="min" />
+        </td>
+        <td>
+          <input type="number" class="max" />
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+  <button type="button" name="button" onclick="tableSubmit()">Submit</button>
+
+
+  <canvas id="timeChart" width="400" height="200"></canvas>
+  <!-- <script src="canvas-chart.js"></script> -->
+
+
+</body></html>
