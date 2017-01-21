@@ -22,15 +22,15 @@
           Task
         </th>
         <th>
-          Min Developing Efforts (h)
+          Min developing dfforts (h)
         </th>
         <th>
-          Max Developing Efforts (h)
+          Max developing efforts (h)
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr class="task 0">
+      <tr class="task">
         <td>
           <input type="text" class="description" placeholder="Task..." />
         </td>
@@ -42,7 +42,7 @@
         </td>
       </tr>
 
-      <tr class="task 1">
+      <tr class="task">
         <td>
           <input type="text" class="description" placeholder="Task..." />
         </td>
@@ -54,7 +54,7 @@
         </td>
       </tr>
 
-      <tr class="task 2">
+      <tr class="task">
         <td>
           <input type="text" class="description" placeholder="Task..." />
         </td>
@@ -70,11 +70,69 @@
     </tbody>
   </table>
 
-  <button type="button" name="button" onclick="tableSubmit()">Submit</button>
+  <button type="button" onclick="addTask()">Add Task</button>
 
 
-  <canvas id="timeChart" width="400" height="200"></canvas>
-  <!-- <script src="canvas-chart.js"></script> -->
+  <button type="button" onclick="tableSubmit()">Submit</button>
 
+  <div id="container">
+    <canvas id="timeChart" width="400" height="200"></canvas>
+
+    <table id="calculation">
+      <thead>
+        <tr>
+          <th>
+            Probability of project completing in time | code quality (%)
+          </th>
+          <td>
+            <input type="number" id="probability" />
+          </td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>
+            Management efforts (%)
+          </th>
+          <td>
+            <input type="number" class="percentage" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            QA (%)
+          </th>
+          <td>
+            <input type="number" class="percentage" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            Risks (%)
+          </th>
+          <td>
+            <input type="number" class="percentage" />
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            Other (%)
+          </th>
+          <td>
+            <input type="number" class="percentage" />
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <button type="button" onclick="estimate()">Calculate</button>
+
+    <h2 id="result">...</h2>
+  </div>
 
 </body></html>
