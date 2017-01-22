@@ -2,39 +2,20 @@ var T = [];
 
 const tableSubmit = () => {
   const t = getTasksMinMax();
-  console.log(t);
 
   const vector = new DiscreteVector(t);
   T = Array(vector.combinations).fill().map((prev, item) => embodiment(t, vector.next())).sort((a, b) => a - b);
 
-  console.log(T);
-
-
-  const P = 0.80;
-  console.log(
-    `${P * 100}%: [${Math.ceil((T.length - 1) * P)}] =>`,
-    T.sort((a, b) => a - b)[Math.ceil((T.length - 1) * P)]
-  );
-
   $('#container').css({ "display": "block" });
   setChart(T);
-
-
 }
 
 const estimate = () => {
-  console.log($('#probability').val());
-  console.log(getPercentage());
-
-
   const P = Number($('#probability').val()) / 100;
   const t = T[Math.ceil((T.length - 1) * P)];
   const result = t * getPercentage();
-  console.log(t, result);
 
   $('#result').html(`RESULT: ${result} H`);
-
-
 }
 
 const getTasksMinMax = () => {
@@ -65,7 +46,7 @@ const setChart = (T) => {
     // fill: false,
     // borderColor: 'black',
     // backgroundColor: 'black',
-    label: 'Hours -- %Probability',
+    label: 'Hours — Probability (Code Quality)',
     // xAxisID: 'Hours',
     // yAxisID: '%Probability',
     // pointBorderColor: 'rgba(100,255,0,1)',
@@ -107,7 +88,7 @@ const setChart = (T) => {
 }
 
 const addTask = () => {
-  $('tbody').append(
+  $('#table tbody').append(
     `<tr class="task">
       <td>
         <input type="text" class="description" placeholder="Task..." />
