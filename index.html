@@ -12,6 +12,9 @@
   <!-- App logic -->
   <script src="index.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="html2canvas.js"></script>
+
 </head><body>
   <h1>Estimate It!</h1>
 
@@ -70,10 +73,10 @@
     </tbody>
   </table>
 
-  <button type="button" onclick="addTask()">Add Task</button>
+  <button type="button" onclick="addTask()" class="not-printable">Add Task</button>
 
 
-  <button type="button" onclick="tableSubmit()">Submit</button>
+  <button type="button" onclick="tableSubmit()" class="not-printable">Submit</button>
 
   <div id="container">
     <canvas id="timeChart" width="400" height="200"></canvas>
@@ -130,9 +133,11 @@
       </tbody>
     </table>
 
-    <button type="button" onclick="estimate()">Calculate</button>
+    <button type="button" onclick="estimate()" class="not-printable">Calculate</button>
 
     <h2 id="result">...</h2>
+
+    <button type="button" onclick="generateCanvas()" class="not-printable">Generate Canvas</button>
   </div>
 
 </body></html>

@@ -102,3 +102,16 @@ const addTask = () => {
     </tr>`
   );
 }
+
+// Canvas generator
+const generateCanvas = () => {
+  $('.not-printable').hide();
+
+  html2canvas(document.body).then((canvas) => {
+    document.body.appendChild(canvas);
+
+    $('.not-printable').show();
+  });
+
+
+}
