@@ -99,12 +99,20 @@ const addTask = ({ task = '', min = '', max = '' }) => {
       <td>
         <input type="number" min="0" class="max" value="${max}" />
       </td>
+      <td>
+        <span class="delTask" onclick="delTask(this)">×</span>
+      </td>
     </tr>`
   );
 
   // Focusing on the added task
   const tasks = $('.description');
   tasks[tasks.length - 1].focus();
+}
+
+const delTask = (e) => {
+  console.log({e});
+  e.parentElement.parentElement.remove()
 }
 
 // Canvas generator

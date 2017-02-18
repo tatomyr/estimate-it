@@ -7,19 +7,19 @@ th {
   text-align: left;
 }
 
-#reset {
+#reset, .delTask {
   color: red;
   cursor: pointer;
   padding: 1px;
   border-radius: 3px;
 }
 
-#reset:hover {
+#reset:hover, .delTask:hover {
   background: red;
   color: white;
 }
 
-.description {
+.description, .min, .max {
   width: 99%;
 }
 
