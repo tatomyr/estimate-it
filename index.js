@@ -121,10 +121,41 @@ const generateCanvas = () => {
   $('.not-printable').hide();
   $('.spinner').removeClass('hidden');
 
-  html2canvas(overallContainer).then((canvas) => {
-    document.body.appendChild(canvas);
+  html2canvas(table).then((canvas) => {
+    resultContainer.appendChild(canvas);
+
+    // $(".spinner").addClass('hidden');
+    // $('.not-printable').show();
+  });
+
+
+  html2canvas(container).then((canvas) => {
+    resultContainer.appendChild(canvas);
 
     $(".spinner").addClass('hidden');
     $('.not-printable').show();
   });
+
+  /*
+  html2canvas(timeChart).then((canvas) => {
+    resultContainer.appendChild(canvas);
+
+    // $(".spinner").addClass('hidden');
+    // $('.not-printable').show();
+  });
+
+  html2canvas(calculation).then((canvas) => {
+    resultContainer.appendChild(canvas);
+
+    // $(".spinner").addClass('hidden');
+    // $('.not-printable').show();
+  });
+
+  html2canvas(result).then((canvas) => {
+    resultContainer.appendChild(canvas);
+
+    $(".spinner").addClass('hidden');
+    $('.not-printable').show();
+  });
+  */
 }
