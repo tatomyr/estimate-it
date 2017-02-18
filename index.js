@@ -7,7 +7,7 @@ const tableSubmit = () => {
     const vector = new DiscreteVector(t);
     T = Array(vector.combinations).fill().map((prev, item) => embodiment(t, vector.next())).sort((a, b) => a - b);
 
-    $('#container').css({ "display": "block" });
+    $('#calculationContainer').css({ "display": "block" });
     setChart(T);
   });
 }
@@ -122,62 +122,35 @@ const generateCanvas = () => {
   $('.spinner').removeClass('hidden');
 
   const doc = new jsPDF();
+  const left = 15;
+  const top = 40;
 
-  html2canvas(table).then((canvas) => {
+  html2canvas(tableContainer).then((canvas) => {
     // resultContainer.appendChild(canvas);
 
     const url = canvas.toDataURL();
 
-    const bottom = (180 - 15) * canvas.height / canvas.width;
-    console.log(canvas, canvas.width,canvas.height, bottom);
-    doc.addImage(url, 'PNG', 15, 15, 180, bottom);
+    // const height = width * canvas.height / canvas.width;
+    // console.log(canvas, canvas.width, canvas.height, height );
+    doc.addImage(url, 'PNG', left, top);
 
     // $(".spinner").addClass('hidden');
     // $('.not-printable').show();
   });
 
 
-  html2canvas(container).then((canvas) => {
+  html2canvas(calculationContainer).then((canvas) => {
     // resultContainer.appendChild(canvas);
 
     const url = canvas.toDataURL();
 
-
     doc.addPage();
-    const bottom = (180 - 15) * canvas.height / canvas.width;
-    console.log(canvas, canvas.width,canvas.height, bottom);
-    doc.addImage(url, 'PNG', 15, 15, 180, bottom);
+    doc.addImage(url, 'PNG', left, top);
 
     doc.save('estimate-it.pdf');
 
     $(".spinner").addClass('hidden');
     $('.not-printable').show();
   });
-
-
-
-  /*
-  html2canvas(timeChart).then((canvas) => {
-    resultContainer.appendChild(canvas);
-
-    // $(".spinner").addClass('hidden');
-    // $('.not-printable').show();
-  });
-
-  html2canvas(calculation).then((canvas) => {
-    resultContainer.appendChild(canvas);
-
-    // $(".spinner").addClass('hidden');
-    // $('.not-printable').show();
-  });
-
-  html2canvas(result).then((canvas) => {
-    resultContainer.appendChild(canvas);
-
-    $(".spinner").addClass('hidden');
-    $('.not-printable').show();
-  });
-  */
-
 
 }

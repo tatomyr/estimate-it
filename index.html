@@ -29,40 +29,44 @@
 </head><body>
   <div id="overallContainer">
 
-    <h1>Estimate It!</h1>
+    <div id="tableContainer">
+      <h1>Efforts estimation</h1>
 
-    <table id="table" width="100%">
-      <col style="width:73%">
-      <col style="width:12%">
-      <col style="width:12%">
-      <col style="width:3%">
-      <thead>
-        <tr>
-          <th>
-            Task description
-          </th>
-          <th>
-            Min (h)
-          </th>
-          <th>
-            Max (h)
-          </th>
-          <th>
+      <table id="table" width="100%">
+        <col style="width:73%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:3%">
+        <thead>
+          <tr>
+            <th>
+              Task description
+            </th>
+            <th>
+              Min (h)
+            </th>
+            <th>
+              Max (h)
+            </th>
+            <th>
 
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Table rows goes here -->
-      </tbody>
-    </table>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows goes here -->
+        </tbody>
+      </table>
+    </div>
 
     <button type="button" onclick="addTask({})" class="not-printable">Add Task</button>
     <button type="button" onclick="save()" class="not-printable">Save</button>
     <button type="button" onclick="tableSubmit()" class="not-printable">Submit</button>
     <span id="reset" onclick="reset()" class="not-printable">Reset</span>
 
-    <div id="container">
+    <div id="calculationContainer">
+      <h1>Calculation</h1>
+      
       <canvas id="timeChart" width="400" height="200"></canvas>
 
       <table id="calculation">
