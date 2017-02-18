@@ -24,3 +24,7 @@ const readDataFromURI = () => {
   const tasks = JSON.parse(decodeURI(preData.find(item => item.split('=')[0] === 'tasks').split('=')[1]));
   return tasks;
 }
+
+const reset = () => {
+  location.search = `tasks=[{}]`;
+}

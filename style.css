@@ -6,3 +6,15 @@
 th {
   text-align: left;
 }
+
+#reset {
+  color: red;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 3px;
+}
+
+#reset:hover {
+  background: red;
+  color: white;
+}
