@@ -100,7 +100,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
         <input type="number" min="0" class="max" value="${max}" />
       </td>
       <td>
-        <span class="delTask" onclick="delTask(this)">×</span>
+        <span class="delTask not-printable" onclick="delTask(this)">×</span>
       </td>
     </tr>`
   );
