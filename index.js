@@ -1,13 +1,15 @@
 var T = [];
 
 const tableSubmit = () => {
-  const t = getTasksMinMax();
+  waitWithSpinner(() => {
+    const t = getTasksMinMax();
 
-  const vector = new DiscreteVector(t);
-  T = Array(vector.combinations).fill().map((prev, item) => embodiment(t, vector.next())).sort((a, b) => a - b);
+    const vector = new DiscreteVector(t);
+    T = Array(vector.combinations).fill().map((prev, item) => embodiment(t, vector.next())).sort((a, b) => a - b);
 
-  $('#container').css({ "display": "block" });
-  setChart(T);
+    $('#container').css({ "display": "block" });
+    setChart(T);
+  });
 }
 
 const estimate = () => {
@@ -111,19 +113,18 @@ const addTask = ({ task = '', min = '', max = '' }) => {
 }
 
 const delTask = (e) => {
-  console.log({e});
   e.parentElement.parentElement.remove()
 }
 
 // Canvas generator
 const generateCanvas = () => {
   $('.not-printable').hide();
+  $('.spinner').removeClass('hidden');
 
-  html2canvas(document.body).then((canvas) => {
+  html2canvas(overallContainer).then((canvas) => {
     document.body.appendChild(canvas);
 
+    $(".spinner").addClass('hidden');
     $('.not-printable').show();
   });
-
-
 }

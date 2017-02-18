@@ -23,7 +23,7 @@ th {
   width: 99%;
 }
 
-.overall-container {
+#overallContainer {
   max-width: 700px;
   margin: 0 auto;
   padding: 0;
