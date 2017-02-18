@@ -6,7 +6,12 @@ h1 {
   display: none;
 }
 
-th {
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
   text-align: left;
 }
 
@@ -22,7 +27,11 @@ th {
   color: white;
 }
 
-.description, .min, .max {
+.non-bordered {
+  border: 0;
+}
+
+.description, .min, .max, .other {
   width: 99%;
 }
 

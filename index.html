@@ -33,24 +33,18 @@
       <h1>Efforts estimation</h1>
 
       <table id="table" width="100%">
-        <col style="width:73%">
+        <col style="width:3%">
+        <col style="width:70%">
         <col style="width:12%">
         <col style="width:12%">
         <col style="width:3%">
         <thead>
           <tr>
-            <th>
-              Task description
-            </th>
-            <th>
-              Min (h)
-            </th>
-            <th>
-              Max (h)
-            </th>
-            <th>
-
-            </th>
+            <th class="non-bordered"></th>
+            <th>Task description</th>
+            <th>Min (h)</th>
+            <th>Max (h)</th>
+            <th class="non-bordered"></th>
           </tr>
         </thead>
         <tbody>
@@ -66,7 +60,7 @@
 
     <div id="calculationContainer">
       <h1>Calculation</h1>
-      
+
       <canvas id="timeChart" width="400" height="200"></canvas>
 
       <table id="calculation">
@@ -76,10 +70,7 @@
               Probability of project completing in time | Code quality
             </th>
             <td>
-              <input type="number" id="probability" value="90"/>
-            </td>
-            <td>
-              %
+              <input type="number" id="probability" class="non-bordered" value="90"/>%
             </td>
           </tr>
         </thead>
@@ -90,10 +81,7 @@
               Management efforts
             </th>
             <td>
-              <input type="number" class="percentage" />
-            </td>
-            <td>
-              %
+              <input type="number" class="percentage non-bordered" />%
             </td>
           </tr>
 
@@ -102,10 +90,7 @@
               QA
             </th>
             <td>
-              <input type="number" class="percentage" />
-            </td>
-            <td>
-              %
+              <input type="number" class="percentage non-bordered" />%
             </td>
           </tr>
 
@@ -114,22 +99,16 @@
               Risks
             </th>
             <td>
-              <input type="number" class="percentage" />
-            </td>
-            <td>
-              %
+              <input type="number" class="percentage non-bordered" />%
             </td>
           </tr>
 
           <tr>
             <th>
-              <input type="text" value="Other">
+              <input type="text" class="non-bordered other" value="Other">
             </th>
             <td>
-              <input type="number" class="percentage" />
-            </td>
-            <td>
-              %
+              <input type="number" class="percentage non-bordered" />%
             </td>
           </tr>
 

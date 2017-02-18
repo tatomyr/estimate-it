@@ -92,16 +92,19 @@ const setChart = (T) => {
 const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
-      <td>
-        <input type="text" class="description" placeholder="Task..." value="${task}" />
+      <td class="non-bordered">
+        <span class"addSubtask not-printable" > </span>
       </td>
       <td>
-        <input type="number" min="0" class="min" value="${min}" />
+        <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
       </td>
       <td>
-        <input type="number" min="0" class="max" value="${max}" />
+        <input type="number" min="0" class="min non-bordered" value="${min}" />
       </td>
       <td>
+        <input type="number" min="0" class="max non-bordered" value="${max}" />
+      </td>
+      <td class="non-bordered">
         <span class="delTask not-printable" onclick="delTask(this)">×</span>
       </td>
     </tr>`
