@@ -3,21 +3,28 @@
   <meta charset="utf-8">
   <title>Estimate it</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <!-- Put the next line into your html head to enable the Vector library -->
-  <script src="https://tatomyr.github.io/discrete-vector/discrete-vector.js"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+
   <!-- jQuery cdn -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- App logic -->
+  <!-- Chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+  <!-- Other libraries -->
+  <script src="https://tatomyr.github.io/discrete-vector/discrete-vector.js"></script>
+
+
+  <script src="jspdf.debug.js"></script>
+
+  <!-- App imports -->
   <link rel="stylesheet" type="text/css" href="spinner.css">
   <script src="spinner.js"></script>
-  <script src="html2canvas.js"></script>
+
+  <script src="save-populate.js"></script>
 
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="index.js"></script>
-  <script src="save-populate.js"></script>
 
+  <!-- html2canvas -->
+  <script src="html2canvas.js"></script>
 
 </head><body>
   <div id="overallContainer">
@@ -129,12 +136,14 @@
 
       <h2 id="result">...</h2>
 
-      <button type="button" onclick="generateCanvas()" class="not-printable">Generate Canvas</button>
+      <button type="button" onclick="generateCanvas()" class="not-printable">Generate PDF</button>
     </div>
 
   </div>
 
-  <div id="resultContainer"></div>
+  <div id="resultContainer">
+    <!-- Should be empty -->
+  </div>
 
   <div class="spinner hidden">PLEASE WAIT...</div>
 </body></html>

@@ -17,7 +17,7 @@ const estimate = () => {
   const t = T[Math.ceil((T.length - 1) * P)];
   const result = t * getPercentage();
 
-  $('#result').html(`RESULT: ${result} H`);
+  $('#result').html(`TOTAL: ${result} H`);
 }
 
 const getTasksMinMax = () => {
@@ -121,8 +121,16 @@ const generateCanvas = () => {
   $('.not-printable').hide();
   $('.spinner').removeClass('hidden');
 
+  const doc = new jsPDF();
+
   html2canvas(table).then((canvas) => {
-    resultContainer.appendChild(canvas);
+    // resultContainer.appendChild(canvas);
+
+    const url = canvas.toDataURL();
+
+    const bottom = (180 - 15) * canvas.height / canvas.width;
+    console.log(canvas, canvas.width,canvas.height, bottom);
+    doc.addImage(url, 'PNG', 15, 15, 180, bottom);
 
     // $(".spinner").addClass('hidden');
     // $('.not-printable').show();
@@ -130,11 +138,23 @@ const generateCanvas = () => {
 
 
   html2canvas(container).then((canvas) => {
-    resultContainer.appendChild(canvas);
+    // resultContainer.appendChild(canvas);
+
+    const url = canvas.toDataURL();
+
+
+    doc.addPage();
+    const bottom = (180 - 15) * canvas.height / canvas.width;
+    console.log(canvas, canvas.width,canvas.height, bottom);
+    doc.addImage(url, 'PNG', 15, 15, 180, bottom);
+
+    doc.save('estimate-it.pdf');
 
     $(".spinner").addClass('hidden');
     $('.not-printable').show();
   });
+
+
 
   /*
   html2canvas(timeChart).then((canvas) => {
@@ -158,4 +178,6 @@ const generateCanvas = () => {
     $('.not-printable').show();
   });
   */
+
+
 }
