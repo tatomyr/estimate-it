@@ -103,7 +103,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   );
 
   // Focusing on the added task
-  setInterval(() => const tasks = $('.description'), 10);
+  const tasks = $('.description');
   tasks[tasks.length - 1].focus();
 }
 
