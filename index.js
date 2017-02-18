@@ -22,7 +22,7 @@ const getTasksMinMax = () => {
   const t = [];
   $('#table .task').each((i, task)=> {
     const min = $(task).find('.min').val();
-    const max = $(task).find('.max').val()
+    const max = $(task).find('.max').val();
     min && max && t.push([
       Number(min),
       Number(max),
@@ -87,20 +87,24 @@ const setChart = (T) => {
   });
 }
 
-const addTask = () => {
+const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td>
-        <input type="text" class="description" placeholder="Task..." />
+        <input type="text" class="description" placeholder="Task..." value="${task}" />
       </td>
       <td>
-        <input type="number" class="min" />
+        <input type="number" min="0" class="min" value="${min}" />
       </td>
       <td>
-        <input type="number" class="max" />
+        <input type="number" min="0" class="max" value="${max}" />
       </td>
     </tr>`
   );
+
+  // Focusing on the added task
+  const tasks = $('.description');
+  tasks[tasks.length - 1].focus();
 }
 
 // Canvas generator

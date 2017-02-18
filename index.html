@@ -10,8 +10,9 @@
   <!-- jQuery cdn -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- App logic -->
-  <script src="index.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="index.js"></script>
+  <script src="save-populate.js"></script>
 
   <script src="html2canvas.js"></script>
 
@@ -33,49 +34,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="task">
-        <td>
-          <input type="text" class="description" placeholder="Task..." />
-        </td>
-        <td>
-          <input type="number" class="min" />
-        </td>
-        <td>
-          <input type="number" class="max" />
-        </td>
-      </tr>
-
-      <tr class="task">
-        <td>
-          <input type="text" class="description" placeholder="Task..." />
-        </td>
-        <td>
-          <input type="number" class="min" />
-        </td>
-        <td>
-          <input type="number" class="max" />
-        </td>
-      </tr>
-
-      <tr class="task">
-        <td>
-          <input type="text" class="description" placeholder="Task..." />
-        </td>
-        <td>
-          <input type="number" class="min" />
-        </td>
-        <td>
-          <input type="number" class="max" />
-        </td>
-      </tr>
-
-
+      <!-- Table rows goes here -->
     </tbody>
   </table>
 
-  <button type="button" onclick="addTask()" class="not-printable">Add Task</button>
-
-
+  <button type="button" onclick="addTask({})" class="not-printable">Add Task</button>
+  <button type="button" onclick="save()" class="not-printable">Save</button>
   <button type="button" onclick="tableSubmit()" class="not-printable">Submit</button>
 
   <div id="container">
