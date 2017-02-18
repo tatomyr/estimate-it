@@ -15,6 +15,12 @@ th, td {
   text-align: left;
 }
 
+th, input.other {
+  color: white;
+  background: black;
+  font-weight: bold;
+}
+
 #reset, .delTask {
   color: red;
   cursor: pointer;
