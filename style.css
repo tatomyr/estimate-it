@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
 h1 {
   text-align: center;
 }
@@ -13,6 +19,8 @@ table {
 th, td {
   border: 1px solid black;
   text-align: left;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 th, input.other {
@@ -31,6 +39,32 @@ th, input.other {
 #reset:hover, .delTask:hover {
   background: red;
   color: white;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.addSubtask {
+  color: violet;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 3px;
+}
+
+.addSubtask:hover {
+  background: violet;
+  color: white;
+}
+
+.subtask, .submin, .submax {
+  color: grey;
+}
+
+.bullet {
+  color: violet;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .non-bordered {

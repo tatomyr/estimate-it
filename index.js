@@ -93,7 +93,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <span class"addSubtask" > </span>
+        <span class="addSubtask" onclick="addSubtask(this)">↵</span>
       </td>
       <td>
         <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
@@ -104,7 +104,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
       <td>
         <input type="number" min="0" class="max non-bordered" value="${max}" />
       </td>
-      <td class="non-bordered not-printable">
+      <td class="non-bordered not-printable align-right">
         <span class="delTask" onclick="delTask(this)">×</span>
       </td>
     </tr>`
@@ -117,6 +117,67 @@ const addTask = ({ task = '', min = '', max = '' }) => {
 
 const delTask = (e) => {
   e.parentElement.parentElement.remove()
+}
+
+const addSubtask = (e) => {
+  const pp = $(e.parentElement.parentElement).nextUntil('.task')
+  const insertAfter = pp.length && pp[pp.length - 1] || e.parentElement.parentElement;
+  $(insertAfter).after(
+    `<tr>
+      <td class="non-bordered not-printable">
+        <span></span>
+      </td>
+      <td>
+        <span class="bullet">→</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="" />
+      </td>
+      <td>
+        <input type="number" min="0" class="submin non-bordered" value="" onchange="subtaskChange(this)" />
+      </td>
+      <td>
+        <input type="number" min="0" class="submax non-bordered" value="" onchange="subtaskChange(this)" />
+      </td>
+      <td class="non-bordered not-printable align-right">
+        <span class="delTask" onclick="delSubtask(this)">×</span>
+      </td>
+    </tr>`
+  );
+
+  $(insertAfter.nextSibling).find('.subtask')[0].focus();
+}
+
+const subtaskChange = (e) => {
+  const minmax = [];
+
+   pp = e.parentElement.parentElement
+
+  minmax.push({
+    min: pp.children[2].children[0].value,
+    max: pp.children[3].children[0].value
+  });
+
+  $(pp).prevUntil('.task').each((i, item) => {
+    minmax.push({
+      min: item.children[2].children[0].value,
+      max: item.children[3].children[0].value
+    });
+  });
+
+  $(pp).nextUntil('.task').each((i, item) => {
+    minmax.push({
+      min: item.children[2].children[0].value,
+      max: item.children[3].children[0].value
+    });
+  });
+
+  const sum = minmax.reduce((prev, next) => ({
+    min: prev.min + +next.min,
+    max: prev.max + +next.max
+  }), { min: 0, max: 0 });
+
+  const parenTask = ($(pp).prevUntil('.task')[$(pp).prevUntil('.task').length - 1] || pp).previousSibling;
+  console.log(parenTask);
+  parenTask.children[2].children[0].value = sum.min;
+  parenTask.children[3].children[0].value = sum.max;
 }
 
 // Canvas generator
