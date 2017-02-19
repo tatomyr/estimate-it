@@ -41,19 +41,31 @@ th, input.other {
   color: white;
 }
 
+.delSubask {
+  color: magenta;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 3px;
+}
+
+.delSubask:hover {
+  background: magenta;
+  color: white;
+}
+
 .align-right {
   text-align: right;
 }
 
 .addSubtask {
-  color: violet;
+  color: purple;
   cursor: pointer;
   padding: 1px;
   border-radius: 3px;
 }
 
 .addSubtask:hover {
-  background: violet;
+  background: purple;
   color: white;
 }
 
@@ -62,7 +74,7 @@ th, input.other {
 }
 
 .bullet {
-  color: violet;
+  color: grey;
   padding-left: 2px;
   padding-right: 2px;
 }
@@ -71,8 +83,12 @@ th, input.other {
   border: 0;
 }
 
-.description, .min, .max, .other {
+.description, .min, .max, .submin, .submax, .other {
   width: 99%;
+}
+
+.subtask {
+  width: 95%;
 }
 
 #overallContainer, #resultContainer {

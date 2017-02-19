@@ -93,7 +93,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <span class="addSubtask" onclick="addSubtask(this)">↵</span>
+        <span class="addSubtask" onclick="addSubtask({}, this)">↵</span>
       </td>
       <td>
         <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
@@ -116,11 +116,24 @@ const addTask = ({ task = '', min = '', max = '' }) => {
 }
 
 const delTask = (e) => {
-  e.parentElement.parentElement.remove()
+  pp = e.parentElement.parentElement;
+  $(pp).nextUntil('.task').each((i, item) => item.remove());
+  pp.remove();
 }
 
-const addSubtask = (e) => {
-  const pp = $(e.parentElement.parentElement).nextUntil('.task')
+const delSubtask = (e) => {
+  prev = $(e.parentElement.parentElement).prevUntil('.task');
+  next = $(e.parentElement.parentElement).nextUntil('.task');
+
+  e.parentElement.parentElement.remove();
+
+  if ([ ...prev, ...next ].length) {
+    subtaskChange([ ...prev, ...next ][0].children[1].children[0]);
+  }
+}
+
+const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
+  const pp = $(e.parentElement.parentElement).nextUntil('.task');
   const insertAfter = pp.length && pp[pp.length - 1] || e.parentElement.parentElement;
   $(insertAfter).after(
     `<tr>
@@ -128,16 +141,16 @@ const addSubtask = (e) => {
         <span></span>
       </td>
       <td>
-        <span class="bullet">→</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="" />
+        <span class="bullet">→</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
       </td>
       <td>
-        <input type="number" min="0" class="submin non-bordered" value="" onchange="subtaskChange(this)" />
+        <input type="number" min="0" class="submin non-bordered" value="${submin}" onchange="subtaskChange(this)" />
       </td>
       <td>
-        <input type="number" min="0" class="submax non-bordered" value="" onchange="subtaskChange(this)" />
+        <input type="number" min="0" class="submax non-bordered" value="${submax}" onchange="subtaskChange(this)" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <span class="delTask" onclick="delSubtask(this)">×</span>
+        <span class="delSubask" onclick="delSubtask(this)">×</span>
       </td>
     </tr>`
   );

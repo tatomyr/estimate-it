@@ -1,18 +1,43 @@
 $(document).ready(() => {
-  readDataFromURI().forEach(item => addTask(item));
+  readDataFromURI().forEach((item, i) => {
+    console.log(item.task !== undefined, '| sub:', item.subtask !== undefined);
+
+    if (item.task !== undefined) {
+      addTask(item);
+    }
+
+    if (item.subtask !== undefined) {
+      addSubtask(item, $('#table tr')[$('#table tr').length - 1].children[1].children[0]);
+    }
+  });
 });
 
 const save = () => {
+  // getData()
   location.search = `tasks=${JSON.stringify(getData())}`; // encodeURIComponent();
 }
 
 const getData = () => {
   const tasks = [];
-  $('#table .task').each((i, task)=> {
-    const description = $(task).find('.description').val();
-    const min = $(task).find('.min').val();
-    const max = $(task).find('.max').val();
-    tasks.push({ task: description, min, max });
+  $('#table tr').each((i, task) => {
+    console.log($(task).find('.description').length, $(task).find('.subtask').length);
+
+    if ($(task).find('.description').length) {
+      const description = $(task).find('.description').val();
+      const min = $(task).find('.min').val();
+      const max = $(task).find('.max').val();
+
+      tasks.push({ task: description, min, max });
+    }
+
+    if ($(task).find('.subtask').length) {
+      const subtask = $(task).find('.subtask').val();
+      const submin = $(task).find('.submin').val();
+      const submax = $(task).find('.submax').val();
+
+      tasks.push({ subtask, submin, submax });
+    }
+
   });
   return tasks;
 }
