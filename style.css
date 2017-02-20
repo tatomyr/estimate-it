@@ -4,6 +4,15 @@ body {
   font-family: Arial;
 }
 
+input, button {
+  font-size: 16px;
+}
+
+/*input {
+  border: none;
+  outline: none;
+}*/
+
 h1 {
   text-align: center;
 }
@@ -111,7 +120,7 @@ th.non-bordered {
 }
 
 .subtask-td {
-  border: 0px;
+  border: 0;
 }
 
 .non-bordered {
