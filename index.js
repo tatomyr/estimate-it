@@ -48,7 +48,7 @@ const setChart = (T) => {
     // fill: false,
     // borderColor: 'black',
     // backgroundColor: 'black',
-    label: 'Hours — Probability (Code Quality)',
+    // label: 'Hours — Probability (Code Quality)',
     // xAxisID: 'Hours',
     // yAxisID: '%Probability',
     // pointBorderColor: 'rgba(100,255,0,1)',
@@ -73,17 +73,28 @@ const setChart = (T) => {
       datasets
     },
     options: {
+      legend: {
+        display: false
+      },
       scales: {
         xAxes: [{
           type: 'linear',
           // type: 'time',
-          position: 'bottom'
+          position: 'bottom',
+          scaleLabel: {
+            display: true,
+            labelString: 'Hours'
+          }
         }],
-        // yAxes: [{
-        //   ticks: {
-        //     beginAtZero:true
-        //   }
-        // }]
+        yAxes: [{
+          // ticks: {
+          //   beginAtZero:true
+          // },
+          scaleLabel: {
+            display: true,
+            labelString: 'Probability (Code Quality)'
+          }
+        }]
       }
     }
   });
@@ -121,17 +132,6 @@ const delTask = (e) => {
   pp.remove();
 }
 
-const delSubtask = (e) => {
-  prev = $(e.parentElement.parentElement).prevUntil('.task');
-  next = $(e.parentElement.parentElement).nextUntil('.task');
-
-  e.parentElement.parentElement.remove();
-
-  if ([ ...prev, ...next ].length) {
-    subtaskChange([ ...prev, ...next ][0].children[1].children[0]);
-  }
-}
-
 const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
   const pp = $(e.parentElement.parentElement).nextUntil('.task');
   const insertAfter = pp.length && pp[pp.length - 1] || e.parentElement.parentElement;
@@ -156,6 +156,17 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
   );
 
   $(insertAfter.nextSibling).find('.subtask')[0].focus();
+}
+
+const delSubtask = (e) => {
+  prev = $(e.parentElement.parentElement).prevUntil('.task');
+  next = $(e.parentElement.parentElement).nextUntil('.task');
+
+  e.parentElement.parentElement.remove();
+
+  if ([ ...prev, ...next ].length) {
+    subtaskChange([ ...prev, ...next ][0].children[1].children[0]); // ??
+  }
 }
 
 const subtaskChange = (e) => {
