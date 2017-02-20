@@ -10,6 +10,8 @@ $(document).ready(() => {
       addSubtask(item, $('#table tr')[$('#table tr').length - 1].children[1].children[0]);
     }
   });
+
+  readDataFromURI()
 });
 
 const save = () => {
@@ -45,11 +47,11 @@ const getData = () => {
 const readDataFromURI = () => {
   const preData = location.search.substring(1).split('&');
 
-  if (!preData.find(item => item.split('=')[0] === 'tasks')) return [{}];
+  if (!preData.find(item => item.split('=')[0] === 'tasks')) return [{ task: '' }];
   const tasks = JSON.parse(decodeURI(preData.find(item => item.split('=')[0] === 'tasks').split('=')[1]));
   return tasks;
 }
 
 const reset = () => {
-  location.search = `tasks=[{}]`;
+  location.search = `tasks=[{"task":""}]`;
 }
