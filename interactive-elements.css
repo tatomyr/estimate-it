@@ -1,42 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial;
-}
-
-input, button {
-  font-size: 16px;
-}
-
-/*input {
-  border: none;
-  outline: none;
-}*/
-
-h1 {
-  text-align: center;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid black;
-  text-align: left;
-  padding-left: 2px;
-  padding-right: 2px;
-}
-
-th, input.other {
-  color: white;
-  background: black;
-  font-weight: bold;
-}
-
-th.non-bordered {
-  background: white;
-}
 
 #reset {
   color: red;
@@ -44,11 +5,21 @@ th.non-bordered {
   padding: 1px;
   border-radius: 3px;
   text-align: center;
+
+  transition: transform 1s;
+}
+
+@keyframes reset {
+  from {color: red; background-color: white;}
+  to {color: white; background-color: red;}
 }
 
 #reset:hover {
   background: red;
   color: white;
+
+  animation-name: reset;
+  animation-duration: 2s;
 }
 
 .delTask {
@@ -58,7 +29,6 @@ th.non-bordered {
   border-radius: 3px;
   text-align: center;
 
-  display: block;
   transition: transform 1s;
 }
 
@@ -76,7 +46,6 @@ th.non-bordered {
   border-radius: 3px;
   text-align: center;
 
-  display: block;
   transition: transform 1s;
 }
 
@@ -87,10 +56,6 @@ th.non-bordered {
   transform: rotate(-180deg);
 }
 
-.align-right {
-  text-align: right;
-}
-
 .addSubtask {
   color: purple;
   cursor: pointer;
@@ -98,7 +63,6 @@ th.non-bordered {
   border-radius: 3px;
   text-align: center;
 
-  display: block;
   transition: transform 1s;
 }
 
@@ -109,39 +73,37 @@ th.non-bordered {
   transform: scale(-1, 1);
 }
 
-.subtask, .submin, .submax {
-  color: grey;
-}
-
 .bullet {
   color: grey;
   padding-left: 2px;
   padding-right: 2px;
+  cursor: pointer;
+
+  display: inline-block;
+  transition: transform 1s;
 }
 
-.subtask-td {
-  border: 0;
+.bullet:hover {
+  background: grey;
+  color: white;
+
+  transform: scale(-1, -1);
 }
 
-.non-bordered {
-  border: 0;
-}
-
-.description, .min, .max, .submin, .submax, .other {
-  width: 99%;
-}
-
-.subtask, .narrow {
-  width: calc(99% - 20px);
-}
-
-#overallContainer, #resultContainer, #calculationContainer {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0;
+.showSub {
+  color: green;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 3px;
   text-align: center;
+
+  display: none;
+  transition: transform 1s;
 }
 
-#calculationContainer {
-  display: none;
+.showSub:hover {
+  background: green;
+  color: white;
+
+  transform: rotate(90deg);
 }

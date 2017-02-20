@@ -104,7 +104,8 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <span class="addSubtask" onclick="addSubtask({}, this)">↳</span>
+        <div class="addSubtask" onclick="addSubtask({}, this)">↳</div>
+        <div class="showSub" onclick="showSub(this)">▸</div>
       </td>
       <td>
         <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
@@ -116,7 +117,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
         <input type="number" min="0" class="max non-bordered" value="${max}" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <span class="delTask" onclick="delTask(this)">×</span>
+        <div class="delTask" onclick="delTask(this)">×</div>
       </td>
     </tr>`
   );
@@ -127,7 +128,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
 }
 
 const delTask = (e) => {
-  pp = e.parentElement.parentElement;
+  const pp = e.parentElement.parentElement;
   $(pp).nextUntil('.task').each((i, item) => item.remove());
   pp.remove();
 }
@@ -141,7 +142,8 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <span></span>
       </td>
       <td class="subtask-td">
-        <span class="bullet">⊢</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
+        <div class="bullet" onclick="hideSub(this)">⊢</div>
+        <input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
       </td>
       <td class="subtask-td">
         <input type="number" min="0" class="submin non-bordered" value="${submin}" onchange="subtaskChange(this)" />
@@ -150,7 +152,7 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <input type="number" min="0" class="submax non-bordered" value="${submax}" onchange="subtaskChange(this)" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <span class="delSubask" onclick="delSubtask(this)">×</span>
+        <div class="delSubask" onclick="delSubtask(this)">×</div>
       </td>
     </tr>`
   );
@@ -158,11 +160,36 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
   $(insertAfter.nextSibling).find('.subtask')[0].focus();
 }
 
-const delSubtask = (e) => {
-  prev = $(e.parentElement.parentElement).prevUntil('.task');
-  next = $(e.parentElement.parentElement).nextUntil('.task');
+const hideSub = (e) => {
+  const pp = e.parentElement.parentElement;
+  prev = $(pp).prevUntil('.task');
+  next = $(pp).nextUntil('.task');
 
-  e.parentElement.parentElement.remove();
+  const parentTask = (prev[prev.length - 1] || pp).previousSibling;
+
+  $([ ...prev, pp, ...next ]).fadeOut();
+
+  $(parentTask.children[0].children[0]).hide();
+  $(parentTask.children[0].children[1]).show();
+}
+
+const showSub = (e) => {
+  const pp = e.parentElement.parentElement;
+
+  $(pp.children[0].children[1]).hide();
+  $(pp.children[0].children[0]).show();
+
+  $(pp).nextUntil('.task').fadeIn();
+}
+
+
+
+const delSubtask = (e) => {
+  const pp = e.parentElement.parentElement;
+  prev = $(pp).prevUntil('.task');
+  next = $(pp).nextUntil('.task');
+
+  pp.remove();
 
   if ([ ...prev, ...next ].length) {
     subtaskChange([ ...prev, ...next ][0].children[1].children[0]); // ??
@@ -172,7 +199,7 @@ const delSubtask = (e) => {
 const subtaskChange = (e) => {
   const minmax = [];
 
-   pp = e.parentElement.parentElement
+  const pp = e.parentElement.parentElement
 
   minmax.push({
     min: pp.children[2].children[0].value,
@@ -198,10 +225,10 @@ const subtaskChange = (e) => {
     max: prev.max + +next.max
   }), { min: 0, max: 0 });
 
-  const parenTask = ($(pp).prevUntil('.task')[$(pp).prevUntil('.task').length - 1] || pp).previousSibling;
-  console.log(parenTask);
-  parenTask.children[2].children[0].value = sum.min;
-  parenTask.children[3].children[0].value = sum.max;
+  const parentTask = ($(pp).prevUntil('.task')[$(pp).prevUntil('.task').length - 1] || pp).previousSibling;
+  console.log(parentTask);
+  parentTask.children[2].children[0].value = sum.min;
+  parentTask.children[3].children[0].value = sum.max;
 }
 
 // Canvas generator

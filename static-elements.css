@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+input, button {
+  font-size: 16px;
+}
+
+/*input {
+  border: none;
+  outline: none;
+}*/
+
+h1 {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  text-align: left;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+th, input.other {
+  color: white;
+  background: black;
+  font-weight: bold;
+}
+
+th.non-bordered {
+  background: white;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.subtask, .submin, .submax {
+  color: grey;
+}
+
+.subtask-td {
+  border: 0;
+}
+
+.non-bordered {
+  border: 0;
+}
+
+.description, .min, .max, .submin, .submax, .other {
+  width: 99%;
+}
+
+.subtask, .narrow {
+  width: calc(99% - 20px);
+}
+
+#overallContainer, #resultContainer, #calculationContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+#calculationContainer {
+  display: none;
+}
