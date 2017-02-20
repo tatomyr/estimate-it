@@ -65,14 +65,14 @@
 
       <h1>Calculation</h1>
 
-      <table id="calculation">
+      <table id="calculation" align="center">
         <thead>
           <tr>
             <th>
               Probability of project completing in time | Code quality
             </th>
             <td>
-              <input type="number" id="probability" class="non-bordered" value="90"/>%
+              <input type="number" id="probability" class="non-bordered narrow" value="90"/>%
             </td>
           </tr>
         </thead>
@@ -83,7 +83,7 @@
               Management efforts
             </th>
             <td>
-              <input type="number" class="percentage non-bordered" />%
+              <input type="number" class="percentage non-bordered narrow" />%
             </td>
           </tr>
 
@@ -92,7 +92,7 @@
               QA
             </th>
             <td>
-              <input type="number" class="percentage non-bordered" />%
+              <input type="number" class="percentage non-bordered narrow" />%
             </td>
           </tr>
 
@@ -101,7 +101,7 @@
               Risks
             </th>
             <td>
-              <input type="number" class="percentage non-bordered" />%
+              <input type="number" class="percentage non-bordered narrow" />%
             </td>
           </tr>
 
@@ -110,7 +110,7 @@
               <input type="text" class="non-bordered other" value="Other">
             </th>
             <td>
-              <input type="number" class="percentage non-bordered" />%
+              <input type="number" class="percentage non-bordered narrow" />%
             </td>
           </tr>
 
@@ -119,7 +119,7 @@
 
       <button type="button" onclick="estimate()" class="not-printable">Calculate</button>
 
-      <h2 id="result">...</h2>
+      <h1 id="result">...</h1>
 
       <button type="button" onclick="generateCanvas()" class="not-printable">Generate PDF</button>
     </div>
