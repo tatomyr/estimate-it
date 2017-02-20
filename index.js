@@ -104,7 +104,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <span class="addSubtask" onclick="addSubtask({}, this)">↵</span>
+        <span class="addSubtask" onclick="addSubtask({}, this)">↳</span>
       </td>
       <td>
         <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
@@ -140,13 +140,13 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
       <td class="non-bordered not-printable">
         <span></span>
       </td>
-      <td>
-        <span class="bullet">→</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
+      <td class="subtask-td">
+        <span class="bullet">⊢</span><input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
       </td>
-      <td>
+      <td class="subtask-td">
         <input type="number" min="0" class="submin non-bordered" value="${submin}" onchange="subtaskChange(this)" />
       </td>
-      <td>
+      <td class="subtask-td">
         <input type="number" min="0" class="submax non-bordered" value="${submax}" onchange="subtaskChange(this)" />
       </td>
       <td class="non-bordered not-printable align-right">

@@ -29,28 +29,53 @@ th.non-bordered {
   background: white;
 }
 
-#reset, .delTask {
+#reset {
   color: red;
   cursor: pointer;
   padding: 1px;
   border-radius: 3px;
+  text-align: center;
 }
 
-#reset:hover, .delTask:hover {
+#reset:hover {
   background: red;
   color: white;
 }
 
-.delSubask {
-  color: magenta;
+.delTask {
+  color: red;
   cursor: pointer;
   padding: 1px;
   border-radius: 3px;
+  text-align: center;
+
+  display: block;
+  transition: transform 1s;
+}
+
+.delTask:hover {
+  background: red;
+  color: white;
+
+  transform: scale(1, -1);
+}
+
+.delSubask {
+  color: pink;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 3px;
+  text-align: center;
+
+  display: block;
+  transition: transform 1s;
 }
 
 .delSubask:hover {
-  background: magenta;
+  background: pink;
   color: white;
+
+  transform: rotate(-180deg);
 }
 
 .align-right {
@@ -62,11 +87,17 @@ th.non-bordered {
   cursor: pointer;
   padding: 1px;
   border-radius: 3px;
+  text-align: center;
+
+  display: block;
+  transition: transform 1s;
 }
 
 .addSubtask:hover {
   background: purple;
   color: white;
+
+  transform: scale(-1, 1);
 }
 
 .subtask, .submin, .submax {
@@ -77,6 +108,10 @@ th.non-bordered {
   color: grey;
   padding-left: 2px;
   padding-right: 2px;
+}
+
+.subtask-td {
+  border: 0px;
 }
 
 .non-bordered {
