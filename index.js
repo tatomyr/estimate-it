@@ -15,7 +15,7 @@ const tableSubmit = () => {
 const estimate = () => {
   const P = Number($('#probability').val()) / 100;
   const t = T[Math.ceil((T.length - 1) * P)];
-  const result = t * getPercentage();
+  const result = (t * getPercentage()).toFixed(0);
 
   $('#result').html(`Total: ${result} h`);
 }
