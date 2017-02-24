@@ -17,7 +17,7 @@ const estimate = () => {
   const t = T[Math.ceil((T.length - 1) * P)];
   const result = (t * getPercentage()).toFixed(0);
 
-  $('#result').html(`Total: ${result} h`);
+  $('#result').html(`Total ${result} h`);
 }
 
 const getTasksMinMax = () => {
