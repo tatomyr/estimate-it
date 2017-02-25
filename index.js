@@ -104,8 +104,8 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <div class="addSubtask" onclick="addSubtask({}, this)">↳</div>
-        <div class="showSub" onclick="showSub(this)">▸</div>
+        <div class="addSubtask animated" onclick="addSubtask({}, this)">↳</div>
+        <div class="showSub animated" onclick="showSub(this)">▸</div>
       </td>
       <td>
         <input type="text" class="description non-bordered" placeholder="Task..." value="${task}" />
@@ -117,7 +117,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
         <input type="number" min="0" class="max non-bordered" value="${max}" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <div class="delTask" onclick="delTask(this)">×</div>
+        <div class="delTask animated" onclick="delTask(this)">×</div>
       </td>
     </tr>`
   );
@@ -142,7 +142,7 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <span></span>
       </td>
       <td class="subtask-td">
-        <div class="bullet" onclick="hideSub(this)">⊢</div>
+        <div class="bullet animated" onclick="hideSub(this)">⊢</div>
         <input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
       </td>
       <td class="subtask-td">
@@ -152,7 +152,7 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <input type="number" min="0" class="submax non-bordered" value="${submax}" onchange="subtaskChange(this)" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <div class="delSubask" onclick="delSubtask(this)">×</div>
+        <div class="delSubask animated" onclick="delSubtask(this)">×</div>
       </td>
     </tr>`
   );

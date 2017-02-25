@@ -1,10 +1,21 @@
+.animated {
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+  /*font-size: 12px;*/
+}
 
 #reset {
   color: red;
-  cursor: pointer;
-  padding: 1px;
   border-radius: 3px;
+  cursor: pointer;
   text-align: center;
+  vertical-align: middle;
+  padding: 1px;
 
   transition: transform 1s;
 }
@@ -24,10 +35,6 @@
 
 .delTask {
   color: red;
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 3px;
-  text-align: center;
 
   transition: transform 1s;
 }
@@ -41,10 +48,6 @@
 
 .delSubask {
   color: pink;
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 3px;
-  text-align: center;
 
   transition: transform 1s;
 }
@@ -58,10 +61,6 @@
 
 .addSubtask {
   color: purple;
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 3px;
-  text-align: center;
 
   transition: transform 1s;
 }
@@ -75,11 +74,7 @@
 
 .bullet {
   color: grey;
-  padding-left: 2px;
-  padding-right: 2px;
-  cursor: pointer;
 
-  display: inline-block;
   transition: transform 1s;
 }
 
@@ -92,10 +87,6 @@
 
 .showSub {
   color: green;
-  cursor: pointer;
-  padding: 1px;
-  border-radius: 3px;
-  text-align: center;
 
   display: none;
   transition: transform 1s;
