@@ -142,7 +142,14 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <span></span>
       </td>
       <td class="subtask-td">
-        <div class="bullet animated" onclick="hideSub(this)">⊢</div>
+        <div
+          class="bullet animated"
+          onclick="hideSub(this)"
+          onmouseenter="selectAllSubtasks(this)"
+          onmouseleave="unselectAllSubtasks(this)"
+        >
+          ├
+        </div>
         <input type="text" class="subtask non-bordered" placeholder="Subtask..." value="${subtask}" />
       </td>
       <td class="subtask-td">
@@ -152,12 +159,26 @@ const addSubtask = ({ subtask = '', submin = '', submax = '' }, e) => {
         <input type="number" min="0" class="submax non-bordered" value="${submax}" onchange="subtaskChange(this)" />
       </td>
       <td class="non-bordered not-printable align-right">
-        <div class="delSubask animated" onclick="delSubtask(this)">×</div>
+        <div class="delSubtask animated" onclick="delSubtask(this)">×</div>
       </td>
     </tr>`
   );
 
   $(insertAfter.nextSibling).find('.subtask')[0].focus();
+}
+
+const selectAllSubtasks = (e) => {
+  const pp = e.parentElement.parentElement;
+  prev = $(pp).prevUntil('.task');
+  next = $(pp).nextUntil('.task');
+  $([ ...prev, pp, ...next ]).map((i, item)=>item.children[1].children[0]).addClass('bullet-hover');
+}
+
+const unselectAllSubtasks = (e) => {
+  const pp = e.parentElement.parentElement;
+  prev = $(pp).prevUntil('.task');
+  next = $(pp).nextUntil('.task');
+  $([ ...prev, pp, ...next ]).map((i, item)=>item.children[1].children[0]).removeClass('bullet-hover');
 }
 
 const hideSub = (e) => {
