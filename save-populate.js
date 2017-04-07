@@ -29,7 +29,11 @@ const getData = () => {
       const min = $(task).find('.min').val();
       const max = $(task).find('.max').val();
 
-      tasks.push({ task: description, min, max });
+      const descEncoded = description.replace(/ \& /g, ' and ').
+                                      replace(/\&/g, ' and ').
+                                      replace(/\#/g, '⧣');
+
+      tasks.push({ task: descEncoded, min, max });
     }
 
     if ($(task).find('.subtask').length) {
