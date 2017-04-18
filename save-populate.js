@@ -50,10 +50,15 @@ const getData = () => {
 
     if ($(task).find('.subtask').length) {
       const subtask = $(task).find('.subtask').val();
+
+      const subtaskEncoded = subtask.replace(/ \& /g, ' and ').
+                                      replace(/\&/g, ' and ').
+                                      replace(/\#/g, '⧣');
+
       const submin = $(task).find('.submin').val();
       const submax = $(task).find('.submax').val();
 
-      tasks.push({ subtask, submin, submax });
+      tasks.push({ subtask: subtaskEncoded, submin, submax });
     }
 
   });
