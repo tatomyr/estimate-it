@@ -15,8 +15,20 @@ $(document).ready(() => {
 });
 
 const save = () => {
-  // getData()
-  location.search = `tasks=${JSON.stringify(getData())}`; // encodeURIComponent();
+  // location.search = `tasks=${JSON.stringify(getData())}`; // encodeURIComponent();
+  history.pushState('', '', `${location.pathname}?tasks=${JSON.stringify(getData())}`)
+
+  $('.spinner').removeClass('hidden');
+  fetch('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCKs8fbpledoucIysdmEGmQLCWHTdp8CXg', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      longUrl: location.href
+    })
+  }).then(res => res.json()).then(doc => {
+    prompt('Your short address:', doc.id);
+    $(".spinner").addClass('hidden');
+  });
 }
 
 const getData = () => {
