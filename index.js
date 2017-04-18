@@ -295,3 +295,16 @@ const generateCanvas = () => {
   });
 
 }
+
+
+/*
+
+fetch('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCKs8fbpledoucIysdmEGmQLCWHTdp8CXg', {
+  method: 'post',
+  headers: { 'Content-Type': 'application/json' },
+  data: {
+    longUrl: 'https://agropoll.now.sh/admin'
+  }
+}).then(res=>res.json()).then(doc=>console.log(doc))
+
+*/
