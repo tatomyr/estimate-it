@@ -104,7 +104,7 @@ const addTask = ({ task = '', min = '', max = '' }) => {
   $('#table tbody').append(
     `<tr class="task">
       <td class="non-bordered not-printable">
-        <div class="addSubtask animated" onclick="addSubtask({}, this)">↳</div>
+        <div class="addSubtask animated" onclick="addSubtask({}, this)">⤷</div>
         <div class="showSub animated" onclick="showSub(this)">▸</div>
       </td>
       <td>
