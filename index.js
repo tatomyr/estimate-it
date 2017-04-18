@@ -302,9 +302,9 @@ const generateCanvas = () => {
 fetch('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCKs8fbpledoucIysdmEGmQLCWHTdp8CXg', {
   method: 'post',
   headers: { 'Content-Type': 'application/json' },
-  data: {
-    longUrl: 'https://agropoll.now.sh/admin'
-  }
-}).then(res=>res.json()).then(doc=>console.log(doc))
+  body: JSON.stringify({
+    longUrl: 'https://tatomyr.github.io/estimate-it/?tasks=[{%22task%22:%22Setting%20up%20environment%22,%22min%22:%2216%22,%22max%22:%2224%22},{%22task%22:%22Authentication%22,%22min%22:%228%22,%22max%22:%2222%22},{%22task%22:%22Settings%20page%22,%22min%22:%2216%22,%22max%22:%2225%22},{%22task%22:%22Goods%20upload%22,%22min%22:%2216%22,%22max%22:%2229%22},{%22subtask%22:%22photos%22,%22submin%22:%228%22,%22submax%22:%2215%22},{%22subtask%22:%22text%22,%22submin%22:%223%22,%22submax%22:%226%22},{%22subtask%22:%22layouting%22,%22submin%22:%225%22,%22submax%22:%228%22},{%22task%22:%22Goods%20page%22,%22min%22:%2225%22,%22max%22:%2240%22},{%22subtask%22:%22update/delete%22,%22submin%22:%228%22,%22submax%22:%2212%22},{%22subtask%22:%22sold%22,%22submin%22:%226%22,%22submax%22:%2210%22},{%22subtask%22:%22unsold%22,%22submin%22:%226%22,%22submax%22:%2210%22},{%22subtask%22:%22refresh%22,%22submin%22:%225%22,%22submax%22:%228%22},{%22task%22:%22My%20goods%20and%20Profile%22,%22min%22:%2215%22,%22max%22:%2224%22},{%22task%22:%22Counterparties%20page%22,%22min%22:%2215%22,%22max%22:%2224%22},{%22task%22:%22Store%20page%20(swiping)%20%22,%22min%22:%2220%22,%22max%22:%2235%22},{%22task%22:%22Bids%20of%20buyer%22,%22min%22:%2230%22,%22max%22:%2260%22},{%22task%22:%22Notifications%20%22,%22min%22:%2225%22,%22max%22:%2240%22},{%22task%22:%22Chat%22,%22min%22:%2225%22,%22max%22:%2240%22},{%22task%22:%22Backend%20%22,%22min%22:%2240%22,%22max%22:%2250%22}]'
+  })
+}).then(res=>res.json()).then(doc=>console.log(doc.id))
 
 */
