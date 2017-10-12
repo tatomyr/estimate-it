@@ -1,0 +1,101 @@
+.animated {
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+}
+
+#reset {
+  color: red;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1px;
+}
+
+@keyframes reset {
+  from {color: red; background-color: white;}
+  to {color: white; background-color: red;}
+}
+
+#reset:hover {
+  background: red;
+  color: white;
+
+  animation-name: reset;
+  animation-duration: 2s;
+}
+
+.delTask {
+  color: red;
+}
+
+@keyframes delTask {
+  from {border-radius: 50%;}
+  to {border-radius: 3px;}
+}
+
+.delTask:hover {
+  background: red;
+  color: white;
+
+  animation-name: delTask;
+  animation-duration: 1s;
+}
+
+.delSubtask {
+  color: pink;
+
+  transition: transform 1s;
+}
+
+.delSubtask:hover {
+  background: pink;
+  color: white;
+
+  transform: rotate(-180deg);
+}
+
+.addSubtask {
+  color: purple;
+
+  transition: transform 1s;
+}
+
+.addSubtask:hover {
+  background: purple;
+  color: white;
+
+  transform: rotate(90deg);
+}
+
+.bullet {
+  color: grey;
+
+  transition: transform 1s;
+}
+
+.bullet-hover {
+  background: grey;
+  color: white;
+
+  transform: scale(1, 1.2);
+}
+
+.showSub {
+  color: green;
+
+  display: none;
+  transition: transform 1s;
+}
+
+.showSub:hover {
+  background: green;
+  color: white;
+
+  transform: rotate(90deg);
+}

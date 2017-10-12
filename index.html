@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Estimate it</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- jQuery cdn -->
+  <script src="jquery-3.1.1.min.js"></script>
+  <!-- Chart.js CDN -->
+  <script src="Chart.bundle.min.js"></script>
+  <!-- Other libraries -->
+  <script src="https://tatomyr.github.io/discrete-vector/discrete-vector.js"></script>
+
+
+  <script src="jspdf.debug.js"></script>
+
+  <!-- App imports -->
+  <link rel="stylesheet" type="text/css" href="spinner.css">
+  <script src="spinner.js"></script>
+
+  <script src="save-populate.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="static-elements.css">
+  <link rel="stylesheet" type="text/css" href="animated-elements.css">
+  <script src="index.js"></script>
+
+  <!-- html2canvas -->
+  <script src="html2canvas.js"></script>
+
+</head><body>
+  <div id="overallContainer">
+
+    <div id="tableContainer">
+      <h1>Efforts estimation</h1>
+
+      <table id="table" width="100%">
+        <col style="width:3%" class="not-printable">
+        <col style="width:70%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:3%" class="not-printable">
+        <thead>
+          <tr>
+            <th class="non-bordered not-printable"></th>
+            <th>Task description</th>
+            <th>Min (h)</th>
+            <th>Max (h)</th>
+            <th class="non-bordered not-printable"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows goes here -->
+        </tbody>
+      </table>
+    </div>
+
+    <button type="button" onclick="addTask({})" class="not-printable">Add Task</button>
+    <button type="button" onclick="save()" class="not-printable">Save</button>
+    <button type="button" onclick="tableSubmit()" class="not-printable">Submit</button>
+    <span id="reset" onclick="reset()" class="not-printable">Reset</span>
+
+    <div id="calculationContainer">
+      <h1>Probability graph</h1>
+
+      <canvas id="timeChart" width="400" height="200"></canvas>
+
+      <h1>Calculation</h1>
+
+      <table id="calculation" width="80%" align="center">
+        <col style="width:85%">
+        <col style="width:15%">
+
+        <thead>
+          <tr>
+            <th>
+              Probability of project completing in time (code quality)
+            </th>
+            <td>
+              <input type="number" id="probability" class="non-bordered narrow" value="90"/>%
+            </td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>
+              Management efforts
+            </th>
+            <td>
+              <input type="number" class="percentage non-bordered narrow" />%
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              QA
+            </th>
+            <td>
+              <input type="number" class="percentage non-bordered narrow" />%
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Risks
+            </th>
+            <td>
+              <input type="number" class="percentage non-bordered narrow" />%
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <input type="text" class="non-bordered other" value="Other">
+            </th>
+            <td>
+              <input type="number" class="percentage non-bordered narrow" />%
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <button type="button" onclick="estimate()" class="not-printable">Calculate</button>
+
+      <h1 id="result">...</h1>
+
+      <button type="button" onclick="generateCanvas()" class="not-printable">Generate PDF</button>
+    </div>
+
+  </div>
+
+  <div id="resultContainer">
+    <!-- Should be empty -->
+  </div>
+
+  <div class="spinner hidden">PLEASE WAIT...</div>
+</body></html>
