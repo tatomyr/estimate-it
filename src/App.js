@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-
 import MainLayout from './components/MainLayout';
 
 class App extends Component {

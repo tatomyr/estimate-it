@@ -60,7 +60,7 @@ export const hoistHours = list => list
 	}))
 	.map(item => ({
 		...item,
-		value: item.name + ' | ' + item.hours.join(' '),
+		value: (item.name + ' | ' + item.hours.join(' ')).trim(),
 	}))
 
 const calculateHours = list => parent => {
@@ -89,3 +89,23 @@ export const listToTree = list => text => textToArr(text).map(item => {
 
 	return Array(item.indentation + 1).join(' ') + (newItem || item).value;
 }).join('\n')
+
+
+export const handleFlat = text => {
+  const tasks = treeToList(text);
+  // console.log(JSON.stringify(tasks, null, '\t'))
+  console.table(tasks)
+
+  const a=tasks
+
+  const b= splitTaskParams(a).filter(({ value }) => value[0] !== '#')
+
+  console.table(b.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
+
+  const c=hoistHours(b)
+  console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
+
+  console.log(listToTree(c)(text))
+  return listToTree(c)(text);
+
+}

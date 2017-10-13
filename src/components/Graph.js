@@ -1,7 +1,14 @@
 import React from 'react';
+import ReactHighcharts from 'react-highcharts';
 
-export default () => (
+const config = {
+  series: [{
+    data: [[1,0],[10,7]]
+  }]
+};
+
+export default props => (
   <div>
-    graph
+    <ReactHighcharts config={config} />
   </div>
 )
