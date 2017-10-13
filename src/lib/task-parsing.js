@@ -1,4 +1,4 @@
-import { sort, product, toProbGraph } from 'augmented-multiset';
+import { sort, product, productEach, reduceByEdges, toProbGraph } from './ams';
 
 const getIndentation = str => {
 	let previous = '';
@@ -77,6 +77,30 @@ const calculateHours = list => parent => {
 	}, [0]);
 }
 
+export const hoistReducedHours = list => n => list
+	.map(item => ({
+		...item,
+		hours: calculateReducedHours(list)(item.index)(n).sort((a, b) => a - b),
+	}))
+	.map(item => ({
+		...item,
+		value: (item.name + ' | ' + item.hours.join(' ')).trim(),
+	}))
+
+const calculateReducedHours = list => parent => n => {
+	const children = list.filter(item => item.parent === parent);
+	console.log(children);
+	if (children.length === 0) return list.find(({ index }) => index === parent).hours;
+
+	return children.reduce(($, item) => {
+		if (list.some(({ parent }) => parent === item.index)) {
+			return product(reduceByEdges(sort($))(n))(calculateHours(list)(item.index));
+		} else {
+			return product(reduceByEdges(sort($))(n))(item.hours);
+		}
+	}, [0]);
+}
+
 export const listToTree = list => text => textToArr(text).map(item => {
 	const newItem = list.find(({ index }) => index === item.index);
 	// console.log(newItem);
@@ -91,7 +115,7 @@ export const listToTree = list => text => textToArr(text).map(item => {
 }).join('\n')
 
 
-export const handleFlat = text => {
+export const handleFlat = (text, n = Infinity) => {
   const tasks = treeToList(text);
   // console.log(JSON.stringify(tasks, null, '\t'))
   console.table(tasks)
@@ -105,7 +129,13 @@ export const handleFlat = text => {
   const c=hoistHours(b)
   console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 
+	const d =hoistReducedHours(b)(n)
+
   console.log(listToTree(c)(text))
-  return listToTree(c)(text);
+  return {
+		text: listToTree(c)(text),
+		graphData: toProbGraph(sort(productEach(c.filter(({ parent }) => parent === null).map(({ hours }) => hours)))),
+		reducedGraphData: toProbGraph(sort(  productEach(d.filter(({ parent }) => parent === null).map(({ hours }) => hours))  )),
+	};
 
 }

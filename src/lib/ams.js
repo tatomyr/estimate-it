@@ -1,1 +1,117 @@
-!function(n,r){"object"==typeof exports&&"object"==typeof module?module.exports=r():"function"==typeof define&&define.amd?define("ams",[],r):"object"==typeof exports?exports.ams=r():n.ams=r()}(this,function(){return function(n){function r(e){if(t[e])return t[e].exports;var u=t[e]={i:e,l:!1,exports:{}};return n[e].call(u.exports,u,u.exports,r),u.l=!0,u.exports}var t={};return r.m=n,r.c=t,r.d=function(n,t,e){r.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:e})},r.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return r.d(t,"a",t),t},r.o=function(n,r){return Object.prototype.hasOwnProperty.call(n,r)},r.p="",r(r.s=0)}([function(n,r,t){"use strict";function e(n){return Array.isArray(n)?n:Array.from(n)}function u(n){if(Array.isArray(n)){for(var r=0,t=Array(n.length);r<n.length;r++)t[r]=n[r];return t}return Array.from(n)}var o=function(n){return function(r){return[].concat(u(n),u(r))}},c=function(n){return n.reduce(function(n,r){return o(n)(r)})},i=function(n){return function(r){return n.reduce(function(n,t){return o(n)(r.map(function(n){return t+n}))},[])}},f=function(n){return n.reduce(function(n,r){return i(n)(r)})},l=function(n){return function(r){var t=n.indexOf(r);return-1===t?n:n.filter(function(n,r){return r!==t})}},a=function(n){return function(r){return r.reduce(function(n,r){return l(n)(r)},n)}},h=function(n){return function(r){return 0===a(n)(r).length&&0===a(r)(n).length}},s=function(n){return e(n).slice(0).sort(function(n,r){return n-r})},d=function(n){return function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:2;if(r<2)throw new Error("Rounding the muliset to less than 2 elements");return r>=n.length?n:Array(r).fill().map(function(t,e){var u=n.length,o=(u-1)*e/(r-1);return(n[Math.floor(o)]+n[Math.ceil(o)])/2})}},g=function(n){return function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:1;if(r<1)throw new Error("Rounding the muliset to less than 1 element");var t=n.length,e=t/r,u=Array(r).fill().map(function(n,r){return{edges:[Math.floor(e*r),Math.ceil(e*(r+1)-1)],halfIncluding:[Math.ceil(e*r-1)===Math.floor(e*r),Math.ceil(e*(r+1)-1)===Math.floor(e*(r+1))]}});return console.log(u),u.map(function(r,t){return n.filter(function(n,t){return t>=r.edges[0]&&t<=r.edges[1]}).reduce(function(n,r,t,e){return console.log(":::",e)||n+ +r/e.length},0)})}},p=function(n){return function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:1,t=n.length,e=t/r,o=Array(r).fill().map(function(n,r){return{edges:[Math.floor(e*r),Math.ceil(e*(r+1)-1)],halfIncluding:[Math.ceil(e*r-1)===Math.floor(e*r),Math.ceil(e*(r+1)-1)===Math.floor(e*(r+1))]}});return console.log(o),o.map(function(r,t){var e=n.filter(function(n,t){return t>=r.edges[0]&&t<=r.edges[1]}),o=r.halfIncluding[0]?[e[0]/2].concat(u(e.slice(1))):e,c=r.halfIncluding[1]?[].concat(u(o.slice(0,o.length-1)),[o[o.length-1]/2]):o,i=r.edges[1]-r.edges[0]+1,f=i-(r.halfIncluding[0]?.5:0),l=f-(r.halfIncluding[1]?.5:0),a=c.reduce(function(n,r){return n+ +r},0);return console.log(r.halfIncluding,"<>",e,":",c,"/",l,"=",a/l),a/l})}},m=function(n){return n.map(function(r,t){return[r,t/(n.length-1)]})},y=function(n){return n.map(function(r,t){return[t/(n.length-1),r]})};n.exports={sum:o,sumEach:c,product:i,productEach:f,diff:a,equal:h,sort:s,reduceByEdges:d,reduceByAvg:g,_reduceByAvg_:p,toProbGraph:m,toTimeGraph:y}}])});
+/**
+ * The Augumented Multiset lib provides methods to deal with special type of multiset.
+ * A multiset itself is represented by ordinary JS array.
+ */
+
+const sum = u => v => [...u, ...v];
+const sumEach = U => U.reduce(($, u) => sum($)(u));
+
+const cartesianProduct = u => v => u.reduce(($, x) => sum($)(v.map(y => [x, y])), []);
+const product = u => v => u.reduce(($, x) => sum($)(v.map(y => x + y)), []);
+const productEach = U => U.reduce(($, u) => product($)(u), [0]);
+
+const exclude = u => x => {
+  const index = u.indexOf(x);
+  return index === -1
+    ? u
+    : u.filter((_, i) => i !== index);
+}
+const diff = u => v => v.reduce(($, x) => exclude($)(x), u);
+const equal = u => v => diff(u)(v).length === 0 && diff(v)(u).length === 0;
+
+const sort = ([...u]) => u.sort((a, b) => a - b);
+
+/**
+ * Shrinking (resizing, rounding) an array of numbers to specified size
+ *
+ * reduceByEdges :: [Number] -> Number -> [Number]
+ */
+const reduceByEdges = u => (n = 2) => {
+  if (n < 2) throw new Error('Rounding the muliset to less than 2 elements');
+
+  if (n >= u.length) return u;
+
+  return Array(n).fill().map((_, j) => {
+    const m = u.length;
+    const K = (m - 1) * j / (n - 1);
+    // return u[Math.round(K)];
+    return (u[Math.floor(K)] + u[Math.ceil(K)]) / 2;
+  });
+}
+
+const reduceByAvg = u => (n = 1) => {
+  if (n < 1) throw new Error('Rounding the muliset to less than 1 element');
+
+  const m = u.length;
+  const K = m / n;
+
+  const outputMap = Array(n).fill().map((_, j) => ({
+    edges: [Math.floor(K*j),Math.ceil(K*(j+1)-1)],
+    halfIncluding: [
+      Math.ceil(K*j-1)===Math.floor(K*j),
+      Math.ceil(K*(j+1)-1)=== Math.floor(K*(j+1))
+    ]
+  }));
+
+  console.log(outputMap)
+  return outputMap.map((item, j) => {
+    return u
+      .filter((_, i) => i >= item.edges[0] && i <= item.edges[1])
+      .reduce(($, value, _, arr) => console.log(':::',arr) || $ + +value / arr.length, 0)
+  })
+}
+
+const _reduceByAvg_ = u => (n = 1) => {
+  const m = u.length;
+  const K = m / n;
+
+  const outputMap = Array(n).fill().map((_, j) => ({
+    edges: [Math.floor(K*j),Math.ceil(K*(j+1)-1)],
+    halfIncluding: [
+      Math.ceil(K*j-1)===Math.floor(K*j),
+      Math.ceil(K*(j+1)-1)=== Math.floor(K*(j+1))
+    ]
+  }));
+
+  console.log(outputMap)
+  return outputMap.map((item, j) => {
+    const samples = u
+      .filter((_, i) => i >= item.edges[0] && i <= item.edges[1]);
+    const n1 = item.halfIncluding[0] ? [samples[0] / 2, ...samples.slice(1)] : samples;
+    const n2 = item.halfIncluding[1] ? [...n1.slice(0, n1.length - 1), n1[n1.length - 1] / 2] : n1;
+    const d0 = item.edges[1] - item.edges[0] + 1;
+    const d1 = d0 - (item.halfIncluding[0] ? 1/2 : 0);
+    const d2 = d1 - (item.halfIncluding[1] ? 1/2 : 0);
+    const numerator = n2.reduce(($, val) => $ + +val, 0);
+    console.log(item.halfIncluding, '<>',samples,':',n2 ,'/', d2,'=',numerator/d2)
+    return numerator / d2;
+  })
+}
+
+const toProbGraph = u => u.map((val, i) => [val, i / (u.length - 1)])
+const toTimeGraph = u => u.map((val, i) => [i / (u.length - 1), val])
+
+/* */
+module.exports = {
+  sum,
+  sumEach,
+  product,
+  productEach,
+  diff,
+  equal,
+  sort,
+  reduceByEdges,
+  reduceByAvg,
+  _reduceByAvg_,
+  toProbGraph,
+  toTimeGraph,
+};
+/* */
+
+// console.log(
+// '<===========>',
+// sum([1,2])([3]),
+// sumEach([[1,2],[3]]), sumEach([['a','b'],['c','d'],['e','f','g']]),
+// product([1,2])([4,8, 16]),
+// productEach([[1,2],[4,8, 16]]), productEach([[1,2],[4,8, 16],[100]]),
+// )
