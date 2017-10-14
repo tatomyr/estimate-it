@@ -8,7 +8,10 @@ const options = {
 };
 
 const Editor = props => (
-  <div style={{ textAlign: 'left' }}>
+  <div
+    style={{ textAlign: 'left' }}
+    onBlur={props.onEditorBlur}
+  >
     <MonacoEditor
       height="600"
       language="python"

@@ -10,22 +10,27 @@ const defaultState = {
 export const appReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'CHANGE_TEXT':
-      // const { text, graphData, reducedGraphData } = (action.e.changes[0].text.includes('\n'))
-      //   ? handleFlat(action.text, 10)
-      //   : {
-      //     text: action.text,
-      //     graphData: state.graphData,
-      //     reducedGraphData: state.reducedGraphData,
-      //   };
-
       if (action.e.changes[0].text.includes('\n')) {
         const { text, graphData, reducedGraphData } = handleFlat(action.text, 15);
-        return { ...state, text, graphData, reducedGraphData }
+        return {
+          ...state,
+          text,
+          graphData,
+          reducedGraphData,
+        };
       }
-
       return {
         ...state,
         text: action.text,
+      };
+    case 'EDITOR_BLUR':
+      const { text, graphData, reducedGraphData } = handleFlat(state.text, 15);
+      if (text === state.text) return state;
+      return {
+        ...state,
+        text,
+        graphData,
+        reducedGraphData,
       };
     default:
       return state;

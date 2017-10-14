@@ -48,8 +48,8 @@ export const treeToList = text => textToArr(text).filter(item => (
 
 export const splitTaskParams = list => list.map(item => ({
 	...item,
-	name: item.value.split(/[=\|]/)[0].trim(),
-	hours: (item.value.split(/[=\|]/)[1] || '').trim().split(/\s+/).map(time => +time)
+	name: item.value.split(/[=|]/)[0].trim(),
+	hours: (item.value.split(/[=|]/)[1] || '').trim().split(/\s+/).map(time => +time)
 }));
 
 
