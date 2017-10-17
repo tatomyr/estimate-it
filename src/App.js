@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
+import logo from './keenlogo.jpg';
 import './App.css';
 import MainLayout from './components/MainLayout';
 

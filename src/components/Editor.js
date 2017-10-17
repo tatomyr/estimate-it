@@ -19,7 +19,7 @@ const Editor = props => (
       value={props.text}
       options={options}
       onChange={props.onTextChange}
-      editorDidMount={(editor, monaco) => { editor.focus() }}
+      editorDidMount={(editor, monaco) => { editor.focus(); }}
     />
   </div>
 );
