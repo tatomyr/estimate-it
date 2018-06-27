@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
 import Graph from '../components/Graph'
 
-const mapStateToProps = state => ({
-  graphData: state.graphData,
-  reducedGraphData: state.reducedGraphData,
+const mapStateToProps = ({ appData: { reducedGraphData } }) => ({
+  reducedGraphData,
 })
 
 const GraphContainer = connect(mapStateToProps)(Graph)

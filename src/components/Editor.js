@@ -8,9 +8,9 @@ const options = {
 }
 
 const Editor = ({
-  onEditorBlur,
   text,
   onTextChange,
+  onEditorBlur,
 }) => (
   <div
     style={{ textAlign: 'left' }}

@@ -1,20 +1,19 @@
 import { connect } from 'react-redux'
 import Editor from '../components/Editor'
+import { changeText, editorBlur } from '../actions'
 
-const mapStateToProps = state => ({
-  text: state.text,
+const mapStateToProps = ({ appData: { text }}) => ({
+  text,
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTextChange: (text, e) => {
-      dispatch({ type: 'CHANGE_TEXT', text, e })
-    },
-    onEditorBlur: () => {
-      dispatch({ type: 'EDITOR_BLUR' })
-    },
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onTextChange: (text, e) => {
+    dispatch(changeText(text, e))
+  },
+  onEditorBlur: () => {
+    dispatch(editorBlur())
+  },
+})
 
 const EditorContainer = connect(mapStateToProps, mapDispatchToProps)(Editor)
 

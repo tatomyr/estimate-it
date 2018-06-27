@@ -136,7 +136,6 @@ export const handleFlat = (text, n = Infinity) => {
 		// text: listToTree(c)(text),
 		text: listToTree(d)(text), // !!
 		// graphData: toProbGraph(sort(productEach(c.filter(({ parent }) => parent === null).map(({ hours }) => hours)))),
-		graphData: [],
 		reducedGraphData: toProbGraph(sort(  productEach(d.filter(({ parent }) => parent === null).map(({ hours }) => hours))  )),
 	};
 
