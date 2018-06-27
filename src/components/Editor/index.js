@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import Editor from './Editor'
-import { changeText, editorBlur } from '../../actions'
+import { changeText, recalc } from '../../actions'
 
-const mapStateToProps = ({ appData: { text } }) => ({
+const mapStateToProps = ({ estimate: { text } }) => ({
   text,
 })
 
@@ -10,8 +10,8 @@ const mapDispatchToProps = dispatch => ({
   onTextChange: (text, e) => {
     dispatch(changeText(text, e))
   },
-  onEditorBlur: () => {
-    dispatch(editorBlur())
+  recalc: () => {
+    dispatch(recalc())
   },
 })
 

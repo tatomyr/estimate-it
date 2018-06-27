@@ -4,8 +4,9 @@ module.exports = {
     browser: true,
   },
   rules: {
-    semi: ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    semi: ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
     "react/prop-types": "warn",
   },
 };

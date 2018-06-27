@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
 
 const options = {
@@ -10,11 +11,11 @@ const options = {
 const Editor = ({
   text,
   onTextChange,
-  onEditorBlur,
+  recalc,
 }) => (
   <div
     style={{ textAlign: 'left' }}
-    onBlur={onEditorBlur}
+    onBlur={recalc}
   >
     <MonacoEditor
       height="600"
@@ -27,5 +28,15 @@ const Editor = ({
     />
   </div>
 )
+
+Editor.propTypes = {
+  text: PropTypes.string,
+  onTextChange: PropTypes.func.isRequired,
+  recalc: PropTypes.func.isRequired,
+}
+
+Editor.defaultProps = {
+  text: '',
+}
 
 export default Editor

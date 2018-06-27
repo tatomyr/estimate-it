@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ReactHighcharts from 'react-highcharts'
 
 const config = {}
 
-export default ({
+const Graph = ({
   reducedGraphData,
 }) => (
   <div>
@@ -15,3 +16,10 @@ export default ({
     />
   </div>
 )
+
+const dataType = PropTypes.arrayOf(PropTypes.number)
+Graph.propTypes = {
+  reducedGraphData: PropTypes.arrayOf(dataType).isRequired,
+}
+
+export default Graph

@@ -1,10 +1,10 @@
-import { CHANGE_TEXT, EDITOR_BLUR } from './types'
+import { CHANGE_TEXT, RECALCULATE } from './types'
 
 export const changeText = text => ({
   type: CHANGE_TEXT,
   text,
 })
 
-export const editorBlur = () => ({
-  type: EDITOR_BLUR,
+export const recalc = () => ({
+  type: RECALCULATE,
 })
