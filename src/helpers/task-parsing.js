@@ -126,15 +126,17 @@ export const handleFlat = (text, n = Infinity) => {
 
   console.table(b.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 
-  const c=hoistHours(b)
-  console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
+//   const c=hoistHours(b)
+//   console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 
 	const d =hoistReducedHours(b)(n)
 
-  console.log(listToTree(c)(text))
+//   console.log(listToTree(c)(text))
   return {
-		text: listToTree(c)(text),
-		graphData: toProbGraph(sort(productEach(c.filter(({ parent }) => parent === null).map(({ hours }) => hours)))),
+		// text: listToTree(c)(text),
+		text: listToTree(d)(text), // !!
+		// graphData: toProbGraph(sort(productEach(c.filter(({ parent }) => parent === null).map(({ hours }) => hours)))),
+		graphData: [],
 		reducedGraphData: toProbGraph(sort(  productEach(d.filter(({ parent }) => parent === null).map(({ hours }) => hours))  )),
 	};
 

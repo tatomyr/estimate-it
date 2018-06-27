@@ -1,27 +1,31 @@
-import React from 'react';
+import React from 'react'
 import MonacoEditor from 'react-monaco-editor';
 
 const options = {
   lineNumbers: false,
   scrollBeyondLastLine: false,
   readOnly: false,
-};
+}
 
-const Editor = props => (
+const Editor = ({
+  onEditorBlur,
+  text,
+  onTextChange,
+}) => (
   <div
     style={{ textAlign: 'left' }}
-    onBlur={props.onEditorBlur}
+    onBlur={onEditorBlur}
   >
     <MonacoEditor
       height="600"
       language="python"
       theme="vs-dark"
-      value={props.text}
+      value={text}
       options={options}
-      onChange={props.onTextChange}
-      editorDidMount={(editor, monaco) => { editor.focus(); }}
+      onChange={onTextChange}
+      editorDidMount={(editor, monaco) => { editor.focus() }}
     />
   </div>
-);
+)
 
-export default Editor;
+export default Editor
