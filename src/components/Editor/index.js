@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import Editor from '../components/Editor'
-import { changeText, editorBlur } from '../actions'
+import Editor from './Editor'
+import { changeText, editorBlur } from '../../actions'
 
-const mapStateToProps = ({ appData: { text }}) => ({
+const mapStateToProps = ({ appData: { text } }) => ({
   text,
 })
 

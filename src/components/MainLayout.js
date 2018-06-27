@@ -1,10 +1,10 @@
-import React from 'react';
-import EditorContainer from '../containers/EditorContainer';
-import GraphContainer from '../containers/GraphContainer';
+import React from 'react'
+import Editor from './Editor'
+import GraphContainer from '../containers/GraphContainer'
 
 export default () => (
   <div>
-    <EditorContainer />
+    <Editor />
     <GraphContainer />
   </div>
-);
+)

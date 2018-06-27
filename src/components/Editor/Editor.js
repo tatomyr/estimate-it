@@ -1,5 +1,5 @@
 import React from 'react'
-import MonacoEditor from 'react-monaco-editor';
+import MonacoEditor from 'react-monaco-editor'
 
 const options = {
   lineNumbers: false,
