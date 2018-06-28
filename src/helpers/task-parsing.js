@@ -6,59 +6,66 @@ import {
   toProbGraph,
 } from 'augmented-multiset'
 
-const getIndentation = str => {
-  let previous = ''
-  /* eslint-disable-next-line */
-  for (const chr of str) {
-    if (
-      (chr === ' ' || chr === '\t')
-      && (previous === '' || previous.includes(chr))
-    ) {
-      previous += chr
-    } else break
-  }
-  return previous.length
-}
+// getIndentation :: String -> Int
+const getIndentation = str => str.match(/^\s*/)[0].length
 
-const textToArr = text => text.split('\n')
-  .map((line, i) => ({
-    value: line.trim(),
-    indentation: getIndentation(line),
-    index: i,
-  }));
+// lineToRecord :: (String, Int) -> {value: String, indentation: Int, index: Int}
+const lineToRecord = (str, index) => ({
+  value: str.trim(),
+  indentation: getIndentation(str),
+  index,
+})
 
-const last = arr => arr[arr.length - 1];
+// textToArr :: String -> [{value: String, indentation: Int, index: Int}]
+const textToArr = text => text.split('\n').map(lineToRecord)
 
+// last :: [a] -> Int
+const last = arr => arr[arr.length - 1]
+
+// getParent :: ?
 const getParent = arr => indentation => sibling => {
   if (sibling === undefined) {
     if (arr.length === 0) return null
-    else throw new Error('Invalid tree structure!');
+    throw new Error('Invalid tree structure!')
   }
-
   if (indentation === sibling.indentation) {
-    return sibling.parent;
-  } else if (indentation > sibling.indentation && sibling === last(arr)) {
-    return sibling.index;
-  } else {
-    return getParent(arr)(indentation)(arr.find(item => item.index === sibling.parent));
+    return sibling.parent
   }
+  if (indentation > sibling.indentation && sibling === last(arr)) {
+    return sibling.index
+  }
+  return getParent(arr)(indentation)(arr.find(item => item.index === sibling.parent))
 }
 
-export const treeToList = text => textToArr(text).filter(item => (
-  item.value.trim()
-  && item.value.trim()[0] !== '@'
-  && item.value.trim()[0] !== '%'
-)).reduce(($, item) => [
-  ...$,
-  { ...item, parent: getParent($)(item.indentation)(last($)) },
-], [])
+// isTaskItem :: {value: String, *} -> Boolean
+const isTaskItem = ({ value }) => (
+  value.trim()
+  && value.trim()[0] !== '@'
+  && value.trim()[0] !== '%'
+)
 
+// treeToList => String => [{value: String, indentation: Int, index: Int, parent: Int}]
+export const treeToList = text => textToArr(text)
+  .filter(isTaskItem)
+  .reduce(($, item) => [
+    ...$,
+    { ...item, parent: getParent($)(item.indentation)(last($)) },
+  ], [])
+
+// splitNameAndHours :: String -> {name: String, hours: [Number]}
+const splitNameAndHours = str => {
+  const [name, hours = ''] = str.split(/[=|]/)
+  return ({
+    name: name.trim(),
+    hours: hours.trim().split(/\s+/).map(time => +time),
+  })
+}
+
+// splitTaskParams :: [{value: String, *}] -> [{value: String, name: String, hours: [Number], *}]
 export const splitTaskParams = list => list.map(item => ({
   ...item,
-  name: item.value.split(/[=|]/)[0].trim(),
-  hours: (item.value.split(/[=|]/)[1] || '').trim().split(/\s+/).map(time => +time),
+  ...splitNameAndHours(item.value),
 }))
-
 
 export const hoistHours = list => list
   .map(item => ({
@@ -123,7 +130,7 @@ export const handleFlat = (text, n = Infinity) => {
   const b= splitTaskParams(a).filter(({ value }) => value[0] !== '#')
 
   console.table(b.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
-
+console.log(hoistHours)
 //   const c=hoistHours(b)
 //   console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 

@@ -8,17 +8,9 @@ const options = {
   readOnly: false,
 }
 
-const Editor = ({
-  text,
-  onTextChange,
-  recalc,
-}) => (
-  <div
-    style={{ textAlign: 'left' }}
-    onBlur={recalc}
-  >
+const Editor = ({ text, onTextChange }) => (
+  <div className="editor-wrapper">
     <MonacoEditor
-      height="600"
       language="python"
       theme="vs-dark"
       value={text}
@@ -32,7 +24,6 @@ const Editor = ({
 Editor.propTypes = {
   text: PropTypes.string,
   onTextChange: PropTypes.func.isRequired,
-  recalc: PropTypes.func.isRequired,
 }
 
 Editor.defaultProps = {

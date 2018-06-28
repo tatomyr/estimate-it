@@ -1,19 +1,14 @@
 import React from 'react'
-
 import logo from './keenlogo.jpg'
 import './App.css'
-// import MainLayout from './components/MainLayout'
 import Editor from './components/Editor'
 import Graph from './components/Graph'
+import Sidebar from './components/Sidebar'
 
 const App = () => (
   <div className="App">
-    <header className="App-header">
-      <h1 className="App-title">
-        Estimate It
-      </h1>
-    </header>
-    <div>
+    <Sidebar />
+    <div className="features">
       <Editor />
       <Graph />
     </div>
