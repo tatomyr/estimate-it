@@ -17,7 +17,9 @@ export default (state = defaultState, action) => {
     case RECALCULATE:
     {
       const { text, reducedGraphData } = handleFlat(state.text, 3)
-      if (text === state.text) return state
+
+      // console.log(text === state.text,'--->',text, '===???===',state.text)
+      // if (text === state.text) return state
       return {
         ...state,
         text,

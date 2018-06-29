@@ -47,6 +47,8 @@ const isTaskItem = ({ value }) => (
 // treeToList => String => [{value: String, indentation: Int, index: Int, parent: Int}]
 export const treeToList = text => textToArr(text)
   .filter(isTaskItem)
+  // The only reason I need reduce method instead of map...
+  // ...is that I should be able to access the previously processed part of the list ($)
   .reduce(($, item) => [
     ...$,
     { ...item, parent: getParent($)(item.indentation)(last($)) },
@@ -134,7 +136,7 @@ console.log(hoistHours)
 //   const c=hoistHours(b)
 //   console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 
-	const d =hoistReducedHours(b)(n)
+	const d =hoistHours(b)//hoistReducedHours(b)(n)
 
 //   console.log(listToTree(c)(text))
   return {
