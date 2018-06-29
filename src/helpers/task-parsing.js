@@ -73,6 +73,20 @@ export const splitTaskParams = list => list.map(item => ({
   ...splitNameAndHours(item.value),
 }))
 
+const calculateHours = list => parent => {
+  const children = list.filter(item => item.parent === parent)
+  console.log(parent,'-->',children);
+  if (children.length === 0) return list.find(({ index }) => index === parent).hours
+
+  return children.reduce(($, item) => {
+    if (list.some(({ parent }) => parent === item.index)) {
+      return product($)(calculateHours(list)(item.index))
+    } else {
+      return product($)(item.hours)
+    }
+  }, [0])
+}
+
 export const hoistHours = list => list
   .map(item => ({
     ...item,
@@ -83,29 +97,6 @@ export const hoistHours = list => list
     value: (`${item.name} | ${item.hours.join(' ')}`).trim(),
   }))
 
-const calculateHours = list => parent => {
-  const children = list.filter(item => item.parent === parent);
-  console.log(children);
-  if (children.length === 0) return list.find(({ index }) => index === parent).hours;
-
-  return children.reduce(($, item) => {
-    if (list.some(({ parent }) => parent === item.index)) {
-      return product($)(calculateHours(list)(item.index));
-    } else {
-      return product($)(item.hours);
-    }
-  }, [0]);
-}
-
-export const hoistReducedHours = list => n => list
-  .map(item => ({
-    ...item,
-    hours: calculateReducedHours(list)(item.index)(n).sort((a, b) => a - b),
-  }))
-  .map(item => ({
-    ...item,
-    value: (`${item.name} | ${item.hours.join(' ')}`).trim(),
-  }))
 
 const calculateReducedHours = list => parent => n => {
   const children = list.filter(item => item.parent === parent)
@@ -120,6 +111,17 @@ const calculateReducedHours = list => parent => n => {
     }
   }, [0])
 }
+
+export const hoistReducedHours = list => n => list
+  .map(item => ({
+    ...item,
+    hours: calculateReducedHours(list)(item.index)(n).sort((a, b) => a - b),
+  }))
+  .map(item => ({
+    ...item,
+    value: (`${item.name} | ${item.hours.join(' ')}`).trim(),
+  }))
+
 
 export const listToTree = list => text => textToArr(text).map(item => {
   const newItem = list.find(({ index }) => index === item.index)
