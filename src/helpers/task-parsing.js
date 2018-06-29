@@ -6,6 +6,8 @@ import {
   toProbGraph,
 } from 'augmented-multiset'
 
+// import { product } from './equiprobabilistic-rows'
+
 // getIndentation :: String -> Int
 const getIndentation = str => str.match(/^\s*/)[0].length
 
@@ -42,6 +44,8 @@ const isTaskItem = ({ value }) => (
   value.trim()
   && value.trim()[0] !== '@'
   && value.trim()[0] !== '%'
+  // TODO: add hashtags: /#\w/g
+  // TODO: add ∑
 )
 
 // treeToList => String => [{value: String, indentation: Int, index: Int, parent: Int}]
@@ -136,7 +140,7 @@ console.log(hoistHours)
 //   const c=hoistHours(b)
 //   console.table(c.map(item => ({ ...item, hours: JSON.stringify(item.hours) })));
 
-	const d =hoistHours(b)//hoistReducedHours(b)(n)
+	const d = hoistReducedHours(b)(n)
 
 //   console.log(listToTree(c)(text))
   return {
