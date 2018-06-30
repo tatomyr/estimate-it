@@ -92,14 +92,21 @@ const hoistHours = (list, rounding) => list
     value: (`${item.name} | ${item.hours.join(' ')}`).trim(),
   }))
 
+const withIndent = ({ value, indentation = 0 }) => `${' '.repeat(indentation)}${value}`
+
+const pretty = item => item
+  && ({ item, value: `${item.name} ${item.hours.join(' ')}` })
 export const listToTree = list => text => textToArr(text).map(item => {
   const newItem = list.find(({ index }) => index === item.index)
-  return Array(item.indentation + 1).join(' ') + (newItem || item).value
+  // Print summary if directive `@summary` met
+  const summaryItem = item.value.startsWith('@summary')
+    && pretty(list.find(({ index }) => index === null))
+  return withIndent(summaryItem || newItem || item)
 }).join('\n')
 
 const summary = ({
   index: null,
-  name: '∑',
+  name: '@summary',
 })
 
 export const handleFlat = (text, rounding) => {
@@ -112,7 +119,6 @@ export const handleFlat = (text, rounding) => {
   console.log(listToTree(tasksWithCorrectHours)(text))
   console.log(tasksWithCorrectHours)
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours
-  console.log('∑',summaryHours)
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
     graphData: toProbGraph(summaryHours),
