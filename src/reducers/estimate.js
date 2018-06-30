@@ -4,28 +4,21 @@ import { CHANGE_TEXT, RECALCULATE } from '../actions/types'
 
 const defaultState = {
   text: defaultText,
-  reducedGraphData: [],
+  graphData: [],
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case CHANGE_TEXT:
-      return {
+      return ({
         ...state,
         text: action.text,
-      }
+      })
     case RECALCULATE:
-    {
-      const { text, reducedGraphData } = handleFlat(state.text, 3)
-
-      // console.log(text === state.text,'--->',text, '===???===',state.text)
-      // if (text === state.text) return state
-      return {
+      return ({
         ...state,
-        text,
-        reducedGraphData,
-      }
-    }
+        ...handleFlat(state.text, 15),
+      })
     default:
       return state
   }

@@ -8,11 +8,12 @@ export const I = [0]
 export const baseSum = (u, v) => [...u, ...v]
 
 // baseProduct :: [Number] -> [Number] -> [Number]
-export const baseProduct = (u, v) => u.reduce(($, x) => baseSum($, v.map(y => x + y)), [])
+export const baseProduct = (u, v) => u.reduce(($, x) => baseSum($, v.map(y => x + y)), O)
 
 // sort :: [Number] -> [Number]
 export const sort = ([...u]) => u.sort((a, b) => a - b)
 
+// round :: ([Number], Int) -> [Number]
 export const round = (u, rounding = Infinity) => {
   const v = sort(u)
 
@@ -27,8 +28,15 @@ export const round = (u, rounding = Infinity) => {
   })
 }
 
+// reduce :: [Number] -> [Number]
+// TODO: implement reduce…
+
 // sum :: ([Number], [Number], Int) -> [Number]
 export const sum = (u, v, rounding) => round(baseSum(u, v), rounding)
 
 // product :: ([Number], [Number], Int) -> [Number]
 export const product = (u, v, rounding) => round(baseProduct(u, v), rounding)
+
+// TODO: toProbGraph :: …
+// export const toProbGraph = u => u.map((val, i) => [val, i / u.length])
+export const toProbGraph = u => u.map((val, i) => [val, i / (u.length - 1)])
