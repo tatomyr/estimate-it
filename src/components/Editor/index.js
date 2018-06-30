@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import Editor from './Editor'
-import { changeText, recalc } from '../../actions'
+import './styles.css'
+import { changeText } from '../../actions'
 
 const mapStateToProps = ({ estimate: { text } }) => ({
   text,
@@ -9,9 +10,6 @@ const mapStateToProps = ({ estimate: { text } }) => ({
 const mapDispatchToProps = dispatch => ({
   onTextChange: (text, e) => {
     dispatch(changeText(text, e))
-  },
-  recalc: () => {
-    dispatch(recalc())
   },
 })
 

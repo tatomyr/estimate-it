@@ -1,11 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
+.features {
+  width: 100%;
+  overflow-y: auto;
 }
 
 .App-title {
@@ -19,4 +20,19 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+button {
+  margin: 0;
+  height: 30px;
+  width: 30px;
+  background-color: #9e9ea8;
+  border: 0;
+  border-radius: 3px;
+  margin: 4px 0;
+  outline: none;
+}
+
+button:hover {
+  box-shadow: 0 0 3px 2px rgba(174, 190, 99, 0.3);
 }

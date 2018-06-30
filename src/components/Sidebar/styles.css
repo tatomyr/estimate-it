@@ -1,0 +1,9 @@
+aside {
+  width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0;
+  background-color: #222;
+  color: #fff;
+}
