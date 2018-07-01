@@ -36,7 +36,6 @@ const isTaskItem = ({ value }) => (
   value.trim()
   && value.trim()[0] !== '@'
   && value.trim()[0] !== '%'
-  // TODO: add hashtags: /#\w/g (?)
 )
 
 const getRounding = text => {
@@ -119,13 +118,10 @@ const summary = ({
 export const handleFlat = text => {
   const rounding = getRounding(text)
   const tasks = treeToList(text)
-  console.table(tasks.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
-  console.log(listToTree(tasksWithCorrectHours)(text))
-  console.log(tasksWithCorrectHours)
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
