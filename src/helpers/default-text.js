@@ -1,16 +1,15 @@
 export default
-`@project Cool App
+`@project Your Project's Name
 @client Client Name
-@sprint 1
 @pm Project Manager
 @developer Anonymous
 @developer Noname
 @comment This is a comment
-@rate 25
-@rounding // TODO: implement rounding
-@summary
+@rate 25 # $ per hour
+@rounding 15 # This is where precision is set: More is better but slower.
+@summary # Put this directive if you want to see resulting hours for all the project.
 
-# Web
+# Your project's tasks goes here as well as estimated hours splitted by '|' or '=' symbol
 Environment settings | 2 89
 Authentication |
     Sign up &frontend | 1

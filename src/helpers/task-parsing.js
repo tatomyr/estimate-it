@@ -37,8 +37,14 @@ const isTaskItem = ({ value }) => (
   && value.trim()[0] !== '@'
   && value.trim()[0] !== '%'
   // TODO: add hashtags: /#\w/g (?)
-  // TODO: add ∑ (?)
 )
+
+const getRounding = text => {
+  const arr = textToArr(text)
+  const [_, rounding = Infinity] = (arr.find(({ value }) => value.startsWith('@rounding')) || { value: '' }).value.split(/\s/)
+  if (isNaN(+rounding)) throw new Error('Rounding should be an integer number!')
+  return +rounding
+}
 
 // splitNameAndHours :: String -> {name: String, hours: [Number]}
 const splitNameAndHours = str => {
@@ -96,6 +102,7 @@ const withIndent = ({ value, indentation = 0 }) => `${' '.repeat(indentation)}${
 
 const pretty = item => item
   && ({ item, value: `${item.name} ${item.hours.join(' ')}` })
+
 export const listToTree = list => text => textToArr(text).map(item => {
   const newItem = list.find(({ index }) => index === item.index)
   // Print summary if directive `@summary` met
@@ -109,7 +116,8 @@ const summary = ({
   name: '@summary',
 })
 
-export const handleFlat = (text, rounding) => {
+export const handleFlat = text => {
+  const rounding = getRounding(text)
   const tasks = treeToList(text)
   console.table(tasks.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const activeTasks = tasks

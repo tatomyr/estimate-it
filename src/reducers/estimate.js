@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
     case RECALCULATE:
       return ({
         ...state,
-        ...handleFlat(state.text, 15),
+        ...handleFlat(state.text),
       })
     default:
       return state
