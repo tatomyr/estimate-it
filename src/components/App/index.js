@@ -1,9 +1,9 @@
 import React from 'react'
-import logo from './keenlogo.jpg'
-import './App.css'
-import Editor from './components/Editor'
-import Graph from './components/Graph'
-import Sidebar from './components/Sidebar'
+// import logo from './keenlogo.jpg'
+import './styles.css'
+import Editor from '../Editor'
+import Graph from '../Graph'
+import Sidebar from '../Sidebar'
 
 const App = () => (
   <div className="App">
