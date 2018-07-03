@@ -1,6 +1,9 @@
 import { handleFlat } from '../helpers/task-parsing'
 import defaultText from '../helpers/default-text'
-import { CHANGE_TEXT, RECALCULATE } from '../actions/types'
+import {
+  CHANGE_TEXT,
+  RECALCULATE,
+} from '../actions/types'
 
 const defaultState = {
   text: defaultText,
@@ -19,6 +22,7 @@ export default (state = defaultState, action) => {
         ...state,
         ...handleFlat(state.text),
       })
+
     default:
       return state
   }

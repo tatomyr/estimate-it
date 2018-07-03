@@ -1,4 +1,4 @@
-import { CHANGE_TEXT, RECALCULATE } from './types'
+import { CHANGE_TEXT, RECALCULATE, SET_PARAMS } from './types'
 
 export const changeText = text => ({
   type: CHANGE_TEXT,
@@ -8,3 +8,12 @@ export const changeText = text => ({
 export const recalc = () => ({
   type: RECALCULATE,
 })
+
+export const setParams = ({ apiKey, estimateId }) => ({
+  type: SET_PARAMS,
+  payload: {
+    apiKey,
+    estimateId,
+  },
+})
+

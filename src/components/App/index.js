@@ -1,18 +1,12 @@
-import React from 'react'
-// import logo from './keenlogo.jpg'
+import { connect } from 'react-redux'
+import App from './App'
 import './styles.css'
-import Editor from '../Editor'
-import Graph from '../Graph'
-import Sidebar from '../Sidebar'
+import { setParams } from '../../actions'
+import { action } from '../../redux'
 
-const App = () => (
-  <div className="App">
-    <Sidebar />
-    <div className="features">
-      <Editor />
-      <Graph />
-    </div>
-  </div>
-)
+const mapDispatchToProps = dispatch => ({
+  setParams: payload => dispatch(setParams(payload)),
+  getEstimate: () => action('GET_ESTIMATE'),
+})
 
-export default App
+export default connect(null, mapDispatchToProps)(App)
