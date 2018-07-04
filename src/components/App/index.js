@@ -1,12 +1,11 @@
 import { connect } from 'react-redux'
 import App from './App'
 import './styles.css'
-import { setParams } from '../../actions'
-import { action } from '../../redux'
+import { setParams, getEstimate } from '../../actions'
 
-const mapDispatchToProps = dispatch => ({
-  setParams: payload => dispatch(setParams(payload)),
-  getEstimate: () => action('GET_ESTIMATE'),
+const mapDispatchToProps = ({
+  setParams,
+  getEstimate,
 })
 
 export default connect(null, mapDispatchToProps)(App)
