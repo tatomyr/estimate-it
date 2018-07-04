@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
 import Sidebar from './Sidebar'
 import './styles.css'
-import { recalc } from '../../actions'
+import { recalc, redirect, saveEstimate } from '../../actions'
 
-const mapDispatchToProps = dispatch => ({
-  recalc: () => dispatch(recalc()),
+const mapDispatchToProps = ({
+  recalc,
+  saveEstimate,
+  // TODO: implement redirecting to `new estimate`
+  redirect,
 })
 
 export default connect(null, mapDispatchToProps)(Sidebar)

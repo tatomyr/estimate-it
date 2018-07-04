@@ -1,3 +1,5 @@
+/* Here to put css resets and imports */
+
 * {
   box-sizing: border-box;
 }
@@ -5,4 +7,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+/* Generic styles */
+
+.hidden {
+  display: none;
 }

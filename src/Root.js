@@ -1,21 +1,22 @@
-// TODO: implement Root component
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Provider } from 'react-redux'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import App from './components/App'
+import NotPermitted from './components/NotPermitted'
 
-// import React from 'react'
-// import PropTypes from 'prop-types'
-// import { Provider } from 'react-redux'
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
-// import App from './App'
-// ​
-// const Root = ({ store }) => (
-//   <Provider store={store}>
-//     <Router>
-//       <Route path="/:filter?" component={App} />
-//     </Router>
-//   </Provider>
-// )
-// ​
-// Root.propTypes = {
-//   store: PropTypes.object.isRequired
-// }
-// ​
-// export default Root
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/:apiKey/:estimateId?" component={App} />
+        <Route path="/" component={NotPermitted} />
+      </Switch>
+    </Router>
+  </Provider>
+)
+Root.propTypes = {
+  store: PropTypes.object.isRequired,
+}
+
+export default Root

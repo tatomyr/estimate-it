@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sidebar = ({ recalc }) => (
+const Sidebar = ({ recalc, saveEstimate, redirect }) => (
   <aside>
     <button
       type="button"
@@ -13,6 +13,20 @@ const Sidebar = ({ recalc }) => (
       type="button"
     >
       ✗
+    </button>
+    <button
+      type="button"
+      onClick={saveEstimate}
+      title="Save estimate"
+    >
+      S
+    </button>
+    <button
+      type="button"
+      onClick={redirect}
+      title="New estimate"
+    >
+      N
     </button>
   </aside>
 )
