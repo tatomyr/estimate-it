@@ -1,18 +1,26 @@
-const headers = apiKey => ({
+export const setApiKey = apiKey => localStorage.setItem('apiKey', apiKey)
+
+const getApiKey = () => localStorage.getItem('apiKey')
+
+export const hasKey = () => !!getApiKey()
+
+export const removeApiKey = () => localStorage.removeItem('apiKey')
+
+const headers = () => ({
   'content-type': 'application/json',
-  'x-apikey': apiKey,
+  'x-apikey': getApiKey(),
   'cache-control': 'no-cache',
 })
 
-const db = (apiKey, collection, method, data = null) => new Promise((resolve, reject) => {
+const db = (collection, method, data = null) => new Promise((resolve, reject) => {
   fetch(`https://estimator-e1e7.restdb.io/rest/${collection}`, {
     method,
-    headers: headers(apiKey),
+    headers: headers(),
     mode: 'cors',
     body: data && JSON.stringify(data),
   })
     .then(res => {
-      console.log('Recieved response:', res)
+      console.log(res.ok, 'Recieved response:', res)
       return res
     })
     .then(res => res.json())
@@ -20,9 +28,9 @@ const db = (apiKey, collection, method, data = null) => new Promise((resolve, re
     .catch(reject)
 })
 
-export const saveEstimate = ({ text, apiKey, estimateId }) => (estimateId
-  ? db(apiKey, `estimates/${estimateId}`, 'PUT', { text })
-  : db(apiKey, 'estimates', 'POST', { text }))
+export const saveEstimate = ({ text, estimateId }) => (estimateId
+  ? db(`estimates/${estimateId}`, 'PUT', { text })
+  : db('estimates', 'POST', { text }))
 
 
-export const getEstimate = ({ apiKey, estimateId }) => db(apiKey, `estimates/${estimateId}`, 'GET')
+export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`, 'GET')

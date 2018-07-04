@@ -7,8 +7,7 @@ import Sidebar from '../Sidebar'
 import Spinner from '../Spinner'
 import Redirector from '../Redirector'
 
-const App = ({ match: { params }, setParams, getEstimate }) => {
-  setParams(params)
+const App = ({ match: { params }, getEstimate }) => {
   getEstimate(params)
 
   return (

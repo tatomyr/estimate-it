@@ -1,5 +1,4 @@
 export const CHANGE_TEXT = 'CHANGE_TEXT'
 export const RECALCULATE = 'RECALCULATE'
 export const TOGGLE_SPINNER = 'TOGGLE_SPINNER'
-export const SET_PARAMS = 'SET_PARAMS'
 export const REDIRECT = 'REDIRECT'

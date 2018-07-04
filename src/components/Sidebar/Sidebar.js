@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Sidebar = ({ recalc, saveEstimate, redirect }) => (
+const Sidebar = ({
+  recalc,
+  saveEstimate,
+  redirect,
+  match: { params },
+}) => (
   <aside>
     <button
       type="button"
@@ -16,7 +21,7 @@ const Sidebar = ({ recalc, saveEstimate, redirect }) => (
     </button>
     <button
       type="button"
-      onClick={saveEstimate}
+      onClick={() => saveEstimate(params)}
       title="Save estimate"
     >
       S

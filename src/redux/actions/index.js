@@ -1,6 +1,11 @@
 import { toastr } from 'react-redux-toastr'
-import { CHANGE_TEXT, RECALCULATE, SET_PARAMS, REDIRECT, TOGGLE_SPINNER } from './types'
-import * as api from '../helpers/api'
+import {
+  CHANGE_TEXT,
+  RECALCULATE,
+  REDIRECT,
+  TOGGLE_SPINNER,
+} from './types'
+import * as api from '../../helpers/api'
 
 export const changeText = text => ({
   type: CHANGE_TEXT,
@@ -9,14 +14,6 @@ export const changeText = text => ({
 
 export const recalc = () => ({
   type: RECALCULATE,
-})
-
-export const setParams = ({ apiKey, estimateId }) => ({
-  type: SET_PARAMS,
-  payload: {
-    apiKey,
-    estimateId,
-  },
 })
 
 export const redirect = pathToRedirect => ({
@@ -29,12 +26,12 @@ const toggleSpinner = showSpinner => ({
   payload: { showSpinner },
 })
 
-export const saveEstimate = () => (dispatch, getState) => {
-  const { estimate: { text }, params: { apiKey, estimateId } } = getState()
+export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
+  const { estimate: { text } } = getState()
   dispatch(toggleSpinner(true))
-  api.saveEstimate({ text, apiKey, estimateId })
+  api.saveEstimate({ text, estimateId })
     .then(({ _id }) => {
-      dispatch(redirect(`/${apiKey}/${_id}`))
+      dispatch(redirect(`/${_id}`))
       toastr.success('Saved', `Id: ${_id}`)
     })
     .catch(({ message }) => {
@@ -43,11 +40,10 @@ export const saveEstimate = () => (dispatch, getState) => {
     .finally(() => { dispatch(toggleSpinner(false)) })
 }
 
-export const getEstimate = () => (dispatch, getState) => {
-  const { params: { apiKey, estimateId } } = getState()
+export const getEstimate = ({ estimateId }) => dispatch => {
   if (estimateId) {
     dispatch(toggleSpinner(true))
-    api.getEstimate({ apiKey, estimateId })
+    api.getEstimate({ estimateId })
       .then(({ text }) => {
         dispatch(changeText(text))
       })

@@ -1,5 +1,5 @@
-import { handleFlat } from '../helpers/task-parsing'
-import defaultText from '../helpers/default-text'
+import { handleFlat } from '../../helpers/task-parsing'
+import defaultText from '../../helpers/default-text'
 import {
   CHANGE_TEXT,
   RECALCULATE,
