@@ -8,14 +8,14 @@ const options = {
   readOnly: false,
 }
 
-const Editor = ({ text, onTextChange }) => (
+const Editor = ({ text, changeText }) => (
   <div className="editor-wrapper">
     <MonacoEditor
       language="python"
       theme="vs-dark"
       value={text}
       options={options}
-      onChange={onTextChange}
+      onChange={changeText}
       editorDidMount={(editor, monaco) => { editor.focus() }}
     />
   </div>
@@ -23,7 +23,7 @@ const Editor = ({ text, onTextChange }) => (
 
 Editor.propTypes = {
   text: PropTypes.string,
-  onTextChange: PropTypes.func.isRequired,
+  changeText: PropTypes.func.isRequired,
 }
 
 Editor.defaultProps = {

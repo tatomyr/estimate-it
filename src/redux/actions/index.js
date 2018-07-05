@@ -4,6 +4,7 @@ import {
   RECALCULATE,
   REDIRECT,
   TOGGLE_SPINNER,
+  CHECK_CREDS,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -52,4 +53,14 @@ export const getEstimate = ({ estimateId }) => dispatch => {
       })
       .finally(() => { dispatch(toggleSpinner(false)) })
   }
+}
+
+export const checkCreds = () => ({
+  type: CHECK_CREDS,
+  payload: { hasKey: api.hasKey() },
+})
+
+export const saveCreds = apiKey => dispatch => {
+  api.setApiKey(apiKey)
+  dispatch(checkCreds())
 }

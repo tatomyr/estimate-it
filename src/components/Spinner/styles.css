@@ -1,8 +1,7 @@
-#spinner {
-  position:  fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
+.spinner {
+  background-color: rgba(200,200,200,0.8)
+}
+
+.spinner img {
+  width: 150px;
 }

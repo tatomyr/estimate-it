@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import spinner from './spinner.gif'
 
 const Spinner = ({ showSpinner }) => (
-  <div id="spinner" className={showSpinner ? '' : 'hidden'}>
+  <div className={`spinner overlay ${showSpinner ? '' : 'hidden'}`}>
     <img src={spinner} alt="" />
   </div>
 )

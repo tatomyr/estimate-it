@@ -7,12 +7,8 @@ const mapStateToProps = ({ estimate: { text } }) => ({
   text,
 })
 
-const mapDispatchToProps = dispatch => ({
-  onTextChange: (text, e) => {
-    dispatch(changeText(text, e))
-  },
+const mapDispatchToProps = ({
+  changeText,
 })
 
-const EditorContainer = connect(mapStateToProps, mapDispatchToProps)(Editor)
-
-export default EditorContainer
+export default connect(mapStateToProps, mapDispatchToProps)(Editor)

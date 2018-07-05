@@ -32,5 +32,4 @@ export const saveEstimate = ({ text, estimateId }) => (estimateId
   ? db(`estimates/${estimateId}`, 'PUT', { text })
   : db('estimates', 'POST', { text }))
 
-
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`, 'GET')
