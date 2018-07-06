@@ -76,7 +76,6 @@ const treeToList = text => textToArr(text)
 // TODO: calculateHours :: …
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
-  console.log(index,'-->',children)
   if (children.length === 0) return hours
 
   return children.reduce(($, item) => product(
@@ -128,3 +127,5 @@ export const handleFlat = text => {
     graphData: toProbGraph(summaryHours),
   })
 }
+
+// FIXME: CHECK WHY DOESN'T SORT HOURS (IN NOT CALCULATED TASKS) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

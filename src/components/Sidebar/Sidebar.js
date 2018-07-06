@@ -1,15 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = ({
+  match: { params },
   recalc,
   saveEstimate,
-  redirect,
-  match: { params },
+  openAuthScreen,
+  closeAuthScreen,
 }) => (
   <aside>
     <button
       type="button"
-      onClick={recalc}
+      onClick={() => recalc(params.estimateId)}
       title="Recalculate sheet"
     >
       ✓
@@ -26,12 +28,20 @@ const Sidebar = ({
     >
       S
     </button>
+    <Link to="/estimate/new">
+      <button
+        type="button"
+        title="New estimate"
+      >
+        N
+      </button>
+    </Link>
     <button
       type="button"
-      onClick={redirect}
-      title="New estimate"
+      onClick={openAuthScreen}
+      title="Enter credentials"
     >
-      N
+      A
     </button>
   </aside>
 )

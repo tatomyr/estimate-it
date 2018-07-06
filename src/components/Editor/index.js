@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Editor from './Editor'
 import './styles.css'
-import { changeText } from '../../redux/actions'
+import { addEstimate } from '../../redux/actions'
 
-const mapStateToProps = ({ estimate: { text } }) => ({
-  text,
+const mapStateToProps = ({ estimates }) => ({
+  estimates,
 })
 
 const mapDispatchToProps = ({
-  changeText,
+  addEstimate,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Editor))
