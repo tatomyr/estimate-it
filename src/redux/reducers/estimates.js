@@ -5,7 +5,7 @@ import {
   CLEAN_ESTIMATE,
 } from '../actions/types'
 
-const emptyEstimate = { text: '', graphData: [] }
+const emptyEstimate = { _id: 'new', text: '', graphData: [] }
 
 const defaultState = {
   new: emptyEstimate,

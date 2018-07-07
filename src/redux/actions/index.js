@@ -17,7 +17,7 @@ export const addEstimate = estimate => ({
   payload: estimate,
 })
 
-export const cleanEstimate = estimateId => ({
+export const cleanEstimate = ({ estimateId }) => ({
   type: CLEAN_ESTIMATE,
   payload: { estimateId },
 })

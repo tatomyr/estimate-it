@@ -1,3 +1,5 @@
+// TODO: put into separate module
+
 // Define Zero
 export const O = []
 
@@ -36,6 +38,8 @@ export const sum = (u, v, rounding) => round(baseSum(u, v), rounding)
 
 // product :: ([Number], [Number], Int) -> [Number]
 export const product = (u, v, rounding) => round(baseProduct(u, v), rounding)
+
+// TODO: try to implement substraction, division
 
 // TODO: toProbGraph :: …
 // export const toProbGraph = u => u.map((val, i) => [val, i / u.length])

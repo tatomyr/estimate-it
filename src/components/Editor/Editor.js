@@ -28,7 +28,7 @@ const Editor = ({
 Editor.propTypes = {
   estimates: PropTypes.objectOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
-    _id: PropTypes.oneOfType([PropTypes.string])
+    _id: PropTypes.string.isRequired,
   })).isRequired,
   addEstimate: PropTypes.func.isRequired,
   match: PropTypes.shape({

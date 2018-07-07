@@ -1,7 +1,7 @@
 import { SET_CREDS, RESET_CREDS } from '../actions/types'
 
 const defaultState = {
-  apiKey: undefined,
+  apiKey: null,
 }
 
 export default (state = defaultState, { type, payload }) => {

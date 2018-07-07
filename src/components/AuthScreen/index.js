@@ -3,10 +3,9 @@ import { withRouter } from 'react-router-dom'
 import Component from './Component'
 import './styles.css'
 import {
-  openAuthScreen,
   closeAuthScreen,
   cleanEstimate,
-  redirect,
+  resetCreds,
 } from '../../redux/actions'
 import {
   checkCreds,
@@ -22,11 +21,10 @@ const mapStateToProps = ({ apiKey: { apiKey }, visualEffects: { showAuthScreen }
 const mapDispatchToProps = ({
   checkCreds,
   getEstimate,
-  openAuthScreen,
   closeAuthScreen,
   cleanEstimate,
-  redirect,
   openGuestSession,
+  resetCreds,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))

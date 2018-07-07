@@ -6,13 +6,13 @@ const Sidebar = ({
   recalc,
   saveEstimate,
   openAuthScreen,
-  closeAuthScreen,
+  apiKey,
 }) => (
   <aside>
     <button
       type="button"
       onClick={() => recalc(params.estimateId)}
-      title="Recalculate sheet"
+      title="Calculate estimate"
     >
       ✓
     </button>
@@ -21,13 +21,15 @@ const Sidebar = ({
     >
       ✗
     </button>
-    <button
-      type="button"
-      onClick={() => saveEstimate(params)}
-      title="Save estimate"
-    >
-      S
-    </button>
+    {apiKey && (
+      <button
+        type="button"
+        onClick={() => saveEstimate(params)}
+        title="Save estimate"
+      >
+        S
+      </button>
+    )}
     <Link to="/estimate/new">
       <button
         type="button"

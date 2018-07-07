@@ -5,6 +5,7 @@ import {
   delSpinner,
   redirect,
   addEstimate,
+  cleanEstimate,
   closeAuthScreen,
   openAuthScreen,
   setCreds,
@@ -12,8 +13,8 @@ import {
 } from './index'
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
-  // const { estimates: { text } } = getState()
   const estimateToSave = getState().estimates[estimateId]
+  // TODO: check/validate estimate schema: text should not be empty ?
   dispatch(addSpinner())
   api.saveEstimate(estimateToSave)
     .then(estimate => {
@@ -31,21 +32,31 @@ export const getEstimate = ({ estimateId }) => dispatch => {
   if (estimateId === 'new') return false
 
   dispatch(addSpinner())
-  api.getEstimate({ estimateId })
+  return api.getEstimate({ estimateId })
     .then(estimate => {
+      if (estimate instanceof Array || estimate === null) {
+        throw new Error("We can't find such an estimate :(")
+      }
       dispatch(addEstimate(estimate))
       dispatch(closeAuthScreen())
     })
-    .catch(({ message }) => {
-      dispatch(addEstimate({ text: '', _id: estimateId }))
-      toastr.error('Error', `${message}\nWe can't find such an estimate :(`)
+    .catch(err => {
+      console.log('[ERR]', {err})
+      // FIXME: do we need this?
+      dispatch(cleanEstimate(estimateId))
+      if (err.message === 'Failed to fetch') {
+        // Auth issues
+        dispatch(openAuthScreen())
+      } else {
+        toastr.error('Error', `${err.message}`)
+      }
     })
     .finally(() => { dispatch(delSpinner()) })
 }
 
 export const checkCreds = () => dispatch => {
   dispatch(addSpinner())
-  api.checkCreds()
+  return api.checkCreds()
     .then(() => {
       dispatch(setCreds())
       dispatch(closeAuthScreen())
