@@ -4,6 +4,7 @@ import {
   toProbGraph,
   sort,
 } from './equiprobabilistic-rows'
+import { defaultRounding } from './settings'
 
 // getIndentation :: String -> Int
 const getIndentation = str => str.match(/^\s*/)[0].length
@@ -45,7 +46,7 @@ const isTaskItem = ({ value }) => (
 
 const getRounding = text => {
   const arr = textToArr(text)
-  const [_, rounding = Infinity] = (arr.find(({ value }) => value.startsWith('@rounding')) || { value: '' }).value.split(/\s/)
+  const [_, rounding = defaultRounding] = (arr.find(({ value }) => value.startsWith('@rounding')) || { value: '' }).value.split(/\s/)
   if (isNaN(+rounding)) throw new Error('Rounding should be an integer number!')
   return +rounding
 }

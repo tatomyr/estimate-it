@@ -1,4 +1,5 @@
 import defaultText from './default-text'
+import { dbName, checkId } from './settings'
 
 export const setApiKey = apiKey => localStorage.setItem('apiKey', apiKey)
 
@@ -13,7 +14,7 @@ const headers = () => ({
 })
 
 const db = (collection, method = 'GET', data = null) => new Promise((resolve, reject) => {
-  fetch(`https://estimator-e1e7.restdb.io/rest/${collection}`, {
+  fetch(`https://${dbName}.restdb.io/rest/${collection}`, {
     method,
     headers: headers(),
     mode: 'cors',
@@ -34,4 +35,4 @@ export const saveEstimate = ({ _id, text, graphData = [] }) => (_id === 'new'
 
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
 
-export const checkCreds = () => db('check/5b3e8507ef9d8e7700002e43')
+export const checkCreds = () => db(`check/${checkId}`)

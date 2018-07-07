@@ -3,6 +3,7 @@
 Tool for a project time estimation.
 Each task of a project can have several equivalent (in terms of probability) estimates.
 Tasks could be arbitrary nested (by using indentation).
+
 Write each task line by line alongside with estimated hours splitting them by `|` or `=` sign:
 
 ```
@@ -14,7 +15,9 @@ Second task
 ```
 
 Available directives:
+
 > `@summary` - writes overal hours row.
+
 > `@rounding` - sets results rounding. The more is precisier, the less is faster.
 
 # Development
