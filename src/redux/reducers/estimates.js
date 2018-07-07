@@ -1,4 +1,4 @@
-import { handleFlat } from '../../helpers/task-parsing'
+import { handleFlat, getAdditionalParams } from '../../helpers/task-parsing'
 import {
   ADD_ESTIMATE,
   RECALCULATE,
@@ -29,6 +29,7 @@ export default (state = defaultState, { type, payload }) => {
         [payload._id]: {
           _id: payload._id,
           ...handleFlat(state[payload._id].text),
+          ...getAdditionalParams(state[payload._id].text),
         },
       })
 

@@ -20,18 +20,23 @@ const db = (collection, method = 'GET', data = null) => new Promise((resolve, re
     mode: 'cors',
     body: data && JSON.stringify(data),
   })
-    .then(res => {
-      // console.log(res.ok, 'Recieved response:', res)
-      return res
-    })
+    // .then(res => {
+    //   console.log(res.ok, 'Recieved response:', res)
+    //   return res
+    // })
     .then(res => res.json())
     .then(resolve)
     .catch(reject)
 })
 
-export const saveEstimate = ({ _id, text, graphData = [] }) => (_id === 'new'
-  ? db('estimates', 'POST', { text, graphData })
-  : db(`estimates/${_id}`, 'PUT', { text, graphData }))
+export const saveEstimate = ({
+  _id,
+  text,
+  graphData = [],
+  project = '',
+}) => (_id === 'new'
+  ? db('estimates', 'POST', { text, graphData, project })
+  : db(`estimates/${_id}`, 'PUT', { text, graphData, project }))
 
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
 

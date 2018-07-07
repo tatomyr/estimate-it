@@ -47,6 +47,7 @@ const isTaskItem = ({ value }) => (
 const getRounding = text => {
   const arr = textToArr(text)
   const [_, rounding = defaultRounding] = (arr.find(({ value }) => value.startsWith('@rounding')) || { value: '' }).value.split(/\s/)
+  // FIXME: implement error handling
   if (isNaN(+rounding)) throw new Error('Rounding should be an integer number!')
   return +rounding
 }
@@ -94,6 +95,7 @@ const calculateHours = (list, rounding) => ({ index, hours }) => {
 const hoistHours = (list, rounding) => list
   .map(item => ({
     ...item,
+    // FIXME: investigate why I commented this
     // hours: calculateHours(list, rounding)(item.index),
     hours: calculateHours(list, rounding)(item),
   }))
@@ -132,5 +134,17 @@ export const handleFlat = text => {
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
     graphData: toProbGraph(summaryHours),
+  })
+}
+
+const parseParam = param => arr => (
+  arr.find(({ value }) => value.startsWith(param))
+  || { value: '' }
+).value.replace(param, '').trim()
+
+export const getAdditionalParams = text => {
+  const arr = textToArr(text)
+  return ({
+    project: parseParam('@project')(arr),
   })
 }
