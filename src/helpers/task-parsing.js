@@ -1,4 +1,9 @@
-import { I, product, toProbGraph } from './equiprobabilistic-rows'
+import {
+  I,
+  product,
+  toProbGraph,
+  sort,
+} from './equiprobabilistic-rows'
 
 // getIndentation :: String -> Int
 const getIndentation = str => str.match(/^\s*/)[0].length
@@ -50,7 +55,7 @@ const splitNameAndHours = str => {
   const [name, hours = ''] = str.split(/[=|]/)
   return ({
     name: name.trim(),
-    hours: hours.trim().split(/\s+/).map(time => +time),
+    hours: sort(hours.trim().split(/\s+/).map(time => +time)),
   })
 }
 
@@ -119,6 +124,7 @@ export const handleFlat = text => {
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
+    // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours
@@ -127,5 +133,3 @@ export const handleFlat = text => {
     graphData: toProbGraph(summaryHours),
   })
 }
-
-// FIXME: CHECK WHY DOESN'T SORT HOURS (IN NOT CALCULATED TASKS) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
