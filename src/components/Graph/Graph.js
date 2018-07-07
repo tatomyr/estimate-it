@@ -4,23 +4,18 @@ import ReactHighcharts from 'react-highcharts'
 
 const config = {}
 
-const Graph = ({ graphData }) => (
+const Graph = ({
+  match: { params },
+  estimates,
+}) => (
   <div>
     <ReactHighcharts
       config={{
         ...config,
-        series: [{ data: graphData }],
+        series: [{ data: (estimates[params.estimateId] || {}).graphData }],
       }}
     />
   </div>
 )
-
-const dataType = PropTypes.arrayOf(PropTypes.number)
-Graph.propTypes = {
-  graphData: PropTypes.arrayOf(dataType),
-}
-Graph.defaultProps = {
-  graphData: [],
-}
 
 export default Graph

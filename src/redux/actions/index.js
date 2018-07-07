@@ -1,20 +1,30 @@
-import { toastr } from 'react-redux-toastr'
 import {
-  CHANGE_TEXT,
+  ADD_ESTIMATE,
+  CLEAN_ESTIMATE,
   RECALCULATE,
   REDIRECT,
-  TOGGLE_SPINNER,
-  CHECK_CREDS,
+  ADD_SPINNER,
+  DEL_SPINNER,
+  SET_CREDS,
+  RESET_CREDS,
+  OPEN_AUTH_SCREEN,
+  CLOSE_AUTH_SCREEN,
 } from './types'
 import * as api from '../../helpers/api'
 
-export const changeText = text => ({
-  type: CHANGE_TEXT,
-  text,
+export const addEstimate = estimate => ({
+  type: ADD_ESTIMATE,
+  payload: estimate,
 })
 
-export const recalc = () => ({
+export const cleanEstimate = ({ estimateId }) => ({
+  type: CLEAN_ESTIMATE,
+  payload: { estimateId },
+})
+
+export const recalc = _id => ({
   type: RECALCULATE,
+  payload: { _id },
 })
 
 export const redirect = pathToRedirect => ({
@@ -22,45 +32,27 @@ export const redirect = pathToRedirect => ({
   payload: { pathToRedirect },
 })
 
-const toggleSpinner = showSpinner => ({
-  type: TOGGLE_SPINNER,
-  payload: { showSpinner },
+export const addSpinner = () => ({
+  type: ADD_SPINNER,
 })
 
-export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
-  const { estimate: { text } } = getState()
-  dispatch(toggleSpinner(true))
-  api.saveEstimate({ text, estimateId })
-    .then(({ _id }) => {
-      dispatch(redirect(`/${_id}`))
-      toastr.success('Saved', `Id: ${_id}`)
-    })
-    .catch(({ message }) => {
-      toastr.error('Error', `${message}\nCheck your access rights or your network connection, or try again in few minutes.`)
-    })
-    .finally(() => { dispatch(toggleSpinner(false)) })
-}
-
-export const getEstimate = ({ estimateId }) => dispatch => {
-  if (estimateId) {
-    dispatch(toggleSpinner(true))
-    api.getEstimate({ estimateId })
-      .then(({ text }) => {
-        dispatch(changeText(text))
-      })
-      .catch(({ message }) => {
-        toastr.error('Error', `${message}\nWe can't find such an estimate :(`)
-      })
-      .finally(() => { dispatch(toggleSpinner(false)) })
-  }
-}
-
-export const checkCreds = () => ({
-  type: CHECK_CREDS,
-  payload: { hasKey: api.hasKey() },
+export const delSpinner = () => ({
+  type: DEL_SPINNER,
 })
 
-export const saveCreds = apiKey => dispatch => {
-  api.setApiKey(apiKey)
-  dispatch(checkCreds())
-}
+export const openAuthScreen = () => ({
+  type: OPEN_AUTH_SCREEN,
+})
+
+export const closeAuthScreen = () => ({
+  type: CLOSE_AUTH_SCREEN,
+})
+
+export const setCreds = () => ({
+  type: SET_CREDS,
+  payload: { apiKey: api.getApiKey() },
+})
+
+export const resetCreds = () => ({
+  type: RESET_CREDS,
+})

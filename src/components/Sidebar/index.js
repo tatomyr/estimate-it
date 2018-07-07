@@ -2,13 +2,24 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import './styles.css'
-import { recalc, redirect, saveEstimate } from '../../redux/actions'
+import {
+  recalc,
+  openAuthScreen,
+  closeAuthScreen,
+} from '../../redux/actions'
+import {
+  saveEstimate,
+} from '../../redux/actions/async'
+
+const mapStateToProps = ({ apiKey: { apiKey } }) => ({
+  apiKey,
+})
 
 const mapDispatchToProps = ({
   recalc,
   saveEstimate,
-  // TODO: implement redirecting to `new estimate`
-  redirect,
+  openAuthScreen,
+  closeAuthScreen,
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(Sidebar))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))

@@ -1,4 +1,9 @@
-import { I, product, toProbGraph } from './equiprobabilistic-rows'
+import {
+  I,
+  product,
+  toProbGraph,
+  sort,
+} from './equiprobabilistic-rows'
 
 // getIndentation :: String -> Int
 const getIndentation = str => str.match(/^\s*/)[0].length
@@ -50,7 +55,7 @@ const splitNameAndHours = str => {
   const [name, hours = ''] = str.split(/[=|]/)
   return ({
     name: name.trim(),
-    hours: hours.trim().split(/\s+/).map(time => +time),
+    hours: sort(hours.trim().split(/\s+/).map(time => +time)),
   })
 }
 
@@ -76,7 +81,6 @@ const treeToList = text => textToArr(text)
 // TODO: calculateHours :: …
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
-  console.log(index,'-->',children)
   if (children.length === 0) return hours
 
   return children.reduce(($, item) => product(
@@ -120,6 +124,7 @@ export const handleFlat = text => {
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
+    // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours

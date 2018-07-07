@@ -1,14 +1,18 @@
-import { CHECK_CREDS } from '../actions/types'
+import { SET_CREDS, RESET_CREDS } from '../actions/types'
 
 const defaultState = {
-  hasKey: false,
+  apiKey: null,
 }
 
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case CHECK_CREDS:
+    case SET_CREDS:
       return ({
-        hasKey: payload.hasKey,
+        apiKey: payload.apiKey,
+      })
+    case RESET_CREDS:
+      return ({
+        apiKey: '',
       })
 
     default:
