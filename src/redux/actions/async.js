@@ -66,6 +66,7 @@ export const checkCreds = () => dispatch => {
 }
 
 export const openGuestSession = () => dispatch => {
-  dispatch(redirect('/estimate/new'))
+  dispatch(redirect(''))
   setTimeout(() => dispatch(closeAuthScreen()))
+  setTimeout(() => dispatch(redirect('/estimate/new')))
 }
