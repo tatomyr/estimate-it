@@ -1,0 +1,32 @@
+{
+  "name": "estimate-it",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint src/",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-highcharts": "^13.0.0",
+    "react-monaco-editor": "^0.10.1",
+    "react-redux": "^5.0.6",
+    "react-redux-toastr": "^7.3.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.10.0"
+  }
+}

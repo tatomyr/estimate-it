@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  display: flex;
+  height: 100vh;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.board {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
