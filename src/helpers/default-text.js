@@ -5,7 +5,6 @@ export default
 @developer Anonymous
 @developer Noname
 @comment This is a comment
-@rate 25 # $ per hour
 @rounding 15 # This is where precision is set: More is better but slower.
 @summary # Put this directive if you want to see resulting hours for all the project.
 

@@ -4,7 +4,7 @@ import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import Redirector from '../Redirector'
 import Sidebar from '../Sidebar'
 import Board from '../Board'
-import AuthScreen from '../AuthScreen'
+import Register from '../Register'
 import Spinner from '../Spinner'
 
 const App = () => (
@@ -12,7 +12,7 @@ const App = () => (
     <Redirector />
     <Sidebar />
     <Board />
-    <AuthScreen />
+    <Register />
     <Spinner />
     <ReduxToastr
       transitionIn="fadeIn"

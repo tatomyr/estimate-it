@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Component from './Component'
+import Register from './Register'
 import './styles.css'
 import {
   closeAuthScreen,
@@ -27,4 +27,4 @@ const mapDispatchToProps = ({
   resetCreds,
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import Editor from '../Editor'
 import Graph from '../Graph'
+import Dashboard from './Dashboard'
 
 const Board = ({
   estimates,
@@ -16,6 +17,9 @@ const Board = ({
       <Switch>
         <Route exact path="/estimate/:estimateId" component={Editor} />
         <Route path="/estimate/:estimateId/graph" component={Graph} />
+        <Route path="/estimates">
+          <Dashboard estimates={estimates} />
+        </Route>
       </Switch>
     </div>
   )

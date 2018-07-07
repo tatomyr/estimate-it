@@ -1,4 +1,3 @@
-import defaultText from './default-text'
 import { dbName, checkId } from './settings'
 
 export const setApiKey = apiKey => localStorage.setItem('apiKey', apiKey)
@@ -20,10 +19,6 @@ const db = (collection, method = 'GET', data = null) => new Promise((resolve, re
     mode: 'cors',
     body: data && JSON.stringify(data),
   })
-    // .then(res => {
-    //   console.log(res.ok, 'Recieved response:', res)
-    //   return res
-    // })
     .then(res => res.json())
     .then(resolve)
     .catch(reject)
