@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Sidebar = ({
-  match: { params },
+  match: { params: { estimateId } },
   recalc,
   saveEstimate,
   openAuthScreen,
@@ -11,7 +11,7 @@ const Sidebar = ({
   <aside>
     <button
       type="button"
-      onClick={() => recalc(params.estimateId)}
+      onClick={() => recalc(estimateId)}
       title="Calculate estimate"
     >
       ✓
@@ -24,7 +24,7 @@ const Sidebar = ({
     {apiKey && (
       <button
         type="button"
-        onClick={() => saveEstimate(params)}
+        onClick={() => saveEstimate({ estimateId })}
         title="Save estimate"
       >
         S
@@ -45,6 +45,31 @@ const Sidebar = ({
     >
       A
     </button>
+    <Link to={`/estimate/${estimateId}`}>
+      <button
+        type="button"
+        title="Show text"
+      >
+        T
+      </button>
+    </Link>
+    <Link to={`/estimate/${estimateId}/graph`}>
+      <button
+        type="button"
+        title="Show graph"
+      >
+        G
+      </button>
+    </Link>
+    {/* TODO: implement document */}
+    <Link to={`/estimate/${estimateId}/document`}>
+      <button
+        type="button"
+        title="Show document"
+      >
+        D
+      </button>
+    </Link>
   </aside>
 )
 

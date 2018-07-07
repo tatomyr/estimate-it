@@ -4,11 +4,6 @@
   height: 100vh;
 }
 
-.features {
-  width: 100%;
-  overflow-y: auto;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -22,3 +17,8 @@
   to { transform: rotate(360deg); }
 }
 
+.board {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
