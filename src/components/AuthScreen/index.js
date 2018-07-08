@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Register from './Register'
+import AuthScreen from './AuthScreen'
 import './styles.css'
 import {
   closeAuthScreen,
@@ -9,22 +9,19 @@ import {
 } from '../../redux/actions'
 import {
   checkCreds,
-  getEstimate,
   openGuestSession,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ apiKey: { apiKey }, visualEffects: { showAuthScreen } }) => ({
+const mapStateToProps = ({ apiKey: { apiKey } }) => ({
   apiKey,
-  showAuthScreen,
 })
 
 const mapDispatchToProps = ({
   checkCreds,
-  getEstimate,
   closeAuthScreen,
   cleanEstimate,
   openGuestSession,
   resetCreds,
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthScreen))

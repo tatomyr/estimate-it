@@ -1,7 +1,9 @@
+// FIXME: {apiKey: {apiKey}} -> {creds: {apiKey, dbName}}
+
 import { SET_CREDS, RESET_CREDS } from '../actions/types'
 
 const defaultState = {
-  apiKey: null,
+  apiKey: '',
 }
 
 export default (state = defaultState, { type, payload }) => {

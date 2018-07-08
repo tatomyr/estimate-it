@@ -1,3 +1,5 @@
+// TODO: implement setCreds: to set both apiKey and dbName
+
 import { dbName, checkId } from './settings'
 
 export const setApiKey = apiKey => localStorage.setItem('apiKey', apiKey)

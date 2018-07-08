@@ -1,4 +1,4 @@
-// TODO: refactor dashboard
+// TODO: implement dashboard
 
 import React from 'react'
 import PropTypes from 'prop-types'

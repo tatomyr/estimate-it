@@ -26,7 +26,7 @@ const AuthScreen = ({
           placeholder="Enter access key..."
           defaultValue={apiKey}
           required
-          autoFocus
+          autoFocus // eslint-disable-line
         />
         <br />
         <button type="submit">
