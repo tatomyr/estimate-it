@@ -28,4 +28,4 @@ Install all dependencies with `npm i`.
 Start app with `npm start`. Open http://localhost:3000/estimate/new in your browser.
 
 Data is storing on https://restdb.io.
-To save and share estimate you have to authorize using `apiKey`.
+To save and share estimate you have to authorize using `restdb.io` credentials: `dbName:apiKey`.

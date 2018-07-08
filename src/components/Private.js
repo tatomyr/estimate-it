@@ -28,7 +28,7 @@ Private.propTypes = {
   }).isRequired,
 }
 
-const mapStateToProps = ({ apiKey: { apiKey } }) => ({
+const mapStateToProps = ({ creds: { apiKey } }) => ({
   apiKey,
 })
 

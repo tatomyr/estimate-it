@@ -16,13 +16,15 @@ const AuthScreen = ({
       <form
         onSubmit={e => {
           e.preventDefault()
-          api.setApiKey(e.target.apiKey.value)
+          /* eslint-disable-next-line no-shadow */
+          const [dbName, apiKey] = e.target.credentials.value.split(':')
+          api.setCreds({ dbName, apiKey })
           checkCreds()
         }}
       >
         <input
           type="password"
-          name="apiKey"
+          name="credentials"
           placeholder="Enter access key..."
           defaultValue={apiKey}
           required
@@ -45,7 +47,7 @@ const AuthScreen = ({
         <button
           type="button"
           onClick={() => {
-            api.removeApiKey()
+            api.removeCreds()
             resetCreds()
             cleanEstimate(params)
           }}

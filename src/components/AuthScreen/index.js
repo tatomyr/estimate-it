@@ -12,7 +12,7 @@ import {
   openGuestSession,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ apiKey: { apiKey } }) => ({
+const mapStateToProps = ({ creds: { apiKey } }) => ({
   apiKey,
 })
 

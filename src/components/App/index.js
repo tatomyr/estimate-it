@@ -5,8 +5,7 @@ import {
   checkCreds,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ apiKey: { apiKey }, visualEffects: { showAuthScreen } }) => ({
-  apiKey,
+const mapStateToProps = ({ visualEffects: { showAuthScreen } }) => ({
   showAuthScreen,
 })
 
