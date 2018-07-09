@@ -56,7 +56,8 @@ export const checkCreds = () => dispatch => {
 
   dispatch(addSpinner())
   return api.checkCreds()
-    .then(() => {
+    .then(({ totals: { count } }) => {
+      console.log(`${count} record(s) found in the DB.`)
       dispatch(setCreds())
       dispatch(closeAuthScreen())
     })
