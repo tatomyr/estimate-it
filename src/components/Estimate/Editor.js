@@ -1,53 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
-// Try `npm install @types/react-monaco-editor` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-monaco-editor';`
-
-const options = {
-  lineNumbers: false,
-  scrollBeyondLastLine: false,
-  readOnly: false,
-}
+// TODO: Try `npm install @types/react-monaco-editor` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-monaco-editor';`
+import { options, languageDef, configuration } from './editor-config'
 
 const editorWillMount = monaco => {
   this.editor = monaco
-  console.log(monaco.languages.getLanguages())
-  if (!monaco.languages.getLanguages().mySpecialLanguage) {
+  if (!monaco.languages.getLanguages().estimateMarkdown) {
     // Register a new language
-    monaco.languages.register({ id: 'mySpecialLanguage' })
+    monaco.languages.register({ id: 'estimateMarkdown' })
     // Register a tokens provider for the language
-    monaco.languages.setMonarchTokensProvider('mySpecialLanguage', {
-      tokenizer: {
-        root: [
-          { include: "@whitespace" },
-          { include: "@numbers" },
-          // TODO: [|=]  - what does it corresponds to?
-          [/[,:;\|=]/, "delimiter"],
-          [/[{}\[\]()]/, "@brackets"],
-          [/^@[a-zA-Z]\w*/, "tag"],
-          [/%[a-zA-Z]\w*/, "tag"],
-          [/#[a-zA-Z]\w*/, "tag"],
-        ],
-        whitespace: [
-          [/\s+/, "white"],
-          [/(^# .*$)/, "comment"],
-        ],
-        numbers:[
-          // [/-?0x([abcdef]|[ABCDEF]|\d)+[lL]?/, "number.hex"],
-          [/-?(\d*\.)?\d+([eE][+\-]?\d+)?[jJ]?[lL]?/, "number"],
-        ],
-      },
-    });
-
-    monaco.languages.setLanguageConfiguration('mySpecialLanguage', {
-      comments: {
-        lineComment: "#",
-      },
-      brackets:[
-        ["{", "}"], ["[", "]"],["(", ")"],
-      ],
-    });
+    monaco.languages.setMonarchTokensProvider('estimateMarkdown', languageDef)
+    // Set the editing configuration for the language
+    monaco.languages.setLanguageConfiguration('estimateMarkdown', configuration)
   }
+  console.log(monaco.languages.getLanguages())
 }
 
 const Editor = ({
@@ -56,7 +23,7 @@ const Editor = ({
 }) => (
   <div className="editor-wrapper">
     <MonacoEditor
-      language="mySpecialLanguage"
+      language="estimateMarkdown"
       theme="vs-dark"
       value={text}
       options={options}
