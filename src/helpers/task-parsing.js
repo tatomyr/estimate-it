@@ -127,8 +127,6 @@ export const handleText = text => {
     .filter(({ value }) => !value.startsWith('# '))
   if (!activeTasks.length) return ({ text, project })
 
-  // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
-
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours
