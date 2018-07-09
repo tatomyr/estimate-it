@@ -4,7 +4,8 @@ import {
   toProbGraph,
   sort,
 } from './equiprobabilistic-rows'
-import { defaultRounding } from './settings'
+
+const defaultRounding = 100
 
 // getIndentation :: String -> Int
 const getIndentation = str => str.match(/^\s*/)[0].length
@@ -43,14 +44,6 @@ const isTaskItem = ({ value }) => (
   && value.trim()[0] !== '@'
   && value.trim()[0] !== '%'
 )
-
-const getRounding = text => {
-  const arr = textToArr(text)
-  const [_, rounding = defaultRounding] = (arr.find(({ value }) => value.startsWith('@rounding')) || { value: '' }).value.split(/\s/)
-  // FIXME: implement error handling
-  if (isNaN(+rounding)) throw new Error('Rounding should be an integer number!')
-  return +rounding
-}
 
 // splitNameAndHours :: String -> {name: String, hours: [Number]}
 const splitNameAndHours = str => {
@@ -120,12 +113,19 @@ const summary = ({
   name: '@summary',
 })
 
+const parseParam = text => param => (
+  textToArr(text).find(({ value }) => value.startsWith(param))
+  || { value: '' }
+).value.replace(param, '').trim()
+
 export const handleText = text => {
-  const rounding = getRounding(text)
+  const getParam = parseParam(text)
+  const project = getParam('@project')
+  const rounding = +getParam('@rounding') || defaultRounding
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
-  if (!activeTasks.length) return ({ text })
+  if (!activeTasks.length) return ({ text, project })
 
   // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
 
@@ -135,17 +135,6 @@ export const handleText = text => {
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
     graphData: toProbGraph(summaryHours),
-  })
-}
-
-const parseParam = param => arr => (
-  arr.find(({ value }) => value.startsWith(param))
-  || { value: '' }
-).value.replace(param, '').trim()
-
-export const getAdditionalParams = text => {
-  const arr = textToArr(text)
-  return ({
-    project: parseParam('@project')(arr),
+    project,
   })
 }
