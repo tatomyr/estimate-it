@@ -95,8 +95,6 @@ const calculateHours = (list, rounding) => ({ index, hours }) => {
 const hoistHours = (list, rounding) => list
   .map(item => ({
     ...item,
-    // FIXME: investigate why I commented this
-    // hours: calculateHours(list, rounding)(item.index),
     hours: calculateHours(list, rounding)(item),
   }))
   .map(item => ({
@@ -122,12 +120,15 @@ const summary = ({
   name: '@summary',
 })
 
-export const handleFlat = text => {
+export const handleText = text => {
   const rounding = getRounding(text)
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
-    // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
+  if (!activeTasks.length) return ({ text })
+
+  // TODO: configure language to highlight comments on line start only to be in accordance with the rule above
+
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours

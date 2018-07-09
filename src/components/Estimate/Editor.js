@@ -9,33 +9,27 @@ const options = {
 }
 
 const Editor = ({
-  estimates,
+  estimate: { text, _id },
   addEstimate,
-  match: { params: { estimateId } },
 }) => (
   <div className="editor-wrapper">
     <MonacoEditor
       language="python"
       theme="vs-dark"
-      value={(estimates[estimateId] || {}).text}
+      value={text}
       options={options}
-      onChange={text => addEstimate({ text, _id: estimateId })}
+      onChange={newText => addEstimate({ text: newText, _id })}
       editorDidMount={(editor, monaco) => { editor.focus() }}
     />
   </div>
 )
 
 Editor.propTypes = {
-  estimates: PropTypes.objectOf(PropTypes.shape({
+  estimate: PropTypes.shape({
     text: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
-  })).isRequired,
-  addEstimate: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string.isRequired,
-    }).isRequired,
   }).isRequired,
+  addEstimate: PropTypes.func.isRequired,
 }
 
 export default Editor

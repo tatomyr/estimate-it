@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
   },
+  parser: "babel-eslint",
   rules: {
     semi: ["error", "never"],
     "arrow-parens": ["error", "as-needed"],

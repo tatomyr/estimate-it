@@ -50,7 +50,7 @@ export const closeAuthScreen = () => ({
 
 export const setCreds = () => ({
   type: SET_CREDS,
-  payload: { apiKey: api.getApiKey() },
+  payload: { ...api.getCreds() },
 })
 
 export const resetCreds = () => ({

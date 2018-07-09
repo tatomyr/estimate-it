@@ -1,3 +1,5 @@
+// TODO: improve sidebar (adjust it to estimate/dashboard etc.)
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -50,7 +52,7 @@ const Sidebar = ({
         type="button"
         title="Show text"
       >
-        T
+        E
       </button>
     </Link>
     <Link to={`/estimate/${estimateId}/graph`}>

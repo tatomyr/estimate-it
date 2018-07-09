@@ -1,4 +1,4 @@
-import { handleFlat, getAdditionalParams } from '../../helpers/task-parsing'
+import { handleText, getAdditionalParams } from '../../helpers/task-parsing'
 import {
   ADD_ESTIMATE,
   RECALCULATE,
@@ -21,14 +21,17 @@ export default (state = defaultState, { type, payload }) => {
     case CLEAN_ESTIMATE:
       return ({
         ...state,
-        [payload.estimateId]: emptyEstimate,
+        // Put 'new' here to avoid creating an estimate with an undefined `_id`
+        // ...while logging out on different routes
+        // ...(that may not contain an `:estimateId` param)
+        [payload.estimateId || 'new']: emptyEstimate,
       })
     case RECALCULATE:
       return ({
         ...state,
         [payload._id]: {
           _id: payload._id,
-          ...handleFlat(state[payload._id].text),
+          ...handleText(state[payload._id].text),
           ...getAdditionalParams(state[payload._id].text),
         },
       })
