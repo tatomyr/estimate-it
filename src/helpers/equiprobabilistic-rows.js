@@ -24,8 +24,7 @@ export const round = (u, rounding = Infinity) => {
   if (rounding >= v.length) return v
 
   return Array(rounding).fill().map((_, j) => {
-    const m = v.length
-    const K = (m - 1) * j / (rounding - 1)
+    const K = (v.length - 1) * j / (rounding - 1)
     return (v[Math.floor(K)] + v[Math.ceil(K)]) / 2
   })
 }

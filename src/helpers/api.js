@@ -1,5 +1,3 @@
-import { checkId } from './settings'
-
 export const setCreds = ({ dbName, apiKey }) => {
   localStorage.setItem('dbName', dbName)
   localStorage.setItem('apiKey', apiKey)
@@ -44,4 +42,4 @@ export const saveEstimate = ({
 
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
 
-export const checkCreds = () => db(`check/${checkId}`)
+export const checkCreds = () => db('estimates?totals=true&count=true')
