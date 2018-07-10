@@ -17,7 +17,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-highcharts": "^13.0.0",
-    "react-monaco-editor": "^0.10.1",
+    "react-monaco-editor": "^0.17.2",
     "react-redux": "^5.0.6",
     "react-redux-toastr": "^7.3.0",
     "react-router-dom": "^4.3.1",
