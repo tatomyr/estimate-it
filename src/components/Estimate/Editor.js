@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
-// TODO: Try `npm install @types/react-monaco-editor` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-monaco-editor';`
 import { options, languageDef, configuration } from './editor-config'
 
 const editorWillMount = monaco => {
