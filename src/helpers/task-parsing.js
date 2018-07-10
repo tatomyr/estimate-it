@@ -77,7 +77,6 @@ const treeToList = text => textToArr(text)
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
   if (children.length === 0) return hours
-
   return children.reduce(($, item) => product(
     $,
     calculateHours(list, rounding)(item),
@@ -89,6 +88,11 @@ const hoistHours = (list, rounding) => list
   .map(item => ({
     ...item,
     hours: calculateHours(list, rounding)(item),
+  }))
+  // Preventing @summary from being undefined
+  .map(item => ({
+    ...item,
+    hours: item.hours || [0],
   }))
   .map(item => ({
     ...item,
@@ -121,7 +125,6 @@ export const handleText = text => {
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
-  if (!activeTasks.length) return ({ text })
 
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))

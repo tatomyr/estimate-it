@@ -18,14 +18,18 @@ const getProjectName = text => parseParam(text)('@project') || 'New Project'
 export default (state = { new: emptyEstimate }, { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload._id]: {
+        [_id]: {
           ...payload,
+          graphData: [],
           calculated: false,
           project: getProjectName(payload.text),
         },
       })
+    }
     case CLEAN_ESTIMATE:
       return ({
         ...state,
@@ -35,15 +39,18 @@ export default (state = { new: emptyEstimate }, { type, payload }) => {
         [payload.estimateId || 'new']: emptyEstimate,
       })
     case RECALCULATE:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload._id]: {
-          _id: payload._id,
-          ...handleText(state[payload._id].text),
+        [_id]: {
+          _id,
+          ...handleText(state[_id].text),
           calculated: true,
-          project: getProjectName(state[payload._id].text),
+          project: getProjectName(state[_id].text),
         },
       })
+    }
 
     default:
       return state

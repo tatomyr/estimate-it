@@ -42,4 +42,7 @@ export const product = (u, v, rounding) => round(baseProduct(u, v), rounding)
 
 // TODO: toProbGraph :: …
 // export const toProbGraph = u => u.map((val, i) => [val, i / u.length])
-export const toProbGraph = u => u.map((val, i) => [val, i / (u.length - 1)])
+export const toProbGraph = u => {
+  if (u.length === 1) return [[u[0], 0], [u[0], 1]]
+  return u.map((val, i) => [val, i / (u.length - 1)])
+}
