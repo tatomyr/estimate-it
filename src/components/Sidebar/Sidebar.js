@@ -50,7 +50,7 @@ const Sidebar = ({
     <Link to={`/estimate/${estimateId}`}>
       <button
         type="button"
-        title="Show text"
+        title="Show editor"
       >
         E
       </button>
@@ -63,11 +63,10 @@ const Sidebar = ({
         G
       </button>
     </Link>
-    {/* TODO: implement document */}
-    <Link to={`/estimate/${estimateId}/document`}>
+    <Link to="/dashboard">
       <button
         type="button"
-        title="Show document"
+        title="Show dashboard"
       >
         D
       </button>

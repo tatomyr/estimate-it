@@ -2,6 +2,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as api from '../../helpers/api'
 
+// TODO: implement storing username to localStorage
+// TODO: implement field { lastChangedBy: username }
+
 const AuthScreen = ({
   match: { params },
   apiKey,

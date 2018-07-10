@@ -25,7 +25,7 @@ class Estimate extends React.Component {
     const {
       match: { params: { estimateId } },
       estimates,
-      addEstimate,
+      updateEstimate,
     } = this.props
     const estimate = estimates[estimateId]
     if (!estimate) return null
@@ -34,7 +34,7 @@ class Estimate extends React.Component {
         <Route
           exact
           path="/estimate/:estimateId"
-          render={() => <Editor estimate={estimate} addEstimate={addEstimate} />}
+          render={() => <Editor estimate={estimate} updateEstimate={updateEstimate} />}
         />
         <Route
           path="/estimate/:estimateId/graph"
@@ -56,7 +56,7 @@ Estimate.propTypes = {
     text: PropTypes.string.isRequired,
   })).isRequired,
   getEstimate: PropTypes.func.isRequired,
-  addEstimate: PropTypes.func.isRequired,
+  updateEstimate: PropTypes.func.isRequired,
 }
 
 export default Estimate

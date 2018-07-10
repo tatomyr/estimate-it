@@ -18,7 +18,7 @@ const editorWillMount = monaco => {
 
 const Editor = ({
   estimate: { text, _id },
-  addEstimate,
+  updateEstimate,
 }) => (
   <div className="editor-wrapper">
     <MonacoEditor
@@ -26,7 +26,7 @@ const Editor = ({
       theme="vs-dark"
       value={text}
       options={options}
-      onChange={newText => addEstimate({ text: newText, _id })}
+      onChange={newText => updateEstimate({ text: newText, _id })}
       editorWillMount={editorWillMount}
       editorDidMount={(editor, monaco) => { editor.focus() }}
     />
@@ -38,7 +38,7 @@ Editor.propTypes = {
     text: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }).isRequired,
-  addEstimate: PropTypes.func.isRequired,
+  updateEstimate: PropTypes.func.isRequired,
 }
 
 export default Editor

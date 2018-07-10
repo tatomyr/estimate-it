@@ -6,7 +6,7 @@ import {
   addSpinner,
   delSpinner,
   redirect,
-  addEstimate,
+  updateEstimate,
   cleanEstimate,
   closeAuthScreen,
   openAuthScreen,
@@ -18,13 +18,19 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
 
   const estimateToSave = getState().estimates[estimateId]
-  // TODO: check/validate estimate schema: text should not be empty ?
+  console.log('estimateToSave:', estimateToSave)
+  if (!estimateToSave.calculated) {
+    toastr.warning('Warning', 'Consider calculating estimate before saving.')
+  }
   dispatch(addSpinner())
   api.saveEstimate(estimateToSave)
     .then(estimate => {
-      dispatch(addEstimate(estimate))
+      dispatch(updateEstimate(estimate))
       dispatch(redirect(`/estimate/${estimate._id}`))
-      toastr.success('Saved', `Id: ${estimate._id}`)
+      toastr.success(
+        'Saved',
+        estimate.project ? `Current project: ${estimate.project}` : `Id: ${estimate._id}`
+      )
     })
     .catch(({ message }) => {
       toastr.error('Error', `${message}\nCheck your access rights`)
@@ -43,7 +49,7 @@ export const getEstimate = ({ estimateId }) => dispatch => {
       if (estimate instanceof Array || estimate === null) {
         throw new Error("We can't find such an estimate :(")
       }
-      dispatch(addEstimate(estimate))
+      dispatch(updateEstimate(estimate))
     })
     .catch(err => {
       toastr.error('Error', `${err.message}`)

@@ -1,5 +1,5 @@
 import {
-  ADD_ESTIMATE,
+  UPDATE_ESTIMATE,
   CLEAN_ESTIMATE,
   RECALCULATE,
   REDIRECT,
@@ -12,8 +12,8 @@ import {
 } from './types'
 import * as api from '../../helpers/api'
 
-export const addEstimate = estimate => ({
-  type: ADD_ESTIMATE,
+export const updateEstimate = estimate => ({
+  type: UPDATE_ESTIMATE,
   payload: estimate,
 })
 
