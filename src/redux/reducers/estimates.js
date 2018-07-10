@@ -1,11 +1,16 @@
-import { handleText, getAdditionalParams } from '../../helpers/task-parsing'
+import { handleText } from '../../helpers/task-parsing'
 import {
   ADD_ESTIMATE,
   RECALCULATE,
   CLEAN_ESTIMATE,
 } from '../actions/types'
 
-const emptyEstimate = { _id: 'new', text: '', graphData: [] }
+const emptyEstimate = ({
+  _id: 'new',
+  text: '',
+  graphData: [],
+  project: 'New Project',
+})
 
 const defaultState = {
   new: emptyEstimate,
@@ -32,7 +37,6 @@ export default (state = defaultState, { type, payload }) => {
         [payload._id]: {
           _id: payload._id,
           ...handleText(state[payload._id].text),
-          ...getAdditionalParams(state[payload._id].text),
         },
       })
 
