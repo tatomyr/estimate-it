@@ -1,11 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
+// TODO: Try `npm install @types/react-monaco-editor` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-monaco-editor';`
+import { options, languageDef, configuration } from './editor-config'
 
-const options = {
-  lineNumbers: false,
-  scrollBeyondLastLine: false,
-  readOnly: false,
+const editorWillMount = monaco => {
+  this.editor = monaco
+  if (!monaco.languages.getLanguages().estimateMarkdown) {
+    // Register a new language
+    monaco.languages.register({ id: 'estimateMarkdown' })
+    // Register a tokens provider for the language
+    monaco.languages.setMonarchTokensProvider('estimateMarkdown', languageDef)
+    // Set the editing configuration for the language
+    monaco.languages.setLanguageConfiguration('estimateMarkdown', configuration)
+  }
+  console.log(monaco.languages.getLanguages())
 }
 
 const Editor = ({
@@ -14,11 +23,12 @@ const Editor = ({
 }) => (
   <div className="editor-wrapper">
     <MonacoEditor
-      language="python"
+      language="estimateMarkdown"
       theme="vs-dark"
       value={text}
       options={options}
       onChange={newText => addEstimate({ text: newText, _id })}
+      editorWillMount={editorWillMount}
       editorDidMount={(editor, monaco) => { editor.focus() }}
     />
   </div>
