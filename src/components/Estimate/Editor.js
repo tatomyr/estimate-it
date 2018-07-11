@@ -5,28 +5,28 @@ import { options, languageDef, configuration } from './editor-config'
 
 const editorWillMount = monaco => {
   this.editor = monaco
-  if (!monaco.languages.getLanguages().estimateMarkdown) {
+  if (!monaco.languages.getLanguages().some(({ id }) => id === 'estimatemd')) {
     // Register a new language
-    monaco.languages.register({ id: 'estimateMarkdown' })
+    monaco.languages.register({ id: 'estimatemd' })
     // Register a tokens provider for the language
-    monaco.languages.setMonarchTokensProvider('estimateMarkdown', languageDef)
+    monaco.languages.setMonarchTokensProvider('estimatemd', languageDef)
     // Set the editing configuration for the language
-    monaco.languages.setLanguageConfiguration('estimateMarkdown', configuration)
+    monaco.languages.setLanguageConfiguration('estimatemd', configuration)
   }
   console.log(monaco.languages.getLanguages())
 }
 
 const Editor = ({
   estimate: { text, _id },
-  addEstimate,
+  updateEstimate,
 }) => (
   <div className="editor-wrapper">
     <MonacoEditor
-      language="estimateMarkdown"
+      language="estimatemd"
       theme="vs-dark"
       value={text}
       options={options}
-      onChange={newText => addEstimate({ text: newText, _id })}
+      onChange={newText => updateEstimate({ text: newText, _id })}
       editorWillMount={editorWillMount}
       editorDidMount={(editor, monaco) => { editor.focus() }}
     />
@@ -38,7 +38,7 @@ Editor.propTypes = {
     text: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }).isRequired,
-  addEstimate: PropTypes.func.isRequired,
+  updateEstimate: PropTypes.func.isRequired,
 }
 
 export default Editor

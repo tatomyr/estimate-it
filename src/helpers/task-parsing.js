@@ -77,7 +77,6 @@ const treeToList = text => textToArr(text)
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
   if (children.length === 0) return hours
-
   return children.reduce(($, item) => product(
     $,
     calculateHours(list, rounding)(item),
@@ -90,21 +89,23 @@ const hoistHours = (list, rounding) => list
     ...item,
     hours: calculateHours(list, rounding)(item),
   }))
+  // Preventing @summary from being undefined
   .map(item => ({
     ...item,
-    value: (`${item.name} | ${item.hours.join(' ')}`).trim(),
+    hours: item.hours || [0],
+  }))
+  .map(item => ({
+    ...item,
+    value: (`${item.name} = ${item.hours.join(' ')}`).trim(),
   }))
 
 const withIndent = ({ value, indentation = 0 }) => `${' '.repeat(indentation)}${value}`
-
-const pretty = item => item
-  && ({ item, value: `${item.name} ${item.hours.join(' ')}` })
 
 export const listToTree = list => text => textToArr(text).map(item => {
   const newItem = list.find(({ index }) => index === item.index)
   // Print summary if directive `@summary` met
   const summaryItem = item.value.startsWith('@summary')
-    && pretty(list.find(({ index }) => index === null))
+    && list.find(({ index }) => index === null)
   return withIndent(summaryItem || newItem || item)
 }).join('\n')
 
@@ -113,19 +114,17 @@ const summary = ({
   name: '@summary',
 })
 
-const parseParam = text => param => (
+export const parseParam = text => param => (
   textToArr(text).find(({ value }) => value.startsWith(param))
   || { value: '' }
 ).value.replace(param, '').trim()
 
 export const handleText = text => {
   const getParam = parseParam(text)
-  const project = getParam('@project')
   const rounding = +getParam('@rounding') || defaultRounding
   const tasks = treeToList(text)
   const activeTasks = tasks
     .filter(({ value }) => !value.startsWith('# '))
-  if (!activeTasks.length) return ({ text, project })
 
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
@@ -133,6 +132,5 @@ export const handleText = text => {
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
     graphData: toProbGraph(summaryHours),
-    project,
   })
 }

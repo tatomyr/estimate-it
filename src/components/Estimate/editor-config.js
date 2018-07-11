@@ -15,6 +15,7 @@ export const languageDef = {
     "@project",
     "@developer",
     "@pm",
+    "@comment",
     "@summary",
     "@rounding",
   ],

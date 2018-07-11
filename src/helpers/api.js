@@ -1,6 +1,7 @@
 export const setCreds = ({ dbName, apiKey }) => {
   localStorage.setItem('dbName', dbName)
   localStorage.setItem('apiKey', apiKey)
+  // TODO: username
 }
 
 export const getCreds = () => ({
@@ -35,10 +36,11 @@ export const saveEstimate = ({
   _id,
   text,
   graphData = [],
-  project = '',
+  project,
+  calculated,
 }) => (_id === 'new'
-  ? db('estimates', 'POST', { text, graphData, project })
-  : db(`estimates/${_id}`, 'PUT', { text, graphData, project }))
+  ? db('estimates', 'POST', { text, graphData, project, calculated })
+  : db(`estimates/${_id}`, 'PUT', { text, graphData, project, calculated }))
 
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
 

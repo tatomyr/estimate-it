@@ -1,6 +1,6 @@
-import { handleText } from '../../helpers/task-parsing'
+import { handleText, parseParam } from '../../helpers/task-parsing'
 import {
-  ADD_ESTIMATE,
+  UPDATE_ESTIMATE,
   RECALCULATE,
   CLEAN_ESTIMATE,
 } from '../actions/types'
@@ -10,19 +10,26 @@ const emptyEstimate = ({
   text: '',
   graphData: [],
   project: 'New Project',
+  calculated: true,
 })
 
-const defaultState = {
-  new: emptyEstimate,
-}
+const getProjectName = text => parseParam(text)('@project') || 'New Project'
 
-export default (state = defaultState, { type, payload }) => {
+export default (state = { new: emptyEstimate }, { type, payload }) => {
   switch (type) {
-    case ADD_ESTIMATE:
+    case UPDATE_ESTIMATE:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload._id]: { ...payload },
+        [_id]: {
+          ...payload,
+          graphData: [],
+          calculated: false,
+          project: getProjectName(payload.text),
+        },
       })
+    }
     case CLEAN_ESTIMATE:
       return ({
         ...state,
@@ -32,13 +39,18 @@ export default (state = defaultState, { type, payload }) => {
         [payload.estimateId || 'new']: emptyEstimate,
       })
     case RECALCULATE:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload._id]: {
-          _id: payload._id,
-          ...handleText(state[payload._id].text),
+        [_id]: {
+          _id,
+          ...handleText(state[_id].text),
+          calculated: true,
+          project: getProjectName(state[_id].text),
         },
       })
+    }
 
     default:
       return state
