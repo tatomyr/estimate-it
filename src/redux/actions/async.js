@@ -17,6 +17,20 @@ import {
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
 
+  // TODO: check if the estimate was updated after last load. And if possible show some diffs. Or calculate if the estimate can be merged without conflicts.
+  // api.getEstimate({ estimateId })
+  //   .then(estimate => {
+  //     // Catching specific case of `restdb.io` response
+  //     if (estimate instanceof Array || estimate === null) {
+  //       // throw new Error("We can't find such an estimate :(")
+  //     }
+  //     // dispatch(updateEstimate(estimate))
+  //   })
+  //   .catch(err => {
+  //     toastr.error('Error', `${err.message}`)
+  //   })
+
+
   const estimateToSave = getState().estimates[estimateId]
   console.log('estimateToSave:', estimateToSave)
   if (!estimateToSave.calculated) {
