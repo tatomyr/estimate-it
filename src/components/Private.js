@@ -6,11 +6,11 @@ import AuthScreen from './AuthScreen'
 
 const Private = ({
   children,
-  apiKey,
+  username,
   match: { params: { estimateId = '' } },
 }) => (
   <Fragment>
-    {apiKey || estimateId === 'new'
+    {username || estimateId === 'new'
       ? children
       : <AuthScreen />}
   </Fragment>
@@ -18,7 +18,7 @@ const Private = ({
 
 Private.propTypes = {
   children: PropTypes.node.isRequired,
-  apiKey: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       estimateId: PropTypes.string,
@@ -26,8 +26,8 @@ Private.propTypes = {
   }).isRequired,
 }
 
-const mapStateToProps = ({ creds: { apiKey } }) => ({
-  apiKey,
+const mapStateToProps = ({ creds: { username } }) => ({
+  username,
 })
 
 export default withRouter(connect(mapStateToProps, null)(Private))
