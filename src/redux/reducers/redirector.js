@@ -1,7 +1,7 @@
 import { REDIRECT } from '../actions/types'
 
 const defaultState = {
-  pathToRedirect: null,
+  pathToRedirect: '',
 }
 
 export default (state = defaultState, { type, payload }) => {

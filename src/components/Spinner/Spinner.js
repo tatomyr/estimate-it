@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import spinner from './spinner.gif'
+import { Overlay } from '../Layouts'
 
 const Spinner = ({ showSpinner }) => (
-  <div className={`spinner overlay ${showSpinner ? '' : 'hidden'}`}>
+  <Overlay className={`spinner ${showSpinner ? '' : 'hidden'}`}>
     <img src={spinner} alt="" />
-  </div>
+  </Overlay>
 )
 
 Spinner.propTypes = {

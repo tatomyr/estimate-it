@@ -1,5 +1,3 @@
-// TODO: improve sidebar (adjust it to estimate/dashboard etc.)
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -9,7 +7,6 @@ const Sidebar = ({
   recalc,
   saveEstimate,
   openAuthScreen,
-  username,
 }) => (
   <aside>
     <button
@@ -24,15 +21,13 @@ const Sidebar = ({
     >
       ✗
     </button>
-    {username && (
-      <button
-        type="button"
-        onClick={() => saveEstimate({ estimateId })}
-        title="Save estimate"
-      >
-        S
-      </button>
-    )}
+    <button
+      type="button"
+      onClick={() => saveEstimate({ estimateId })}
+      title="Save estimate"
+    >
+      S
+    </button>
     <Link to="/estimate/new">
       <button
         type="button"
@@ -74,5 +69,16 @@ const Sidebar = ({
     </Link>
   </aside>
 )
+
+Sidebar.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      estimateId: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  recalc: PropTypes.func.isRequired,
+  saveEstimate: PropTypes.func.isRequired,
+  openAuthScreen: PropTypes.func.isRequired,
+}
 
 export default Sidebar

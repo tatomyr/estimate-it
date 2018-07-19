@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
+import Sidebar from '../Sidebar'
 
 class Estimate extends React.Component {
   componentDidMount = () => {
@@ -30,17 +31,22 @@ class Estimate extends React.Component {
     const estimate = estimates[estimateId]
     if (!estimate) return null
     return (
-      <Switch>
-        <Route
-          exact
-          path="/estimate/:estimateId"
-          render={() => <Editor estimate={estimate} updateEstimate={updateEstimate} />}
-        />
-        <Route
-          path="/estimate/:estimateId/graph"
-          render={() => <Graph data={estimate.graphData} />}
-        />
-      </Switch>
+      <div className="estimate">
+        <Sidebar />
+        <div className="board">
+          <Switch>
+            <Route
+              exact
+              path="/estimate/:estimateId"
+              render={() => <Editor estimate={estimate} updateEstimate={updateEstimate} />}
+            />
+            <Route
+              path="/estimate/:estimateId/graph"
+              render={() => <Graph data={estimate.graphData} />}
+            />
+          </Switch>
+        </div>
+      </div>
     )
   }
 }

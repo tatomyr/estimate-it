@@ -16,6 +16,9 @@ import {
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
+  if (!api.getCreds().username) {
+    return toastr.warning('Warning', 'You must pass authentication to be able to save an estimate.')
+  }
 
   // TODO: check if the estimate was updated after last load (and by who)
   //. And if possible show some diffs. Or calculate if the estimate can be merged without conflicts.
@@ -38,14 +41,13 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
     toastr.warning('Warning', 'Consider calculating estimate before saving.')
   }
   dispatch(addSpinner())
-  api.saveEstimate(estimateToSave)
+  return api.saveEstimate(estimateToSave)
     .then(estimate => {
       dispatch(updateEstimate(estimate))
       dispatch(redirect(`/estimate/${estimate._id}`))
-      toastr.success(
-        'Saved',
-        estimate.project ? `Current project: ${estimate.project}` : `Id: ${estimate._id}`
-      )
+      toastr.success('Saved', estimate.project
+        ? `Current project: ${estimate.project}`
+        : `Id: ${estimate._id}`)
     })
     .catch(({ message }) => {
       toastr.error('Error', `${message}\nCheck your access rights`)

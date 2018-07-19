@@ -1,4 +1,12 @@
-.editor-wrapper {
+.estimate {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+}
+
+.board {
   text-align: left;
   height: 100vh;
+  width: 100%;
 }

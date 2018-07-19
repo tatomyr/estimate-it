@@ -20,17 +20,15 @@ const Editor = ({
   estimate: { text, _id },
   updateEstimate,
 }) => (
-  <div className="editor-wrapper">
-    <MonacoEditor
-      language="estimatemd"
-      theme="vs-dark"
-      value={text}
-      options={options}
-      onChange={newText => updateEstimate({ text: newText, _id })}
-      editorWillMount={editorWillMount}
-      editorDidMount={(editor, monaco) => { editor.focus() }}
-    />
-  </div>
+  <MonacoEditor
+    language="estimatemd"
+    theme="vs-dark"
+    value={text}
+    options={options}
+    onChange={newText => updateEstimate({ text: newText, _id })}
+    editorWillMount={editorWillMount}
+    editorDidMount={(editor, monaco) => { editor.focus() }}
+  />
 )
 
 Editor.propTypes = {

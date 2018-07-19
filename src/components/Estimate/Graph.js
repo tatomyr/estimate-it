@@ -5,14 +5,12 @@ import ReactHighcharts from 'react-highcharts'
 const config = {}
 
 const Graph = ({ data }) => (
-  <div>
-    <ReactHighcharts
-      config={{
-        ...config,
-        series: [{ data }],
-      }}
-    />
-  </div>
+  <ReactHighcharts
+    config={{
+      ...config,
+      series: [{ data }],
+    }}
+  />
 )
 
 Graph.propTypes = {

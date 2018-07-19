@@ -1,5 +1,4 @@
 // TODO: implement dashboard
-// FIXME: don't show sidebar alongside Dashboard
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -21,5 +20,12 @@ const Dashboard = ({
     </ul>
   </Panel>
 )
+
+Dashboard.propTypes = {
+  estimates: PropTypes.objectOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
+}
 
 export default Dashboard

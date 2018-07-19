@@ -1,0 +1,8 @@
+article pre {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 10px 30px;
+  background-color: #333;
+  color: wheat;
+  border-radius: 3px;
+}
