@@ -7,10 +7,10 @@ export const O = []
 export const I = [0]
 
 // baseSum :: ([Number], [Number]) -> [Number]
-export const baseSum = (u, v) => [...u, ...v]
+const baseSum = (u, v) => [...u, ...v]
 
-// baseProduct :: [Number] -> [Number] -> [Number]
-export const baseProduct = (u, v) => u.reduce(($, x) => baseSum($, v.map(y => x + y)), O)
+// baseConvolution :: [Number] -> [Number] -> [Number]
+const baseConvolution = (u, v) => u.reduce(($, x) => baseSum($, v.map(y => x + y)), O)
 
 // sort :: [Number] -> [Number]
 export const sort = ([...u]) => u.sort((a, b) => a - b)
@@ -30,19 +30,24 @@ export const round = (u, rounding = Infinity) => {
 }
 
 // reduce :: [Number] -> [Number]
-// TODO: implement reduce…
+// TODO: implement reduce… Or maybe ¿RESIZE?
 
 // sum :: ([Number], [Number], Int) -> [Number]
 export const sum = (u, v, rounding) => round(baseSum(u, v), rounding)
 
-// product :: ([Number], [Number], Int) -> [Number]
-export const product = (u, v, rounding) => round(baseProduct(u, v), rounding)
+// convolution :: ([Number], [Number], Int) -> [Number]
+export const convolution = (u, v, rounding) => round(baseConvolution(u, v), rounding)
 
-// TODO: try to implement substraction, division
+// TODO: if possible, try to implement substraction, division
 
-// TODO: toProbGraph :: …
-// export const toProbGraph = u => u.map((val, i) => [val, i / u.length])
-export const toProbGraph = u => {
-  if (u.length === 1) return [[u[0], 0], [u[0], 1]]
-  return u.map((val, i) => [val, i / (u.length - 1)])
-}
+// Cumulative probability at i-th point of m
+// F :: Int -> Int -> Number
+const F = i => m => (m === 1 ? 1 : i / (m - 1))
+
+// convertToXY :: (Number, Int, [Number]) -> (Number, Number)
+const convertToXY = (x, i, arr) => [x, F(i)(arr.length)]
+// Another possible option could be:
+// const convertToXY = (x, i, arr) => { x, y: F(i)(arr.length) }
+
+// toProbGraph :: [Number] -> [[Number, Number]]
+export const toProbGraph = u => u.map(convertToXY)

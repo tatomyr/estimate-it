@@ -2,12 +2,11 @@
 // TODO: Implement username
 import { SET_CREDS, RESET_CREDS } from '../actions/types'
 
-const defaultState = {
+export default (state = ({
   dbName: '',
   apiKey: '',
-}
-
-export default (state = defaultState, { type, payload }) => {
+  username: '',
+}), { type, payload }) => {
   switch (type) {
     case SET_CREDS:
       return ({
@@ -17,6 +16,7 @@ export default (state = defaultState, { type, payload }) => {
       return ({
         dbName: '',
         apiKey: '',
+        username: '',
       })
 
     default:

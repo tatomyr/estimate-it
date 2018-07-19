@@ -1,6 +1,7 @@
 import {
+  O,
   I,
-  product,
+  convolution,
   toProbGraph,
   sort,
 } from './equiprobabilistic-rows'
@@ -77,7 +78,7 @@ const treeToList = text => textToArr(text)
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
   if (children.length === 0) return hours
-  return children.reduce(($, item) => product(
+  return children.reduce(($, item) => convolution(
     $,
     calculateHours(list, rounding)(item),
     rounding,
@@ -92,7 +93,7 @@ const hoistHours = (list, rounding) => list
   // Preventing @summary from being undefined
   .map(item => ({
     ...item,
-    hours: item.hours || [0],
+    hours: item.hours || O,
   }))
   .map(item => ({
     ...item,
@@ -109,6 +110,7 @@ export const listToTree = list => text => textToArr(text).map(item => {
   return withIndent(summaryItem || newItem || item)
 }).join('\n')
 
+// Default summary item has `null` key
 const summary = ({
   index: null,
   name: '@summary',

@@ -15,7 +15,7 @@ const emptyEstimate = ({
 
 const getProjectName = text => parseParam(text)('@project') || 'New Project'
 
-export default (state = { new: emptyEstimate }, { type, payload }) => {
+export default (state = ({ new: emptyEstimate }), { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:
     {
@@ -23,10 +23,10 @@ export default (state = { new: emptyEstimate }, { type, payload }) => {
       return ({
         ...state,
         [_id]: {
-          ...payload,
           graphData: [],
           calculated: false,
           project: getProjectName(payload.text),
+          ...payload,
         },
       })
     }

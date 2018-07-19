@@ -1,3 +1,7 @@
 .auth-screen {
   background-color: rgba(240, 248, 255, 0.5);
 }
+
+.auth-screen form label {
+  display: block;
+}

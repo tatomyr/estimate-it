@@ -12,3 +12,11 @@ export const ControlButton = ({ children }) => (
     {children}
   </button>
 )
+
+// TODO: implement Overlay
+export const Overlay = ({ children, className = '' }) => (
+  <div className={`overlay ${className}`}>
+    {children}
+  </div>
+)
+

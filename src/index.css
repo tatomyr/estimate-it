@@ -15,12 +15,7 @@ body {
   display: none;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  padding: 200px 50px;
+pre {
+  text-align: left;
 }
+

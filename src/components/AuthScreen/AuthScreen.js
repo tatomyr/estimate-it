@@ -1,45 +1,22 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as api from '../../helpers/api'
+import { Overlay } from '../Layouts'
 
 // TODO: implement storing username to localStorage
 // TODO: implement field { lastChangedBy: username }
 
 const AuthScreen = ({
   match: { params },
-  apiKey,
+  username,
   checkCreds,
   resetCreds,
   cleanEstimate,
   closeAuthScreen,
   openGuestSession,
 }) => (
-  <div className="auth-screen overlay">
-    {!apiKey && (
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          /* eslint-disable-next-line no-shadow */
-          const [dbName, apiKey] = e.target.credentials.value.split(':')
-          api.setCreds({ dbName, apiKey })
-          checkCreds()
-        }}
-      >
-        <input
-          type="password"
-          name="credentials"
-          placeholder="Enter access key..."
-          defaultValue={apiKey}
-          required
-          autoFocus // eslint-disable-line
-        />
-        <br />
-        <button type="submit">
-          Submit Key
-        </button>
-      </form>
-    )}
-    {apiKey ? (
+  <Overlay className="auth-screen">
+    {username ? (
       <Fragment>
         <button
           type="button"
@@ -59,14 +36,48 @@ const AuthScreen = ({
         </button>
       </Fragment>
     ) : (
-      <button
-        type="button"
-        onClick={openGuestSession}
-      >
-        Guest Session
-      </button>
+      <Fragment>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            const [dbName, apiKey] = e.target.credentials.value.split(':')
+            api.setCreds({ dbName, apiKey, username: e.target.username.value })
+            checkCreds()
+          }}
+        >
+          <label htmlFor="username">Public Name</label>
+          <input
+            name="username"
+            id="username"
+            placeholder="Enter your public name…"
+            required
+            autoFocus // eslint-disable-line
+          />
+          <br />
+          <label htmlFor="credentials">Access Key</label>
+          <input
+            type="password"
+            name="credentials"
+            id="credentials"
+            placeholder="Enter access key…"
+            required
+          />
+          <br />
+          <button type="submit">
+            Sign In
+          </button>
+        </form>
+        Or
+        <br />
+        <button
+          type="button"
+          onClick={openGuestSession}
+        >
+          Guest Session
+        </button>
+      </Fragment>
     )}
-  </div>
+  </Overlay>
 )
 
 export default AuthScreen

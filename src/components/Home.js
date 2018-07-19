@@ -8,6 +8,23 @@ const Home = () => (
     <Link to="/estimate/new">
       Create new estimate
     </Link>
+    <h2>
+      Example
+    </h2>
+    <article>
+      {/* FIXME: align pre content properly */}
+      <pre>
+        {`@project My Project
+
+Simple task = 10 20
+Complex task
+  Subtask Nº1 = 3 4
+  Subtask Nº2 = 5
+# Commented task = 42
+
+@summary`}
+      </pre>
+    </article>
   </Panel>
 )
 

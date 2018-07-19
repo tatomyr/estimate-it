@@ -1,4 +1,5 @@
 // TODO: implement dashboard
+// FIXME: don't show sidebar alongside Dashboard
 
 import React from 'react'
 import PropTypes from 'prop-types'

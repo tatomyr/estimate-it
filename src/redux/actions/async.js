@@ -17,7 +17,8 @@ import {
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
 
-  // TODO: check if the estimate was updated after last load. And if possible show some diffs. Or calculate if the estimate can be merged without conflicts.
+  // TODO: check if the estimate was updated after last load (and by who)
+  //. And if possible show some diffs. Or calculate if the estimate can be merged without conflicts.
   // api.getEstimate({ estimateId })
   //   .then(estimate => {
   //     // Catching specific case of `restdb.io` response
@@ -61,7 +62,7 @@ export const getEstimate = ({ estimateId }) => dispatch => {
     .then(estimate => {
       // Catching specific case of `restdb.io` response
       if (estimate instanceof Array || estimate === null) {
-        throw new Error("We can't find such an estimate :(")
+        throw new Error("We can't find such a project :(")
       }
       dispatch(updateEstimate(estimate))
     })
@@ -77,7 +78,7 @@ export const checkCreds = () => dispatch => {
   dispatch(addSpinner())
   return api.checkCreds()
     .then(({ totals: { count } }) => {
-      console.log(`${count} record(s) found in the DB.`)
+      console.info(`${count} record(s) found in the DB.`)
       dispatch(setCreds())
       dispatch(closeAuthScreen())
     })

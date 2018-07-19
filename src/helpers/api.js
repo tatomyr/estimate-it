@@ -1,17 +1,19 @@
-export const setCreds = ({ dbName, apiKey }) => {
+export const setCreds = ({ dbName, apiKey, username }) => {
   localStorage.setItem('dbName', dbName)
   localStorage.setItem('apiKey', apiKey)
-  // TODO: username
+  localStorage.setItem('username', username)
 }
 
 export const getCreds = () => ({
   dbName: localStorage.getItem('dbName'),
   apiKey: localStorage.getItem('apiKey'),
+  username: localStorage.getItem('username'),
 })
 
 export const removeCreds = () => {
   localStorage.removeItem('dbName')
   localStorage.removeItem('apiKey')
+  localStorage.removeItem('username')
 }
 
 const headers = () => ({
@@ -38,9 +40,18 @@ export const saveEstimate = ({
   graphData = [],
   project,
   calculated,
-}) => (_id === 'new'
-  ? db('estimates', 'POST', { text, graphData, project, calculated })
-  : db(`estimates/${_id}`, 'PUT', { text, graphData, project, calculated }))
+}) => {
+  const options = _id === 'new'
+    ? ['estimates', 'POST']
+    : [`estimates/${_id}`, 'PUT']
+  return db(...options, ({
+    text,
+    graphData,
+    project,
+    calculated,
+    modifiedBy: getCreds().username,
+  }))
+}
 
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
 
