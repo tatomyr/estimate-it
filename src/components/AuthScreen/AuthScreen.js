@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as api from '../../helpers/api'
-import { Overlay } from '../Layouts'
-
-// TODO: implement storing username to localStorage
-// TODO: implement field { lastChangedBy: username }
 
 const AuthScreen = ({
   match: { params },
@@ -15,7 +11,7 @@ const AuthScreen = ({
   closeAuthScreen,
   openGuestSession,
 }) => (
-  <Overlay className="auth-screen">
+  <div className="overlay auth-screen">
     {username ? (
       <Fragment>
         <button
@@ -45,7 +41,9 @@ const AuthScreen = ({
             checkCreds()
           }}
         >
-          <label htmlFor="username">Public Name</label>
+          <label htmlFor="username">
+            Public Name
+          </label>
           <input
             name="username"
             id="username"
@@ -54,7 +52,9 @@ const AuthScreen = ({
             autoFocus // eslint-disable-line
           />
           <br />
-          <label htmlFor="credentials">Access Key</label>
+          <label htmlFor="credentials">
+            Access Key
+          </label>
           <input
             type="password"
             name="credentials"
@@ -77,7 +77,21 @@ const AuthScreen = ({
         </button>
       </Fragment>
     )}
-  </Overlay>
+  </div>
 )
+
+AuthScreen.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      estimateId: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  username: PropTypes.string.isRequired,
+  checkCreds: PropTypes.func.isRequired,
+  resetCreds: PropTypes.func.isRequired,
+  cleanEstimate: PropTypes.func.isRequired,
+  closeAuthScreen: PropTypes.func.isRequired,
+  openGuestSession: PropTypes.func.isRequired,
+}
 
 export default AuthScreen

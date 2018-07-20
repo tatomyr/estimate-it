@@ -9,5 +9,12 @@ module.exports = {
     "arrow-parens": ["error", "as-needed"],
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/prop-types": "warn",
+    "jsx-a11y/label-has-for": [2, {
+      "components": ["Label"],
+      "required": {
+          "every": ["id"],
+      },
+      "allowChildren": false,
+    }],
   },
 };

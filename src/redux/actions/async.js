@@ -16,6 +16,7 @@ import {
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
+
   if (!api.getCreds().username) {
     return toastr.warning('Warning', 'You must pass authentication to be able to save an estimate.')
   }
@@ -43,11 +44,12 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch(addSpinner())
   return api.saveEstimate(estimateToSave)
     .then(estimate => {
+      const { _id, project } = estimate
       dispatch(updateEstimate(estimate))
-      dispatch(redirect(`/estimate/${estimate._id}`))
-      toastr.success('Saved', estimate.project
-        ? `Current project: ${estimate.project}`
-        : `Id: ${estimate._id}`)
+      dispatch(redirect(`/estimate/${_id}`))
+      toastr.success('Saved', project
+        ? `Current project: ${project}`
+        : `Id: ${_id}`)
     })
     .catch(({ message }) => {
       toastr.error('Error', `${message}\nCheck your access rights`)
@@ -57,6 +59,7 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
 
 export const getEstimate = ({ estimateId }) => dispatch => {
   dispatch({ type: '__ASYNC__GET_ESTIMATE' })
+
   if (estimateId === 'new') return false
 
   dispatch(addSpinner())
