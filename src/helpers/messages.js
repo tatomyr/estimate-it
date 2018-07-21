@@ -3,7 +3,7 @@ import moment from 'moment'
 export const defaultError = ({ message }) => ['Error', `${message}`]
 
 export const rewrite = ({ _changed, modifiedBy }) => (`
-  ${modifiedBy} has changed this estimate ${moment().from(_changed)}.
+  ${modifiedBy} has changed this estimate ${moment(_changed).fromNow()}.
   Rewrite anyway?
 `)
 

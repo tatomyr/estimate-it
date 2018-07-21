@@ -1,4 +1,4 @@
-aside {
+.estimate aside {
   width: 48px;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@ aside {
   color: #fff;
 }
 
-aside button {
+.estimate aside button {
   margin: 0;
   height: 30px;
   width: 30px;
@@ -19,6 +19,6 @@ aside button {
   outline: none;
 }
 
-aside button:hover {
+.estimate aside button:hover {
   box-shadow: 0 0 3px 2px rgba(174, 190, 99, 0.3);
 }

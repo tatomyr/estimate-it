@@ -7,6 +7,7 @@ export const options = {
   lineNumbers: false,
   scrollBeyondLastLine: false,
   readOnly: false,
+  fontSize: 12,
 }
 
 // This config defines how the language is displayed in the editor.
@@ -56,5 +57,3 @@ export const configuration = {
     ["{", "}"], ["[", "]"], ["(", ")"],
   ],
 }
-
-/* eslint-enable quotes */

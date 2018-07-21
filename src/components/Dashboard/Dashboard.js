@@ -4,7 +4,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import { Panel } from '../Layouts'
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Badge,
+  Button,
+} from 'reactstrap'
+import Header from '../Header'
 
 class Dashboard extends React.Component {
   componentDidMount = () => {
@@ -12,27 +22,58 @@ class Dashboard extends React.Component {
   }
 
   render = () => (
-    <Panel>
-      <ul>
-        {Object.values(this.props.estimates).map(({
-          project,
-          _id,
-          _changed,
-          modifiedBy,
-        }) => (
-          <li key={_id}>
-            <Link to={`/estimate/${_id}`}>
-              <b>
-                {project || _id}
-              </b>
-              <small>
-                {_id !== 'new' && ` ${moment(_changed).toNow()} by ${modifiedBy}`}
-              </small>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Panel>
+    <div>
+      <Header />
+      <Container>
+        <Row>
+          <Col lg={6}>
+            <ListGroup>
+              {Object.values(this.props.estimates).map(({
+                project,
+                _id,
+                _changed,
+                modifiedBy,
+              }) => (
+                <ListGroupItem key={_id}>
+                  <Row>
+                    <Col xs={9} sm={10} lg={10}>
+                      <Row>
+                        <Col xs={12} sm={6} lg={12}>
+                          <Link to={`/estimate/${_id}`}>
+                            <b>
+                              {project || _id}
+                            </b>
+                          </Link>
+                        </Col>
+                        {_id !== 'new' && (
+                          <Col xs={12} sm={6} lg={12}>
+                            <Badge pill>
+                              {moment(_changed).fromNow()}
+                              {' by '}
+                              {modifiedBy}
+                            </Badge>
+                          </Col>
+                        )}
+                      </Row>
+                    </Col>
+                    {_id !== 'new' && (
+                      <Col xs={3} sm={2} lg={2}>
+                        <Button outline color="danger">
+                          Del
+                        </Button>
+                      </Col>
+                    )}
+                  </Row>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          </Col>
+          <Col>
+            Other stuff…
+          </Col>
+        </Row>
+      </Container>
+    </div>
   )
 }
 
