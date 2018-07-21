@@ -4,6 +4,13 @@
 import { toastr } from 'react-redux-toastr'
 import * as api from '../../helpers/api'
 import {
+  rewrite,
+  signInToSave,
+  uncalculated,
+  cantSave,
+  noEstimate,
+} from '../../helpers/messages'
+import {
   addSpinner,
   delSpinner,
   redirect,
@@ -20,26 +27,24 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
 
   if (!api.getCreds().username) {
-    return toastr.warning('Warning', 'You must pass authentication to be able to save an estimate.')
+    return toastr.warning('Warning', signInToSave)
   }
 
   dispatch(addSpinner())
-
   const estimateToSave = getState().estimates[estimateId]
-
   return api.getEstimate({ estimateId })
     .then(estimate => {
       // Check whether the estimate has been modified by someone else
       if (
         estimate._changed !== estimateToSave._changed
         // eslint-disable-next-line no-alert
-        && !window.confirm(`You're trying to rewrite changes made by ${estimate.modifiedBy}. Rewrite?`)
+        && !window.confirm(rewrite(estimate))
       ) {
         return false
       }
 
       if (!estimateToSave.calculated) {
-        toastr.warning('Warning', 'Consider calculating estimate before saving.')
+        toastr.warning('Warning', uncalculated)
       }
       dispatch(addSpinner())
       return api.saveEstimate(estimateToSave)
@@ -52,7 +57,7 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
             : `Id: ${_id}`)
         })
         .catch(({ message }) => {
-          toastr.error('Error', `${message}\nCheck your access rights`)
+          toastr.error('Error', cantSave(message))
         })
         .finally(() => { dispatch(delSpinner()) })
     })
@@ -72,7 +77,7 @@ export const getEstimate = ({ estimateId }) => dispatch => {
     .then(estimate => {
       // Catching specific case of `restdb.io` response
       if (estimate instanceof Array || estimate === null) {
-        throw new Error("We can't find such a project :(")
+        throw new Error(noEstimate)
       }
       dispatch(updateEstimate(estimate))
     })
@@ -108,17 +113,10 @@ export const fetchTitles = () => dispatch => {
   dispatch({ type: '__ASYNC__FETCH_TITLES' })
 
   dispatch(addSpinner())
+  // TODO: implelment fetching only recent titles at first
   return api.fetchTitles()
     .then(titles => {
-      console.log(titles)
-
-      // Catching specific case of `restdb.io` response
-      // if (estimate instanceof Array || estimate === null) {
-      //   throw new Error("We can't find such a project :(")
-      // }
       dispatch(setTitles(titles))
-
-
     })
     .catch(({ message }) => {
       toastr.error('Error', `${message}`)

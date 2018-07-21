@@ -15,7 +15,7 @@ const emptyEstimate = ({
 })
 
 const getProjectName = text => parseParam(text)('@project') || 'New Project'
-
+// TODO: add saved status
 export default (state = ({ new: emptyEstimate }), { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:

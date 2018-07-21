@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
           <li key={_id}>
             <Link to={`/estimate/${_id}`}>
               <b>
-                “{project || _id}”
+                {project || _id}
               </b>
               <small>
                 {_id !== 'new' && ` ${moment(_changed).toNow()} by ${modifiedBy}`}
@@ -39,7 +39,9 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   estimates: PropTypes.objectOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    project: PropTypes.string.isRequired,
+    _changed: PropTypes.string.isRequired,
+    modifiedBy: PropTypes.string.isRequired,
   })).isRequired,
   fetchTitles: PropTypes.func.isRequired,
 }

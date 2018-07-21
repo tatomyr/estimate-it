@@ -126,12 +126,17 @@ export const parseParam = text => param => (
   || { value: '' }
 ).value.replace(param, '').trim()
 
+// Define comments pattern
+export const comment = /^\s*#([ =|].*)?$/
+
+// Processing text to get estimated hours
 export const handleText = text => {
   const getParam = parseParam(text)
   const rounding = +getParam('@rounding') || defaultRounding
   const tasks = treeToList(text)
+  // Filter out commented lines
   const activeTasks = tasks
-    .filter(({ value }) => !value.startsWith('# '))
+    .filter(({ value }) => !comment.test(value))
 
   const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))

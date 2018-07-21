@@ -1,3 +1,5 @@
+import { comment } from '../../helpers/task-parsing'
+
 /* eslint-disable quotes */
 
 // This config defines the editor's view.
@@ -28,14 +30,15 @@ export const languageDef = {
       [/^@\w+/, { cases: { "@keywords": "keyword" } }],
     ],
     whitespace: [
-      [/^\s*# .*$/, "comment"],
+      [comment, "comment"],
       [/\s+/, "white"],
     ],
-    numbers:[
+    numbers: [
       [/@number/, "number"],
     ],
     strings: [
       [/[=|][ @number]*$/, "string.escape"],
+      // TODO: implement invalid strings
     ],
     tags: [
       [/^%[a-zA-Z]\w*/, "tag"],
