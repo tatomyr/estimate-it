@@ -39,9 +39,9 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   estimates: PropTypes.objectOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    project: PropTypes.string.isRequired,
-    _changed: PropTypes.string.isRequired,
-    modifiedBy: PropTypes.string.isRequired,
+    project: PropTypes.string,
+    _changed: PropTypes.string,
+    modifiedBy: PropTypes.string,
   })).isRequired,
   fetchTitles: PropTypes.func.isRequired,
 }

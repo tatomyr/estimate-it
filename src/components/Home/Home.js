@@ -10,6 +10,10 @@ const Home = () => (
     <Link to="/estimate/new">
       Create new estimate
     </Link>
+    <div>or</div>
+    <Link to="/dashboard">
+      Visit Dashboard
+    </Link>
     <h2>
       Example
     </h2>

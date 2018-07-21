@@ -67,6 +67,14 @@ const Sidebar = ({
         D
       </button>
     </Link>
+    <Link to="/">
+      <button
+        type="button"
+        title="Home"
+      >
+        H
+      </button>
+    </Link>
   </aside>
 )
 

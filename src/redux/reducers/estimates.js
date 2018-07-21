@@ -60,7 +60,14 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
     case SET_TITLES:
       return ({
         ...state,
-        ...payload.reduce(($, project) => ({ ...$, [project._id]: project }), {}),
+        ...payload.reduce(($, project) => ({
+          ...$,
+          [project._id]: {
+            // FIXME: check for existing text?
+            text: '',
+            ...project,
+          },
+        }), {}),
       })
 
     default:

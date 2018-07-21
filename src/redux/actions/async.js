@@ -9,6 +9,8 @@ import {
   uncalculated,
   cantSave,
   noEstimate,
+  saved,
+  defaultError,
 } from '../../helpers/messages'
 import {
   addSpinner,
@@ -26,8 +28,8 @@ import {
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
 
-  if (!api.getCreds().username) {
-    return toastr.warning('Warning', signInToSave)
+  if (!getState().creds.username) {
+    return toastr.warning(...signInToSave)
   }
 
   dispatch(addSpinner())
@@ -44,20 +46,17 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
       }
 
       if (!estimateToSave.calculated) {
-        toastr.warning('Warning', uncalculated)
+        toastr.warning(...uncalculated)
       }
       dispatch(addSpinner())
       return api.saveEstimate(estimateToSave)
         .then(savedEstimate => {
-          const { _id, project } = savedEstimate
           dispatch(updateEstimate(savedEstimate))
-          dispatch(redirect(`/estimate/${_id}`))
-          toastr.success('Saved', project
-            ? `Current project: ${project}`
-            : `Id: ${_id}`)
+          dispatch(redirect(`/estimate/${savedEstimate._id}`))
+          toastr.success(...saved(savedEstimate))
         })
         .catch(({ message }) => {
-          toastr.error('Error', cantSave(message))
+          toastr.error(...cantSave(message))
         })
         .finally(() => { dispatch(delSpinner()) })
     })
@@ -81,8 +80,8 @@ export const getEstimate = ({ estimateId }) => dispatch => {
       }
       dispatch(updateEstimate(estimate))
     })
-    .catch(({ message }) => {
-      toastr.error('Error', `${message}`)
+    .catch(err => {
+      toastr.error(...defaultError(err))
     })
     .finally(() => { dispatch(delSpinner()) })
 }
@@ -118,8 +117,8 @@ export const fetchTitles = () => dispatch => {
     .then(titles => {
       dispatch(setTitles(titles))
     })
-    .catch(({ message }) => {
-      toastr.error('Error', `${message}`)
+    .catch(err => {
+      toastr.error(...defaultError(err))
     })
     .finally(() => { dispatch(delSpinner()) })
 }
