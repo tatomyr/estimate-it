@@ -9,6 +9,7 @@ import {
   RESET_CREDS,
   OPEN_AUTH_SCREEN,
   CLOSE_AUTH_SCREEN,
+  SET_TITLES,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -55,4 +56,9 @@ export const setCreds = () => ({
 
 export const resetCreds = () => ({
   type: RESET_CREDS,
+})
+
+export const setTitles = payload => ({
+  type: SET_TITLES,
+  payload,
 })

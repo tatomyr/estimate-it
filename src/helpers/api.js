@@ -22,8 +22,8 @@ const headers = () => ({
   'cache-control': 'no-cache',
 })
 
-const db = (collection, method = 'GET', data = null) => new Promise((resolve, reject) => {
-  fetch(`https://${getCreds().dbName}.restdb.io/rest/${collection}`, {
+const db = (path, method = 'GET', data = null) => new Promise((resolve, reject) => {
+  fetch(`https://${getCreds().dbName}.restdb.io/rest/${path}`, {
     method,
     headers: headers(),
     mode: 'cors',
@@ -53,6 +53,30 @@ export const saveEstimate = ({
   }))
 }
 
-export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}`)
+const estimateH = JSON.stringify({
+  $fields: {
+    _changed: 1,
+    modifiedBy: 1,
+    _id: 1,
+    text: 1,
+    project: 1,
+    graphData: 1,
+    calculated: 1,
+  },
+})
+export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}?h=${estimateH}`)
 
 export const checkCreds = () => db('estimates?totals=true&count=true')
+
+const titlesH = JSON.stringify({
+  $fields: {
+    project: 1,
+    _id: 1,
+    _changed: 1,
+    modifiedBy: 1,
+  },
+  $orderby: {
+    _changed: -1,
+  },
+})
+export const fetchTitles = () => db(`estimates?h=${titlesH}`)

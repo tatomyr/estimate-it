@@ -1,4 +1,5 @@
 // FIXME: clean up here
+// TODO: rewrite with async-await syntax
 
 import { toastr } from 'react-redux-toastr'
 import * as api from '../../helpers/api'
@@ -12,6 +13,7 @@ import {
   openAuthScreen,
   setCreds,
   resetCreds,
+  setTitles,
 } from './index'
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
@@ -21,38 +23,41 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
     return toastr.warning('Warning', 'You must pass authentication to be able to save an estimate.')
   }
 
-  // TODO: check if the estimate was updated after last load (and by who)
-  //. And if possible show some diffs. Or calculate if the estimate can be merged without conflicts.
-  // api.getEstimate({ estimateId })
-  //   .then(estimate => {
-  //     // Catching specific case of `restdb.io` response
-  //     if (estimate instanceof Array || estimate === null) {
-  //       // throw new Error("We can't find such an estimate :(")
-  //     }
-  //     // dispatch(updateEstimate(estimate))
-  //   })
-  //   .catch(err => {
-  //     toastr.error('Error', `${err.message}`)
-  //   })
-
+  dispatch(addSpinner())
 
   const estimateToSave = getState().estimates[estimateId]
-  console.log('estimateToSave:', estimateToSave)
-  if (!estimateToSave.calculated) {
-    toastr.warning('Warning', 'Consider calculating estimate before saving.')
-  }
-  dispatch(addSpinner())
-  return api.saveEstimate(estimateToSave)
+
+  return api.getEstimate({ estimateId })
     .then(estimate => {
-      const { _id, project } = estimate
-      dispatch(updateEstimate(estimate))
-      dispatch(redirect(`/estimate/${_id}`))
-      toastr.success('Saved', project
-        ? `Current project: ${project}`
-        : `Id: ${_id}`)
+      // Check whether the estimate has been modified by someone else
+      if (
+        estimate._changed !== estimateToSave._changed
+        // eslint-disable-next-line no-alert
+        && !window.confirm(`You're trying to rewrite changes made by ${estimate.modifiedBy}. Rewrite?`)
+      ) {
+        return false
+      }
+
+      if (!estimateToSave.calculated) {
+        toastr.warning('Warning', 'Consider calculating estimate before saving.')
+      }
+      dispatch(addSpinner())
+      return api.saveEstimate(estimateToSave)
+        .then(savedEstimate => {
+          const { _id, project } = savedEstimate
+          dispatch(updateEstimate(savedEstimate))
+          dispatch(redirect(`/estimate/${_id}`))
+          toastr.success('Saved', project
+            ? `Current project: ${project}`
+            : `Id: ${_id}`)
+        })
+        .catch(({ message }) => {
+          toastr.error('Error', `${message}\nCheck your access rights`)
+        })
+        .finally(() => { dispatch(delSpinner()) })
     })
     .catch(({ message }) => {
-      toastr.error('Error', `${message}\nCheck your access rights`)
+      toastr.error('Error', `${message}`)
     })
     .finally(() => { dispatch(delSpinner()) })
 }
@@ -71,8 +76,8 @@ export const getEstimate = ({ estimateId }) => dispatch => {
       }
       dispatch(updateEstimate(estimate))
     })
-    .catch(err => {
-      toastr.error('Error', `${err.message}`)
+    .catch(({ message }) => {
+      toastr.error('Error', `${message}`)
     })
     .finally(() => { dispatch(delSpinner()) })
 }
@@ -97,4 +102,26 @@ export const openGuestSession = () => dispatch => {
   dispatch(redirect(''))
   setTimeout(() => dispatch(closeAuthScreen()))
   setTimeout(() => dispatch(redirect('/estimate/new')))
+}
+
+export const fetchTitles = () => dispatch => {
+  dispatch({ type: '__ASYNC__FETCH_TITLES' })
+
+  dispatch(addSpinner())
+  return api.fetchTitles()
+    .then(titles => {
+      console.log(titles)
+
+      // Catching specific case of `restdb.io` response
+      // if (estimate instanceof Array || estimate === null) {
+      //   throw new Error("We can't find such a project :(")
+      // }
+      dispatch(setTitles(titles))
+
+
+    })
+    .catch(({ message }) => {
+      toastr.error('Error', `${message}`)
+    })
+    .finally(() => { dispatch(delSpinner()) })
 }

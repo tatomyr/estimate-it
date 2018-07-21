@@ -1,3 +1,5 @@
+// TODO: configure highcharts or replace with victorycharts
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactHighcharts from 'react-highcharts'

@@ -24,7 +24,6 @@ const textToArr = text => text.split('\n').map(lineToRecord)
 // last :: [a] -> Int
 const last = arr => arr[arr.length - 1]
 
-// getParent :: ?
 const getParent = arr => indentation => sibling => {
   if (sibling === undefined) {
     if (arr.length === 0) return null
@@ -46,12 +45,15 @@ const isTaskItem = ({ value }) => (
   && value.trim()[0] !== '%'
 )
 
+// parseNumber :: (Number | String) -> Numbers
+const parseNumber = x => +x
+
 // splitNameAndHours :: String -> {name: String, hours: [Number]}
 const splitNameAndHours = str => {
   const [name, hours = ''] = str.split(/[=|]/)
   return ({
     name: name.trim(),
-    hours: sort(hours.trim().split(/\s+/).map(time => +time)),
+    hours: sort(hours.trim().split(/\s+/).map(parseNumber)),
   })
 }
 
@@ -74,7 +76,7 @@ const treeToList = text => textToArr(text)
     ...splitNameAndHours(item.value),
   }))
 
-// TODO: calculateHours :: …
+// calculateHours :: ([{index: Int, parent: Int, *}], Int) -> [Number]
 const calculateHours = (list, rounding) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
   if (children.length === 0) return hours
@@ -85,6 +87,7 @@ const calculateHours = (list, rounding) => ({ index, hours }) => {
   ), I)
 }
 
+// hoistHours :: ([{a}], Int) -> [{a, value: String}]
 const hoistHours = (list, rounding) => list
   .map(item => ({
     ...item,
@@ -100,6 +103,7 @@ const hoistHours = (list, rounding) => list
     value: (`${item.name} = ${item.hours.join(' ')}`).trim(),
   }))
 
+// withIndent :: {value: String, indentation: Int} -> String
 const withIndent = ({ value, indentation = 0 }) => `${' '.repeat(indentation)}${value}`
 
 export const listToTree = list => text => textToArr(text).map(item => {
@@ -116,6 +120,7 @@ const summary = ({
   name: '@summary',
 })
 
+// parseParam :: String -> String -> String
 export const parseParam = text => param => (
   textToArr(text).find(({ value }) => value.startsWith(param))
   || { value: '' }

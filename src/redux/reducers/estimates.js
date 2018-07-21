@@ -3,6 +3,7 @@ import {
   UPDATE_ESTIMATE,
   RECALCULATE,
   CLEAN_ESTIMATE,
+  SET_TITLES,
 } from '../actions/types'
 
 const emptyEstimate = ({
@@ -23,6 +24,7 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
       return ({
         ...state,
         [_id]: {
+          ...state[_id],
           graphData: [],
           calculated: false,
           project: getProjectName(payload.text),
@@ -30,6 +32,7 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         },
       })
     }
+
     case CLEAN_ESTIMATE:
       return ({
         ...state,
@@ -38,12 +41,14 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         // ...(that may not contain an `:estimateId` param)
         [payload.estimateId || 'new']: emptyEstimate,
       })
+
     case RECALCULATE:
     {
       const { _id } = payload
       return ({
         ...state,
         [_id]: {
+          ...state[_id],
           _id,
           ...handleText(state[_id].text),
           calculated: true,
@@ -51,6 +56,12 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         },
       })
     }
+
+    case SET_TITLES:
+      return ({
+        ...state,
+        ...payload.reduce(($, project) => ({ ...$, [project._id]: project }), {}),
+      })
 
     default:
       return state
