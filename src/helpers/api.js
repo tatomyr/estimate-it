@@ -66,8 +66,6 @@ const estimateH = JSON.stringify({
 })
 export const getEstimate = ({ estimateId }) => db(`estimates/${estimateId}?h=${estimateH}`)
 
-export const checkCreds = () => db('estimates?totals=true&count=true')
-
 const titlesH = JSON.stringify({
   $fields: {
     project: 1,

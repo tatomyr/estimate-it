@@ -6,7 +6,7 @@ import {
   SET_TITLES,
 } from '../actions/types'
 
-const emptyEstimate = ({
+export const emptyEstimate = ({
   _id: 'new',
   text: '',
   graphData: [],
@@ -63,8 +63,6 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         ...payload.reduce(($, project) => ({
           ...$,
           [project._id]: {
-            // FIXME: check for existing text?
-            text: '',
             ...project,
           },
         }), {}),

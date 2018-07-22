@@ -1,10 +1,11 @@
-.panel {
+/* FIXME: del */
+/* .panel {
   text-align: center;
   margin: 0;
   padding: 20px;
   background-color: #f3f2f3;
   min-height: 100vh;
-}
+} */
 
 .card {
   text-align: left;

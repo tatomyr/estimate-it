@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
 import { options, languageDef, configuration } from './editor-config'
+import { estimateType } from './propTypes'
 
 const editorWillMount = monaco => {
   this.editor = monaco
@@ -13,7 +14,6 @@ const editorWillMount = monaco => {
     // Set the editing configuration for the language
     monaco.languages.setLanguageConfiguration('estimatemd', configuration)
   }
-  console.log(monaco.languages.getLanguages())
 }
 
 const Editor = ({
@@ -32,10 +32,7 @@ const Editor = ({
 )
 
 Editor.propTypes = {
-  estimate: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-  }).isRequired,
+  estimate: estimateType.isRequired,
   updateEstimate: PropTypes.func.isRequired,
 }
 

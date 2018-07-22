@@ -22,6 +22,7 @@ module.exports = {
         "_changed",
       ],
     }],
-    "react/destructuring-assignment": ["warn", "always"]
+    "react/destructuring-assignment": ["warn", "always"],
+    "import/prefer-default-export": ["off"],
   },
 };

@@ -90,9 +90,10 @@ export const checkCreds = () => dispatch => {
   dispatch({ type: '__ASYNC__CHECK_CREDS' })
 
   dispatch(addSpinner())
-  return api.checkCreds()
-    .then(({ totals: { count } }) => {
-      console.info(`${count} record(s) found in the DB.`)
+  return api.fetchTitles()
+    .then(titles => {
+      console.info(`${titles.length} record(s) found in the DB.`)
+      dispatch(setTitles(titles))
       dispatch(setCreds())
       dispatch(closeAuthScreen())
     })
@@ -108,17 +109,18 @@ export const openGuestSession = () => dispatch => {
   setTimeout(() => dispatch(redirect('/estimate/new')))
 }
 
-export const fetchTitles = () => dispatch => {
-  dispatch({ type: '__ASYNC__FETCH_TITLES' })
+// FIXME: del OR modify
+// export const fetchTitles = () => dispatch => {
+//   dispatch({ type: '__ASYNC__FETCH_TITLES' })
 
-  dispatch(addSpinner())
-  // TODO: implelment fetching only recent titles at first
-  return api.fetchTitles()
-    .then(titles => {
-      dispatch(setTitles(titles))
-    })
-    .catch(err => {
-      toastr.error(...defaultError(err))
-    })
-    .finally(() => { dispatch(delSpinner()) })
-}
+//   dispatch(addSpinner())
+//   // TODO: implelment fetching only recent titles at first
+//   return api.fetchTitles()
+//     .then(titles => {
+//       dispatch(setTitles(titles))
+//     })
+//     .catch(err => {
+//       toastr.error(...defaultError(err))
+//     })
+//     .finally(() => { dispatch(delSpinner()) })
+// }

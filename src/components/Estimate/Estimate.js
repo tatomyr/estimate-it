@@ -4,20 +4,31 @@ import { Switch, Route } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
+import { estimateType } from './propTypes'
 
 class Estimate extends React.Component {
   componentDidMount = () => {
-    const {
-      match: { params },
-      getEstimate,
-    } = this.props
-    getEstimate(params)
+    this.fetchHelper()
   }
 
   componentDidUpdate = prevProps => {
-    const { getEstimate, match: { params: { estimateId } } } = this.props
-    // Fetch an appropriate estimate on route change
-    if (prevProps.match.params.estimateId !== estimateId) {
+    this.fetchHelper(prevProps)
+  }
+
+  fetchHelper = prevProps => {
+    // FIXME: investigate bug when we try to pass by the route of a deleted estimate OR ...
+    // FIXME: ... OR to save with ID of deleted estimate
+    const {
+      getEstimate,
+      match: { params: { estimateId } },
+      estimates,
+    } = this.props
+    // Fetch an appropriate estimate on route change. FIXME: do we still need this statement?
+    const routeHasBeenChanged = prevProps && prevProps.match.params.estimateId !== estimateId
+    const estimateIsntLoaded = estimates[estimateId].text === undefined
+    console.log(prevProps, '?', routeHasBeenChanged, '&&', estimateIsntLoaded)
+    // FIXME:
+    if (/*routeHasBeenChanged &&*/ estimateIsntLoaded) {
       getEstimate({ estimateId })
     }
   }
@@ -57,10 +68,7 @@ Estimate.propTypes = {
       estimateId: PropTypes.string,
     }).isRequired,
   }).isRequired,
-  estimates: PropTypes.objectOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  })).isRequired,
+  estimates: PropTypes.objectOf(estimateType).isRequired,
   getEstimate: PropTypes.func.isRequired,
   updateEstimate: PropTypes.func.isRequired,
 }
