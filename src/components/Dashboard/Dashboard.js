@@ -13,6 +13,7 @@ import {
   Badge,
   Button,
 } from 'reactstrap'
+import FA from 'react-fontawesome'
 import Header from '../Header'
 import { estimateType } from '../Estimate/propTypes'
 
@@ -54,7 +55,7 @@ const Dashboard = ({ estimates }) => (
                   {_id !== 'new' && (
                     <Col xs={3} sm={2} lg={2}>
                       <Button outline color="danger">
-                        Del
+                        <FA name="trash" />
                       </Button>
                     </Col>
                   )}

@@ -5,6 +5,7 @@ import Root from './components/Root'
 import store from './redux/store'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'))
 registerServiceWorker()

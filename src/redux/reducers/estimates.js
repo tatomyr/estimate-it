@@ -12,6 +12,7 @@ export const emptyEstimate = ({
   graphData: [],
   project: 'New Project',
   calculated: true,
+  saved: false,
 })
 
 const getProjectName = text => parseParam(text)('@project') || 'New Project'

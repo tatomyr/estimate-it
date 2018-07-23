@@ -1,24 +1,65 @@
 .estimate aside {
-  width: 48px;
+  width: 72px;
+  --offset: -72px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px 0;
+  padding: 6px 0;
   background-color: #222;
   color: #fff;
-}
-
-.estimate aside button {
+  position: relative;
   margin: 0;
-  height: 30px;
-  width: 30px;
-  background-color: #9e9ea8;
-  border: 0;
-  border-radius: 3px;
-  margin: 4px 0;
-  outline: none;
+  align-items: center;
 }
 
-.estimate aside button:hover {
-  box-shadow: 0 0 3px 2px rgba(174, 190, 99, 0.3);
+.estimate aside .side-button {
+  width: 100%;
+  margin: 6px 0;
+  text-align: center;
+}
+
+.estimate aside .side-button button {
+  width: 38px;
+  padding-left: initial;
+  padding-right: initial;
+}
+
+
+.estimate aside .side-button .title-container {
+  position: relative;
+  height: 10px;
+}
+
+.estimate aside .side-button .title-container .title {
+  position: absolute;
+  font-size: 10px;
+  width: 100%;
+  padding: 3px 0;
+  text-align: center;
+  transition: transform .4s 1s;
+  font-variant: all-petite-caps;
+}
+
+.estimate aside .side-button:nth-child(1) .title-container .title { transform: translate(calc(1 * var(--offset))); }
+.estimate aside .side-button:nth-child(2) .title-container .title { transform: translate(calc(2 * var(--offset))); }
+.estimate aside .side-button:nth-child(3) .title-container .title { transform: translate(calc(3 * var(--offset))); }
+.estimate aside .side-button:nth-child(4) .title-container .title { transform: translate(calc(4 * var(--offset))); }
+.estimate aside .side-button:nth-child(5) .title-container .title { transform: translate(calc(5 * var(--offset))); }
+.estimate aside .side-button:nth-child(6) .title-container .title { transform: translate(calc(6 * var(--offset))); }
+.estimate aside .side-button:nth-child(7) .title-container .title { transform: translate(calc(7 * var(--offset))); }
+.estimate aside .side-button:nth-child(8) .title-container .title { transform: translate(calc(8 * var(--offset))); }
+.estimate aside .side-button:nth-child(9) .title-container .title { transform: translate(calc(9 * var(--offset))); }
+
+.estimate aside:hover .side-button .title-container .title {
+  position: absolute;
+  transform: translate(0);
+  transition: transform .4s;
+}
+
+.text-color-primary { color: #007bff; }
+.text-color-danger { color: #dc3545; }
+
+.estimate aside > .side-button:last-child {
+  position: absolute;
+  bottom: 6px;
 }

@@ -1,80 +1,61 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { SideButton } from './SideButton'
 
 const Sidebar = ({
   match: { params: { estimateId } },
   recalc,
   saveEstimate,
   openAuthScreen,
+  saved,
 }) => (
   <aside>
-    <button
-      type="button"
+    <SideButton
+      title="Calculate"
+      name="rocket"
       onClick={() => recalc(estimateId)}
-      title="Calculate estimate"
-    >
-      ✓
-    </button>
-    <button
-      type="button"
-    >
-      ✗
-    </button>
-    <button
-      type="button"
+    />
+    <SideButton
+      title="Erase"
+      name="eraser"
+      color="danger"
+    />
+    <SideButton
+      title="Save"
+      name="save"
+      color={saved ? 'secondary' : 'primary'}
       onClick={() => saveEstimate({ estimateId })}
-      title="Save estimate"
-    >
-      S
-    </button>
-    <Link to="/estimate/new">
-      <button
-        type="button"
-        title="New estimate"
-      >
-        N
-      </button>
-    </Link>
-    <button
-      type="button"
+    />
+    <SideButton
+      title="New"
+      name="file"
+      link="/estimate/new"
+    />
+    <SideButton
+      title="Auth"
+      name="key"
       onClick={openAuthScreen}
-      title="Enter credentials"
-    >
-      A
-    </button>
-    <Link to={`/estimate/${estimateId}`}>
-      <button
-        type="button"
-        title="Show editor"
-      >
-        E
-      </button>
-    </Link>
-    <Link to={`/estimate/${estimateId}/graph`}>
-      <button
-        type="button"
-        title="Show graph"
-      >
-        G
-      </button>
-    </Link>
-    <Link to="/dashboard">
-      <button
-        type="button"
-        title="Show dashboard"
-      >
-        D
-      </button>
-    </Link>
-    <Link to="/">
-      <button
-        type="button"
-        title="Home"
-      >
-        H
-      </button>
-    </Link>
+    />
+    <SideButton
+      title="Editor"
+      name="edit"
+      link={`/estimate/${estimateId}`}
+    />
+    <SideButton
+      title="Chart"
+      name="signal"
+      link={`/estimate/${estimateId}/graph`}
+    />
+    <SideButton
+      title="Dashboard"
+      name="list-ul"
+      link="/dashboard"
+    />
+    <SideButton
+      title="Home"
+      name="home"
+      link="/"
+    />
   </aside>
 )
 
