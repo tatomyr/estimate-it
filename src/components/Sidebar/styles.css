@@ -58,6 +58,7 @@
 
 .text-color-primary { color: #007bff; }
 .text-color-danger { color: #dc3545; }
+.text-color-secondary { color: #6c757d; }
 
 .estimate aside > .side-button:last-child {
   position: absolute;

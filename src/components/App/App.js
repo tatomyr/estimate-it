@@ -11,8 +11,8 @@ import AuthScreen from '../AuthScreen'
 
 class App extends React.Component {
   componentDidMount = () => {
-    const { checkCreds } = this.props
-    checkCreds()
+    const { checkCreds, username } = this.props
+    if (!username) checkCreds()
   }
 
   render = () => (
@@ -35,6 +35,7 @@ class App extends React.Component {
 App.propTypes = {
   checkCreds: PropTypes.func.isRequired,
   showAuthScreen: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 export default App

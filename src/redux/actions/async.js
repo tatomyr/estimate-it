@@ -23,6 +23,7 @@ import {
   setCreds,
   resetCreds,
   setTitles,
+  markEstimateSaved,
 } from './index'
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
@@ -45,13 +46,13 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
         return false
       }
 
-      if (!estimateToSave.calculated) {
-        toastr.warning(...uncalculated)
-      }
+      if (!estimateToSave.calculated) toastr.warning(...uncalculated)
+
       dispatch(addSpinner())
       return api.saveEstimate(estimateToSave)
         .then(savedEstimate => {
           dispatch(updateEstimate(savedEstimate))
+          dispatch(markEstimateSaved(savedEstimate._id))
           dispatch(redirect(`/estimate/${savedEstimate._id}`))
           toastr.success(...saved(savedEstimate))
         })
@@ -79,6 +80,7 @@ export const getEstimate = ({ estimateId }) => dispatch => {
         throw new Error(noEstimate)
       }
       dispatch(updateEstimate(estimate))
+      dispatch(markEstimateSaved(estimateId))
     })
     .catch(err => {
       toastr.error(...defaultError(err))

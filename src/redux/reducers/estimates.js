@@ -4,6 +4,7 @@ import {
   RECALCULATE,
   CLEAN_ESTIMATE,
   SET_TITLES,
+  MARK_ESTIMATE_SAVED,
 } from '../actions/types'
 
 export const emptyEstimate = ({
@@ -28,6 +29,7 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           ...state[_id],
           graphData: [],
           calculated: false,
+          saved: false,
           project: getProjectName(payload.text),
           ...payload,
         },
@@ -53,6 +55,7 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           _id,
           ...handleText(state[_id].text),
           calculated: true,
+          saved: false,
           project: getProjectName(state[_id].text),
         },
       })
@@ -65,8 +68,18 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           ...$,
           [project._id]: {
             ...project,
+            saved: true,
           },
         }), {}),
+      })
+
+    case MARK_ESTIMATE_SAVED:
+      return ({
+        ...state,
+        [payload]: {
+          ...state[payload],
+          saved: payload,
+        },
       })
 
     default:

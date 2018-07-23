@@ -10,6 +10,7 @@ import {
   OPEN_AUTH_SCREEN,
   CLOSE_AUTH_SCREEN,
   SET_TITLES,
+  MARK_ESTIMATE_SAVED,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -60,5 +61,10 @@ export const resetCreds = () => ({
 
 export const setTitles = payload => ({
   type: SET_TITLES,
+  payload,
+})
+
+export const markEstimateSaved = payload => ({
+  type: MARK_ESTIMATE_SAVED,
   payload,
 })

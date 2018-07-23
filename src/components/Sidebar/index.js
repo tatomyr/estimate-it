@@ -11,6 +11,10 @@ import {
   saveEstimate,
 } from '../../redux/actions/async'
 
+const mapStateToProps = ({ estimates }) => ({
+  estimates,
+})
+
 const mapDispatchToProps = ({
   recalc,
   saveEstimate,
@@ -18,4 +22,4 @@ const mapDispatchToProps = ({
   closeAuthScreen,
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(Sidebar))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))
