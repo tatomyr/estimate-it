@@ -37,6 +37,11 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   const estimateToSave = getState().estimates[estimateId]
   return api.getEstimate({ estimateId })
     .then(estimate => {
+      // Check whether the estimate exists
+      if (!estimate.length && estimateId !== 'new') {
+        throw new Error(noEstimate)
+      }
+
       // Check whether the estimate has been modified by someone else
       if (
         estimate._changed !== estimateToSave._changed
@@ -61,8 +66,8 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
         })
         .finally(() => { dispatch(delSpinner()) })
     })
-    .catch(({ message }) => {
-      toastr.error('Error', `${message}`)
+    .catch(err => {
+      toastr.error(...defaultError(err))
     })
     .finally(() => { dispatch(delSpinner()) })
 }
@@ -93,6 +98,7 @@ export const checkCreds = () => dispatch => {
 
   dispatch(addSpinner())
   return api.fetchTitles()
+  // FIXME: fetch only projects that a user was mentioned in or modifiedBy a user
     .then(titles => {
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))

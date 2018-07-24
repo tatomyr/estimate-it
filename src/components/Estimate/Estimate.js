@@ -16,8 +16,6 @@ class Estimate extends React.Component {
   }
 
   fetchHelper = prevProps => {
-    // FIXME: investigate bug when we try to pass by the route of a deleted estimate OR ...
-    // FIXME: ... OR to save with ID of deleted estimate
     const {
       getEstimate,
       match: { params: { estimateId } },
@@ -25,10 +23,10 @@ class Estimate extends React.Component {
     } = this.props
     // Fetch an appropriate estimate on route change. FIXME: do we still need this statement?
     const routeHasBeenChanged = prevProps && prevProps.match.params.estimateId !== estimateId
-    const estimateIsntLoaded = estimates[estimateId].text === undefined
+    const estimate = estimates[estimateId]
+    const estimateIsntLoaded = !estimate || estimate.text === undefined
     console.log(prevProps, '?', routeHasBeenChanged, '&&', estimateIsntLoaded)
-    // FIXME:
-    if (/*routeHasBeenChanged &&*/ estimateIsntLoaded) {
+    if (estimateIsntLoaded) {
       getEstimate({ estimateId })
     }
   }

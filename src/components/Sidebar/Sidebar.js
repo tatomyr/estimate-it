@@ -9,27 +9,11 @@ const Sidebar = ({
   saveEstimate,
   openAuthScreen,
   estimates,
+  username,
 }) => {
   const { saved, calculated } = estimates[estimateId]
   return (
     <aside>
-      <SideButton
-        title="Calculate"
-        name="rocket"
-        color={calculated ? 'secondary' : 'primary'}
-        onClick={() => !calculated && recalc(estimateId)}
-      />
-      <SideButton
-        title="Erase"
-        name="eraser"
-        color="danger"
-      />
-      <SideButton
-        title="Save"
-        name="save"
-        color={saved ? 'secondary' : 'primary'}
-        onClick={() => !saved && saveEstimate({ estimateId })}
-      />
       <SideButton
         title="New"
         name="file"
@@ -37,9 +21,21 @@ const Sidebar = ({
         link={estimateId === 'new' ? undefined : '/estimate/new'}
       />
       <SideButton
-        title="Auth"
-        name="key"
-        onClick={openAuthScreen}
+        title="Erase"
+        name="eraser"
+        color="danger"
+      />
+      <SideButton
+        title="Calculate"
+        name="rocket"
+        color={calculated ? 'secondary' : 'primary'}
+        onClick={() => !calculated && recalc(estimateId)}
+      />
+      <SideButton
+        title="Save"
+        name="save"
+        color={(saved && 'secondary') || (username && 'primary') || 'warning'}
+        onClick={() => !saved && saveEstimate({ estimateId })}
       />
       <SideButton
         title="Editor"
@@ -56,11 +52,19 @@ const Sidebar = ({
         name="list-ul"
         link="/dashboard"
       />
-      <SideButton
-        title="Home"
-        name="home"
-        link="/"
-      />
+      <div className="sidebar-bottom">
+        <SideButton
+          title="Auth"
+          name="key"
+          color={username ? 'success' : 'warning'}
+          onClick={openAuthScreen}
+        />
+        <SideButton
+          title="Home"
+          name="home"
+          link="/"
+        />
+      </div>
     </aside>
   )
 }
@@ -75,6 +79,11 @@ Sidebar.propTypes = {
   saveEstimate: PropTypes.func.isRequired,
   openAuthScreen: PropTypes.func.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
+  username: PropTypes.string,
+}
+
+Sidebar.defaultProps = {
+  username: undefined,
 }
 
 export default Sidebar

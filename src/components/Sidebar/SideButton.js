@@ -30,10 +30,8 @@ export const SideButton = ({
         <FA name={name} />
       </Button>
     )}
-    <div className="title-container">
-      <div className={`title text-color-${color}`}>
-        {title}
-      </div>
+    <div className={`title text-color-${color}`}>
+      {title}
     </div>
   </div>
 )

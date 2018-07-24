@@ -11,8 +11,12 @@ import {
   saveEstimate,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ estimates }) => ({
+const mapStateToProps = ({
   estimates,
+  creds: { username },
+}) => ({
+  estimates,
+  username,
 })
 
 const mapDispatchToProps = ({
