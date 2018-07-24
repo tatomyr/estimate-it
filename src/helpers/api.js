@@ -39,6 +39,7 @@ export const saveEstimate = ({
   text,
   graphData = [],
   project,
+  participants,
   calculated,
 }) => {
   const options = _id === 'new'
@@ -48,6 +49,7 @@ export const saveEstimate = ({
     text,
     graphData,
     project,
+    participants,
     calculated,
     modifiedBy: getCreds().username,
   }))
@@ -73,8 +75,16 @@ const titlesH = JSON.stringify({
     _changed: 1,
     modifiedBy: 1,
   },
+  // FIXME: sort properly
   $orderby: {
     _changed: -1,
   },
 })
-export const fetchTitles = () => db(`estimates?h=${titlesH}`)
+// Query to fetch only projects that are related to the user
+const titlesQ = JSON.stringify({
+  $or: [
+    { participants: { $elemMatch: getCreds().username } },
+    { modifiedBy: getCreds().username },
+  ],
+})
+export const fetchTitles = () => db(`estimates?q=${titlesQ}&h=${titlesH}`)

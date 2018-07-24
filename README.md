@@ -16,9 +16,14 @@ Second task
 
 Available directives:
 
+> `@project` - defines a project name.
+
+> `@participants` - a comma separated list of usernames.
+
 > `@summary` - writes overal hours row.
 
 > `@rounding` - sets results rounding. The more is precisier, the less is faster.
+
 
 # Development
 

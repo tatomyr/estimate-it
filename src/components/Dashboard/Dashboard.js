@@ -30,6 +30,7 @@ const Dashboard = ({ estimates }) => (
               _changed,
               modifiedBy,
             }) => (
+              // TODO: move to a separate component
               <ListGroupItem key={_id}>
                 <Row>
                   <Col xs={9} sm={10} lg={10}>
@@ -37,7 +38,7 @@ const Dashboard = ({ estimates }) => (
                       <Col xs={12} sm={6} lg={12}>
                         <Link to={`/estimate/${_id}`}>
                           <b>
-                            {project || _id}
+                            {(_id === 'new' && 'New Project') || project || _id}
                           </b>
                         </Link>
                       </Col>

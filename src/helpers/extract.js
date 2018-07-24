@@ -1,11 +1,5 @@
 // TODO: delete or improve
 
-// FIXME: del
-// const extract = (...params) => obj => params.reduce(($, param) => ({
-//   ...$,
-//   [param]: obj[param],
-// }), ({}))
-
 const extract = schema => obj => {
   const include = Object.values(schema).every(flag => !!flag)
   const exclude = Object.values(schema).every(flag => !flag)

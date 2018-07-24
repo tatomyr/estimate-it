@@ -11,6 +11,8 @@ import {
   noEstimate,
   saved,
   defaultError,
+  noName,
+  noParticipants,
 } from '../../helpers/messages'
 import {
   addSpinner,
@@ -38,7 +40,7 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   return api.getEstimate({ estimateId })
     .then(estimate => {
       // Check whether the estimate exists
-      if (!estimate.length && estimateId !== 'new') {
+      if (!estimate._id && estimateId !== 'new') {
         throw new Error(noEstimate)
       }
 
@@ -50,6 +52,10 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
       ) {
         return false
       }
+
+      if (!estimateToSave.project) toastr.warning(...noName)
+
+      if (!estimateToSave.participants.length) toastr.warning(...noParticipants)
 
       if (!estimateToSave.calculated) toastr.warning(...uncalculated)
 

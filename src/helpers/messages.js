@@ -8,8 +8,18 @@ export const rewrite = ({ _changed, modifiedBy }) => (`
 `)
 
 export const signInToSave = [
-  'Warning',
+  'Unauthorized',
   'You must pass authentication to be able to save an estimate.',
+]
+
+export const noName = [
+  'Unnamed project',
+  'Use directive @project to give a project name.',
+]
+
+export const noParticipants = [
+  'No participants',
+  'Define a list of participants using directive @participants.',
 ]
 
 export const uncalculated = [

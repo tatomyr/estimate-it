@@ -16,9 +16,7 @@ export const languageDef = {
   number: /\d+(\.\d+)?/,
   keywords: [
     "@project",
-    "@developer",
-    "@pm",
-    "@comment",
+    "@participants",
     "@summary",
     "@rounding",
   ],

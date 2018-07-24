@@ -11,18 +11,24 @@ export const emptyEstimate = ({
   _id: 'new',
   text: '',
   graphData: [],
-  project: 'New Project',
+  project: '',
+  participants: [],
   calculated: true,
   saved: false,
 })
 
-const getProjectName = text => parseParam(text)('@project') || 'New Project'
+const getProjectName = text => parseParam(text)('@project')
+const getParticipants = text => parseParam(text)('@participants')
+  .split(',')
+  .map(participant => participant.trim())
+  .filter(participant => participant)
+
 // TODO: add saved status
 export default (state = ({ new: emptyEstimate }), { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:
     {
-      const { _id } = payload
+      const { _id, text } = payload
       return ({
         ...state,
         [_id]: {
@@ -30,7 +36,8 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           graphData: [],
           calculated: false,
           saved: false,
-          project: getProjectName(payload.text),
+          project: getProjectName(text),
+          participants: getParticipants(text),
           ...payload,
         },
       })
@@ -56,7 +63,8 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           ...handleText(state[_id].text),
           calculated: true,
           saved: false,
-          project: getProjectName(state[_id].text),
+          // FIXME: do we need this?
+          // project: getProjectName(state[_id].text),
         },
       })
     }
