@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { SideButton } from './SideButton'
+import SideButton from './SideButton'
 import { estimateType } from '../Estimate/propTypes'
 
 const Sidebar = ({
@@ -17,8 +17,8 @@ const Sidebar = ({
       <SideButton
         title="New"
         name="file"
-        color={estimateId === 'new' ? 'secondary' : 'primary'}
-        link={estimateId === 'new' ? undefined : '/estimate/new'}
+        disabled={estimateId === 'new'}
+        link="/estimate/new"
       />
       <SideButton
         title="Erase"
@@ -28,12 +28,13 @@ const Sidebar = ({
       <SideButton
         title="Calculate"
         name="rocket"
-        color={calculated ? 'secondary' : 'primary'}
+        disabled={calculated}
         onClick={() => !calculated && recalc(estimateId)}
       />
       <SideButton
         title="Save"
         name="save"
+        disabled={!username || saved}
         color={(saved && 'secondary') || (username && 'primary') || 'warning'}
         onClick={() => !saved && saveEstimate({ estimateId })}
       />
@@ -50,6 +51,7 @@ const Sidebar = ({
       <SideButton
         title="Dashboard"
         name="list-ul"
+        disabled={!username}
         link="/dashboard"
       />
       <div className="sidebar-bottom">

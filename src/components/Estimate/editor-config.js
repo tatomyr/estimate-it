@@ -1,4 +1,4 @@
-import { comment } from '../../helpers/task-parsing'
+import { comment } from '../../helpers/tasks-parsing'
 
 /* eslint-disable quotes */
 

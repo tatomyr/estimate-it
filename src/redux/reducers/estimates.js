@@ -1,4 +1,4 @@
-import { handleText, parseParam } from '../../helpers/task-parsing'
+import { handleText, parseParam } from '../../helpers/tasks-parsing'
 import {
   UPDATE_ESTIMATE,
   RECALCULATE,
@@ -86,7 +86,7 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         ...state,
         [payload]: {
           ...state[payload],
-          saved: payload,
+          saved: true,
         },
       })
 

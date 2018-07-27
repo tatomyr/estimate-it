@@ -29,7 +29,7 @@ export const uncalculated = [
 
 export const saved = ({ _id, project }) => [
   'Saved',
-  project ? `Current project: ${project}` : `Id: ${_id}`,
+  project || _id,
 ]
 
 export const cantSave = message => [

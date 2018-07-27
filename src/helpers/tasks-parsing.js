@@ -2,9 +2,10 @@ import {
   O,
   I,
   convolution,
-  toProbGraph,
   sort,
-} from './equiprobabilistic-rows'
+  round,
+  cumulativeGraph,
+} from './discrete-uniform-distribution'
 
 const defaultRounding = 100
 
@@ -77,21 +78,19 @@ const treeToList = text => textToArr(text)
   }))
 
 // calculateHours :: ([{index: Int, parent: Int, *}], Int) -> [Number]
-const calculateHours = (list, rounding) => ({ index, hours }) => {
+const calculateHours = (list, roundHours) => ({ index, hours }) => {
   const children = list.filter(item => item.parent === index)
   if (children.length === 0) return hours
-  return children.reduce(($, item) => convolution(
-    $,
-    calculateHours(list, rounding)(item),
-    rounding,
-  ), I)
+  // Cumulative 'product' of each task's hours
+  return children
+    .reduce(($, item) => roundHours(convolution($, calculateHours(list, roundHours)(item))), I)
 }
 
 // hoistHours :: ([{a}], Int) -> [{a, value: String}]
-const hoistHours = (list, rounding) => list
+const hoistHours = (list, roundHours) => list
   .map(item => ({
     ...item,
-    hours: calculateHours(list, rounding)(item),
+    hours: calculateHours(list, roundHours)(item),
   }))
   // Preventing @summary from being undefined
   .map(item => ({
@@ -129,20 +128,23 @@ export const parseParam = text => param => (
 // Define comments pattern
 export const comment = /^\s*#([ =|].*)?$/
 
+const graph = cumulativeGraph((x, y) => [x, y * 100])
+
 // Processing text to get estimated hours
 export const handleText = text => {
   const getParam = parseParam(text)
   const rounding = +getParam('@rounding') || defaultRounding
+  const roundHours = round(rounding)
   const tasks = treeToList(text)
   // Filter out commented lines
   const activeTasks = tasks
     .filter(({ value }) => !comment.test(value))
 
-  const tasksWithCorrectHours = hoistHours([...activeTasks, summary], rounding)
+  const tasksWithCorrectHours = hoistHours([...activeTasks, summary], roundHours)
   console.table(tasksWithCorrectHours.map(item => ({ ...item, hours: JSON.stringify(item.hours) })))
   const summaryHours = tasksWithCorrectHours.find(({ index }) => index === null).hours
   return ({
     text: listToTree(tasksWithCorrectHours)(text),
-    graphData: toProbGraph(summaryHours),
+    graphData: graph(summaryHours),
   })
 }
