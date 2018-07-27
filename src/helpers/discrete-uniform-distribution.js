@@ -1,4 +1,4 @@
-// TODO: !! put into separate module
+// TODO: put into separate module
 
 // Define Zero
 export const O = []
@@ -6,10 +6,10 @@ export const O = []
 // Define One
 export const I = [0]
 
-// baseSum :: ([Number], [Number]) -> [Number]
+// sum :: ([Number], [Number]) -> [Number]
 export const sum = (u, v) => [...u, ...v]
 
-// baseConvolution :: [Number] -> [Number] -> [Number]
+// convolution :: [Number] -> [Number] -> [Number]
 export const convolution = (u, v) => u.reduce(($, x) => sum($, v.map(y => x + y)), O)
 
 // sort :: [Number] -> [Number]

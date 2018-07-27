@@ -34,3 +34,8 @@ Start app with `npm start`. Open http://localhost:3000/estimate/new in your brow
 
 Data is storing on https://restdb.io.
 To save and share estimate you have to authorize using `restdb.io` credentials: `dbName:apiKey`.
+
+You may create your own instance of DB on restdb.io.
+In that case you must create the `estimates` collection manually.
+
+To deploy on github pages run: `npm run deploy`

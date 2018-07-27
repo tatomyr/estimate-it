@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
@@ -47,7 +47,14 @@ class Estimate extends React.Component {
             <Route
               exact
               path="/estimate/:estimateId"
-              render={() => <Editor estimate={estimate} updateEstimate={updateEstimate} />}
+              render={() => (
+                <Fragment>
+                  <Editor estimate={estimate} updateEstimate={updateEstimate} />
+                  <Link to={`/estimate/${estimateId}/graph`} className="minified-graph-wrapper">
+                    <Graph data={estimate.graphData} minifiedView />
+                  </Link>
+                </Fragment>
+              )}
             />
             <Route
               path="/estimate/:estimateId/graph"
