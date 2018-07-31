@@ -5,7 +5,7 @@ import {
   sort,
   round,
   cumulativeGraph,
-} from './discrete-uniform-distribution'
+} from 'discrete-uniform-distribution'
 
 const defaultRounding = 100
 
