@@ -3,14 +3,15 @@ import {
   DEL_SPINNER,
   OPEN_AUTH_SCREEN,
   CLOSE_AUTH_SCREEN,
+  ENLARGE_GRAPH,
+  MINIFY_GRAPH,
 } from '../actions/types'
 
-const defaultState = {
+export default (state = {
   spinnersCount: false,
   showAuthScreen: false,
-}
-
-export default (state = defaultState, { type }) => {
+  graphView: 'minified',
+}, { type }) => {
   switch (type) {
     case ADD_SPINNER:
       return ({
@@ -34,6 +35,18 @@ export default (state = defaultState, { type }) => {
       return ({
         ...state,
         showAuthScreen: false,
+      })
+
+    case ENLARGE_GRAPH:
+      return ({
+        ...state,
+        graphView: 'full',
+      })
+
+    case MINIFY_GRAPH:
+      return ({
+        ...state,
+        graphView: 'minified',
       })
 
     default:

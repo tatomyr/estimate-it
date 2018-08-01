@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import FA from 'react-fontawesome'
 import { Button } from 'reactstrap'
 
+// TODO: rewrite SideButton to use one Button (perhaps use redirect instead of links)
+
 const SideButton = ({
   title,
   name,
@@ -12,7 +14,7 @@ const SideButton = ({
   link,
   disabled,
 }) => (
-  <div className="side-button">
+  <div className="side-button" data-title={title} data-color={disabled ? 'secondary' : color}>
     {!disabled && link ? (
       <NavLink to={link} exact>
         <Button
@@ -33,9 +35,6 @@ const SideButton = ({
         <FA name={name} />
       </Button>
     )}
-    <div className={`title text-color-${disabled ? 'secondary' : color}`}>
-      {title}
-    </div>
   </div>
 )
 

@@ -10,6 +10,8 @@ const Sidebar = ({
   openAuthScreen,
   estimates,
   username,
+  graphView,
+  minifyGraph,
 }) => {
   const { saved, calculated } = estimates[estimateId]
   return (
@@ -35,18 +37,14 @@ const Sidebar = ({
         title="Save"
         name="save"
         disabled={!username || saved}
-        color={(saved && 'secondary') || (username && 'primary') || 'warning'}
+        color={(saved && 'secondary') || (username && calculated && 'primary') || 'warning'}
         onClick={() => !saved && saveEstimate({ estimateId })}
       />
       <SideButton
         title="Editor"
         name="edit"
-        link={`/estimate/${estimateId}`}
-      />
-      <SideButton
-        title="Chart"
-        name="signal"
-        link={`/estimate/${estimateId}/graph`}
+        disabled={graphView === 'minified'}
+        onClick={minifyGraph}
       />
       <SideButton
         title="Dashboard"
@@ -82,6 +80,8 @@ Sidebar.propTypes = {
   openAuthScreen: PropTypes.func.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
   username: PropTypes.string,
+  graphView: PropTypes.string.isRequired,
+  minifyGraph: PropTypes.func.isRequired,
 }
 
 Sidebar.defaultProps = {

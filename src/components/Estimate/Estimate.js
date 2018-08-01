@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+// FIXME: refactor routing
 import { Switch, Route, Link } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
@@ -36,6 +37,8 @@ class Estimate extends React.Component {
       match: { params: { estimateId } },
       estimates,
       updateEstimate,
+      graphView,
+      enlargeGraph,
     } = this.props
     const estimate = estimates[estimateId]
     if (!estimate) return null
@@ -50,15 +53,11 @@ class Estimate extends React.Component {
               render={() => (
                 <Fragment>
                   <Editor estimate={estimate} updateEstimate={updateEstimate} />
-                  <Link to={`/estimate/${estimateId}/graph`} className="minified-graph-wrapper">
-                    <Graph data={estimate.graphData} minifiedView />
-                  </Link>
+                  <div onClick={enlargeGraph} className={`graph-wrapper ${graphView}`}>
+                    <Graph data={estimate.graphData} graphView={graphView} />
+                  </div>
                 </Fragment>
               )}
-            />
-            <Route
-              path="/estimate/:estimateId/graph"
-              render={() => <Graph data={estimate.graphData} />}
             />
           </Switch>
         </div>
@@ -76,6 +75,8 @@ Estimate.propTypes = {
   estimates: PropTypes.objectOf(estimateType).isRequired,
   getEstimate: PropTypes.func.isRequired,
   updateEstimate: PropTypes.func.isRequired,
+  graphView: PropTypes.string.isRequired,
+  enlargeGraph: PropTypes.func.isRequired,
 }
 
 export default Estimate

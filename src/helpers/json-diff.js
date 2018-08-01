@@ -1,4 +1,5 @@
 // TODO: put into separate module
+// TODO: consider import diff function from discrete-uniform-distribution
 
 const shallowDiff = base => alter => {
   const diffArr = Object.entries(base).filter(([key, value]) => value !== alter[key])

@@ -11,6 +11,8 @@ import {
   CLOSE_AUTH_SCREEN,
   SET_TITLES,
   MARK_ESTIMATE_SAVED,
+  ENLARGE_GRAPH,
+  MINIFY_GRAPH,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -67,4 +69,12 @@ export const setTitles = payload => ({
 export const markEstimateSaved = payload => ({
   type: MARK_ESTIMATE_SAVED,
   payload,
+})
+
+export const enlargeGraph = () => ({
+  type: ENLARGE_GRAPH,
+})
+
+export const minifyGraph = () => ({
+  type: MINIFY_GRAPH,
 })

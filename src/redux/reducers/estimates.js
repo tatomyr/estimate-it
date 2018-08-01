@@ -23,7 +23,6 @@ const getParticipants = text => parseParam(text)('@participants')
   .map(participant => participant.trim())
   .filter(participant => participant)
 
-// TODO: add saved status
 export default (state = ({ new: emptyEstimate }), { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:

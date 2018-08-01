@@ -22,7 +22,9 @@
   padding-right: initial;
 }
 
-.estimate aside .side-button .title {
+.estimate aside .side-button::after {
+  content: attr(data-title);
+  display: block;
   position: relative;
   font-size: 10px;
   transition: transform .4s 1s;
@@ -34,34 +36,23 @@
   bottom: 6px;
 }
 
-.estimate aside .side-button:nth-child(1) .title { transform: translate(calc(1 * var(--offset))); }
-.estimate aside .side-button:nth-child(2) .title { transform: translate(calc(2 * var(--offset))); }
-.estimate aside .side-button:nth-child(3) .title { transform: translate(calc(3 * var(--offset))); }
-.estimate aside .side-button:nth-child(4) .title { transform: translate(calc(4 * var(--offset))); }
-.estimate aside .side-button:nth-child(5) .title { transform: translate(calc(5 * var(--offset))); }
-.estimate aside .side-button:nth-child(6) .title { transform: translate(calc(6 * var(--offset))); }
-.estimate aside .side-button:nth-child(7) .title { transform: translate(calc(7 * var(--offset))); }
-.estimate aside .side-button:nth-child(8) .title { transform: translate(calc(8 * var(--offset))); }
-.estimate aside .side-button:nth-child(9) .title { transform: translate(calc(9 * var(--offset))); }
+.estimate aside .side-button:nth-child(1)::after { transform: translate(calc(1 * var(--offset))); }
+.estimate aside .side-button:nth-child(2)::after { transform: translate(calc(2 * var(--offset))); }
+.estimate aside .side-button:nth-child(3)::after { transform: translate(calc(3 * var(--offset))); }
+.estimate aside .side-button:nth-child(4)::after { transform: translate(calc(4 * var(--offset))); }
+.estimate aside .side-button:nth-child(5)::after { transform: translate(calc(5 * var(--offset))); }
+.estimate aside .side-button:nth-child(6)::after { transform: translate(calc(6 * var(--offset))); }
+.estimate aside .side-button:nth-child(7)::after { transform: translate(calc(7 * var(--offset))); }
+.estimate aside .side-button:nth-child(8)::after { transform: translate(calc(8 * var(--offset))); }
+.estimate aside .side-button:nth-child(9)::after { transform: translate(calc(9 * var(--offset))); }
 
-/* FIXME: this is for test purposes */
-/* .estimate aside .side-button:nth-child(1) .title { background-color: red; }
-.estimate aside .side-button:nth-child(2) .title { background-color: orange; }
-.estimate aside .side-button:nth-child(3) .title { background-color: yellow; }
-.estimate aside .side-button:nth-child(4) .title { background-color: green; }
-.estimate aside .side-button:nth-child(5) .title { background-color: skyblue; }
-.estimate aside .side-button:nth-child(6) .title { background-color: blue; }
-.estimate aside .side-button:nth-child(7) .title { background-color: violet; }
-.estimate aside .side-button:nth-child(8) .title { background-color: black; }
-.estimate aside .side-button:nth-child(9) .title { background-color: white; } */
-
-.estimate aside:hover .side-button .title {
+.estimate aside:hover .side-button::after {
   transform: translate(0);
   transition: transform .4s;
 }
 
-.text-color-primary { color: #007bff; }
-.text-color-danger { color: #dc3545; }
-.text-color-secondary { color: #6c757d; }
-.text-color-warning { color: #ffc107; }
-.text-color-success { color: #28a745; }
+.side-button[data-color='primary'] { color: #007bff; }
+.side-button[data-color='danger'] { color: #dc3545; }
+.side-button[data-color='secondary'] { color: #6c757d; }
+.side-button[data-color='warning'] { color: #ffc107; }
+.side-button[data-color='success'] { color: #28a745; }
