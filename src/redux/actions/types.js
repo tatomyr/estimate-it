@@ -3,11 +3,8 @@ export const CLEAN_ESTIMATE = 'CLEAN_ESTIMATE'
 export const RECALCULATE = 'RECALCULATE'
 export const ADD_SPINNER = 'ADD_SPINNER'
 export const DEL_SPINNER = 'DEL_SPINNER'
-// FIXME:
-// export const REDIRECT = 'REDIRECT'
 export const SET_HREF = 'SET_HREF'
 export const RESET_HREF = 'RESET_HREF'
-
 export const SET_CREDS = 'SET_CREDS'
 export const RESET_CREDS = 'RESET_CREDS'
 export const OPEN_AUTH_SCREEN = 'OPEN_AUTH_SCREEN'

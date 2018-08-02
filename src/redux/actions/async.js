@@ -17,8 +17,6 @@ import {
 import {
   addSpinner,
   delSpinner,
-  // FIXME:
-  // redirect,
   setHref,
   resetHref,
   updateEstimate,
@@ -113,7 +111,6 @@ export const checkCreds = () => dispatch => {
 
   dispatch(addSpinner())
   return api.fetchTitles()
-  // FIXME: fetch only projects that a user was mentioned in or modifiedBy a user
     .then(titles => {
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))

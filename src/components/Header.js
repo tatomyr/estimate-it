@@ -7,8 +7,7 @@ import {
   NavLink,
 } from 'reactstrap'
 
-// FIXME: links are overriden under certain circumstances: redirect fires every time a user try to reach App component.
-// TODO: improve navigation UX
+// TODO: improve navigation UX/UI
 
 const Header = () => (
   <Navbar color="light" light expand="xs">
