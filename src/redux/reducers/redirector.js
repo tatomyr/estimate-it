@@ -1,14 +1,23 @@
-import { REDIRECT } from '../actions/types'
+import { SET_HREF, RESET_HREF } from '../actions/types'
 
-const defaultState = {
-  pathToRedirect: '',
-}
-
-export default (state = defaultState, { type, payload }) => {
+export default (state = ({
+  href: '',
+}), { type, payload }) => {
   switch (type) {
-    case REDIRECT:
+    // FIXME:
+    // case REDIRECT:
+    //   return ({
+    //     pathToRedirect: payload.pathToRedirect,
+    //   })
+
+    case SET_HREF:
       return ({
-        pathToRedirect: payload.pathToRedirect,
+        href: payload,
+      })
+
+    case RESET_HREF:
+      return ({
+        href: '',
       })
 
     default:

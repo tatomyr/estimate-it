@@ -1,7 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-// FIXME: refactor routing
-import { Switch, Route, Link } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
@@ -46,20 +44,11 @@ class Estimate extends React.Component {
       <div className="estimate">
         <Sidebar />
         <div className="board">
-          <Switch>
-            <Route
-              exact
-              path="/estimate/:estimateId"
-              render={() => (
-                <Fragment>
-                  <Editor estimate={estimate} updateEstimate={updateEstimate} />
-                  <div onClick={enlargeGraph} className={`graph-wrapper ${graphView}`}>
-                    <Graph data={estimate.graphData} graphView={graphView} />
-                  </div>
-                </Fragment>
-              )}
-            />
-          </Switch>
+          <Editor estimate={estimate} updateEstimate={updateEstimate} />
+          {/* FIXME: to tackle the eslint issue */}
+          <div onClick={enlargeGraph} className={`graph-wrapper ${graphView}`}>
+            <Graph data={estimate.graphData} graphView={graphView} />
+          </div>
         </div>
       </div>
     )

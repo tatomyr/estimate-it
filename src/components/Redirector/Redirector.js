@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
-const Redirector = ({ pathToRedirect }) => pathToRedirect && (
-  <Redirect to={pathToRedirect} />
+const Redirector = ({ href }) => href && (
+  <Redirect to={href} />
 )
 
 Redirector.propTypes = {
-  pathToRedirect: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
 }
 
 export default Redirector

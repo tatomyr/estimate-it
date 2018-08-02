@@ -2,7 +2,11 @@ import {
   UPDATE_ESTIMATE,
   CLEAN_ESTIMATE,
   RECALCULATE,
+  // FIXME:
   REDIRECT,
+  SET_HREF,
+  RESET_HREF,
+
   ADD_SPINNER,
   DEL_SPINNER,
   SET_CREDS,
@@ -23,18 +27,26 @@ export const updateEstimate = estimate => ({
 
 export const cleanEstimate = ({ estimateId }) => ({
   type: CLEAN_ESTIMATE,
-  payload: { estimateId },
+  payload: { estimateId }, // FIXME: get rid of '{}'?
 })
 
 export const recalc = _id => ({
   type: RECALCULATE,
-  payload: { _id },
+  payload: { _id }, // FIXME: get rid of '{}'?
 })
 
-export const redirect = pathToRedirect => ({
-  type: REDIRECT,
-  payload: { pathToRedirect },
+// FIXME:
+export const setHref = href => ({
+  type: SET_HREF,
+  payload: href,
 })
+export const resetHref = () => ({
+  type: RESET_HREF,
+})
+// export const redirect = pathToRedirect => ({
+//   type: REDIRECT,
+//   payload: { pathToRedirect },
+// })
 
 export const addSpinner = () => ({
   type: ADD_SPINNER,

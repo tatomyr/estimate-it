@@ -17,7 +17,10 @@ import {
 import {
   addSpinner,
   delSpinner,
-  redirect,
+  // FIXME:
+  // redirect,
+  setHref,
+  resetHref,
   updateEstimate,
   cleanEstimate,
   closeAuthScreen,
@@ -27,6 +30,12 @@ import {
   setTitles,
   markEstimateSaved,
 } from './index'
+
+export const redirect = href => dispatch => {
+  dispatch({ type: '__ASYNC__REDIRECT' })
+  dispatch(setHref(href))
+  setTimeout(() => dispatch(resetHref()))
+}
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
@@ -117,10 +126,8 @@ export const checkCreds = () => dispatch => {
 
 export const openGuestSession = () => dispatch => {
   dispatch({ type: '__ASYNC__OPEN_GUEST_SESSION' })
-
-  dispatch(redirect(''))
-  setTimeout(() => dispatch(closeAuthScreen()))
-  setTimeout(() => dispatch(redirect('/estimate/new')))
+  dispatch(closeAuthScreen())
+  dispatch(redirect('/estimate/new'))
 }
 
 // FIXME: del OR modify
