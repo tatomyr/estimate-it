@@ -27,7 +27,7 @@ const Editor = ({
     options={options}
     onChange={newText => updateEstimate({ text: newText, _id })}
     editorWillMount={editorWillMount}
-    editorDidMount={(editor, monaco) => { editor.focus() }}
+    editorDidMount={editor => { editor.focus() }}
   />
 )
 

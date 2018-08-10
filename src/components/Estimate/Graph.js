@@ -7,8 +7,10 @@ import ReactHighcharts from 'react-highcharts'
 const config = ({
   minified: ({
     title: { text: null },
-    yAxis: { min: 0, max: 100, title: { text: null }, labels: { enabled: false } },
-    xAxis: { title: { text: null }, labels: { enabled: false } },
+    yAxis: {
+      min: 0, max: 100, title: { text: null }, labels: { enabled: false },
+    },
+    xAxis: { title: { text: null }, labels: { enabled: true } },
     legend: { enabled: false },
     tooltip: { enabled: false },
     chart: { height: 150, width: 200 },

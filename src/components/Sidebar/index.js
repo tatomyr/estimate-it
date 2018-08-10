@@ -7,6 +7,7 @@ import {
   openAuthScreen,
   closeAuthScreen,
   minifyGraph,
+  enlargeGraph,
 } from '../../redux/actions'
 import {
   saveEstimate,
@@ -28,6 +29,7 @@ const mapDispatchToProps = ({
   openAuthScreen,
   closeAuthScreen,
   minifyGraph,
+  enlargeGraph,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))

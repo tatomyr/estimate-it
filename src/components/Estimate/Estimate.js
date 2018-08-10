@@ -45,8 +45,13 @@ class Estimate extends React.Component {
         <Sidebar />
         <div className="board">
           <Editor estimate={estimate} updateEstimate={updateEstimate} />
-          {/* FIXME: to tackle the eslint issue */}
-          <div onClick={enlargeGraph} className={`graph-wrapper ${graphView}`}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+          <div
+            role="button"
+            onClick={enlargeGraph}
+            className={`graph-wrapper ${graphView}`}
+            tabIndex={0}
+          >
             <Graph data={estimate.graphData} graphView={graphView} />
           </div>
         </div>
