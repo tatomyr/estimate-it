@@ -23,7 +23,6 @@ const getParticipants = text => parseParam(text)('@participants')
   .map(participant => participant.trim())
   .filter(participant => participant)
 
-// TODO: add saved status
 export default (state = ({ new: emptyEstimate }), { type, payload }) => {
   switch (type) {
     case UPDATE_ESTIMATE:
@@ -49,25 +48,20 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         // Put 'new' here to avoid creating an estimate with an undefined `_id`
         // ...while logging out on different routes
         // ...(that may not contain an `:estimateId` param)
-        [payload.estimateId || 'new']: emptyEstimate,
+        [payload || 'new']: emptyEstimate,
       })
 
     case RECALCULATE:
-    {
-      const { _id } = payload
       return ({
         ...state,
-        [_id]: {
-          ...state[_id],
-          _id,
-          ...handleText(state[_id].text),
+        [payload]: {
+          ...state[payload],
+          payload,
+          ...handleText(state[payload].text),
           calculated: true,
           saved: false,
-          // FIXME: do we need this?
-          // project: getProjectName(state[_id].text),
         },
       })
-    }
 
     case SET_TITLES:
       return ({

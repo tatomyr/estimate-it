@@ -81,10 +81,10 @@ const titlesH = JSON.stringify({
   },
 })
 // Query to fetch only projects that are related to the user
-const titlesQ = JSON.stringify({
+const titlesQ = () => JSON.stringify({
   $or: [
     { participants: { $elemMatch: getCreds().username } },
     { modifiedBy: getCreds().username },
   ],
 })
-export const fetchTitles = () => db(`estimates?q=${titlesQ}&h=${titlesH}`)
+export const fetchTitles = () => db(`estimates?q=${titlesQ()}&h=${titlesH}`)

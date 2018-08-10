@@ -7,10 +7,10 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 
-ReactDOM.render(<Root store={store} />, document.getElementById('root'))
-registerServiceWorker()
-
-// Register Monaco Editor web worker
+// Register Monaco Editor web worker before the other stuff
 window.MonacoEnvironment = {
   getWorkerUrl: () => '/monaco-editor-worker-loader-proxy.js',
 }
+
+ReactDOM.render(<Root store={store} />, document.getElementById('root'))
+registerServiceWorker()

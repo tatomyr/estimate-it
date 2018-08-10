@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
 import FA from 'react-fontawesome'
 import { Button } from 'reactstrap'
+import { connect } from 'react-redux'
+import { redirect } from '../../redux/actions/async'
 
 const SideButton = ({
   title,
@@ -11,31 +12,17 @@ const SideButton = ({
   onClick,
   link,
   disabled,
+  redirect, // eslint-disable-line no-shadow
 }) => (
-  <div className="side-button">
-    {!disabled && link ? (
-      <NavLink to={link} exact>
-        <Button
-          outline
-          color={disabled ? 'secondary' : color}
-          disabled={disabled}
-        >
-          <FA name={name} />
-        </Button>
-      </NavLink>
-    ) : (
-      <Button
-        outline
-        color={disabled ? 'secondary' : color}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        <FA name={name} />
-      </Button>
-    )}
-    <div className={`title text-color-${disabled ? 'secondary' : color}`}>
-      {title}
-    </div>
+  <div className="side-button" data-title={title} data-color={disabled ? 'secondary' : color}>
+    <Button
+      outline
+      color={disabled ? 'secondary' : color}
+      onClick={onClick || (() => redirect(link))}
+      disabled={disabled}
+    >
+      <FA name={name} />
+    </Button>
   </div>
 )
 
@@ -46,13 +33,14 @@ SideButton.propTypes = {
   onClick: PropTypes.func,
   link: PropTypes.string,
   disabled: PropTypes.bool,
+  redirect: PropTypes.func.isRequired,
 }
 
 SideButton.defaultProps = {
   color: 'primary',
   onClick: undefined,
-  link: undefined,
+  link: '',
   disabled: false,
 }
 
-export default SideButton
+export default connect(null, ({ redirect }))(SideButton)

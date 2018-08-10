@@ -13,6 +13,7 @@ export default (state = emptyCreds, { type, payload }) => {
       return ({
         ...payload,
       })
+
     case RESET_CREDS:
       return emptyCreds
 

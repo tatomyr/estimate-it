@@ -1,4 +1,5 @@
 // TODO: put into separate module
+// TODO: consider import diff function from discrete-uniform-distribution
 
 const shallowDiff = base => alter => {
   const diffArr = Object.entries(base).filter(([key, value]) => value !== alter[key])
@@ -14,12 +15,5 @@ console.info('+', added)
 console.info('-', deleted)
 
 console.log(shallowDiff(prev)(deleted))
-// const addedOrDeleted = shallowDiff(added)(deleted)
-// const deletedOrAdded = shallowDiff(deleted)(added)
-// // if (JSON.stringify(addedOrDeleted) !== JSON.stringify(deletedOrAdded)) throw new Error('Should be the same!')
-// const updated = shallowDiff(next)(addedOrDeleted)
-// console.log((addedOrDeleted), (deletedOrAdded))
-// console.log(updated, shallowDiff(prev)(addedOrDeleted))
-// console.log(shallowDiff(['a', 'b'])(['a', 'c']))
 
 export default shallowDiff

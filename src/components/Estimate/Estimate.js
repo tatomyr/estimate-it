@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route, Link } from 'react-router-dom'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
@@ -36,6 +35,8 @@ class Estimate extends React.Component {
       match: { params: { estimateId } },
       estimates,
       updateEstimate,
+      graphView,
+      enlargeGraph,
     } = this.props
     const estimate = estimates[estimateId]
     if (!estimate) return null
@@ -43,24 +44,16 @@ class Estimate extends React.Component {
       <div className="estimate">
         <Sidebar />
         <div className="board">
-          <Switch>
-            <Route
-              exact
-              path="/estimate/:estimateId"
-              render={() => (
-                <Fragment>
-                  <Editor estimate={estimate} updateEstimate={updateEstimate} />
-                  <Link to={`/estimate/${estimateId}/graph`} className="minified-graph-wrapper">
-                    <Graph data={estimate.graphData} minifiedView />
-                  </Link>
-                </Fragment>
-              )}
-            />
-            <Route
-              path="/estimate/:estimateId/graph"
-              render={() => <Graph data={estimate.graphData} />}
-            />
-          </Switch>
+          <Editor estimate={estimate} updateEstimate={updateEstimate} />
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+          <div
+            role="button"
+            onClick={enlargeGraph}
+            className={`graph-wrapper ${graphView}`}
+            tabIndex={0}
+          >
+            <Graph data={estimate.graphData} graphView={graphView} />
+          </div>
         </div>
       </div>
     )
@@ -76,6 +69,8 @@ Estimate.propTypes = {
   estimates: PropTypes.objectOf(estimateType).isRequired,
   getEstimate: PropTypes.func.isRequired,
   updateEstimate: PropTypes.func.isRequired,
+  graphView: PropTypes.string.isRequired,
+  enlargeGraph: PropTypes.func.isRequired,
 }
 
 export default Estimate

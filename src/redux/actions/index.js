@@ -2,7 +2,8 @@ import {
   UPDATE_ESTIMATE,
   CLEAN_ESTIMATE,
   RECALCULATE,
-  REDIRECT,
+  SET_HREF,
+  RESET_HREF,
   ADD_SPINNER,
   DEL_SPINNER,
   SET_CREDS,
@@ -11,6 +12,8 @@ import {
   CLOSE_AUTH_SCREEN,
   SET_TITLES,
   MARK_ESTIMATE_SAVED,
+  ENLARGE_GRAPH,
+  MINIFY_GRAPH,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -21,17 +24,21 @@ export const updateEstimate = estimate => ({
 
 export const cleanEstimate = ({ estimateId }) => ({
   type: CLEAN_ESTIMATE,
-  payload: { estimateId },
+  payload: estimateId,
 })
 
 export const recalc = _id => ({
   type: RECALCULATE,
-  payload: { _id },
+  payload: _id,
 })
 
-export const redirect = pathToRedirect => ({
-  type: REDIRECT,
-  payload: { pathToRedirect },
+export const setHref = href => ({
+  type: SET_HREF,
+  payload: href,
+})
+
+export const resetHref = () => ({
+  type: RESET_HREF,
 })
 
 export const addSpinner = () => ({
@@ -67,4 +74,12 @@ export const setTitles = payload => ({
 export const markEstimateSaved = payload => ({
   type: MARK_ESTIMATE_SAVED,
   payload,
+})
+
+export const enlargeGraph = () => ({
+  type: ENLARGE_GRAPH,
+})
+
+export const minifyGraph = () => ({
+  type: MINIFY_GRAPH,
 })

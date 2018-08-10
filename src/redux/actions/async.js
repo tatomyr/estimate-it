@@ -17,16 +17,21 @@ import {
 import {
   addSpinner,
   delSpinner,
-  redirect,
+  setHref,
+  resetHref,
   updateEstimate,
-  cleanEstimate,
   closeAuthScreen,
-  openAuthScreen,
   setCreds,
   resetCreds,
   setTitles,
   markEstimateSaved,
 } from './index'
+
+export const redirect = href => dispatch => {
+  dispatch({ type: '__ASYNC__REDIRECT' })
+  dispatch(setHref(href))
+  setTimeout(() => dispatch(resetHref()))
+}
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
   dispatch({ type: '__ASYNC__SAVE_ESTIMATE' })
@@ -104,7 +109,6 @@ export const checkCreds = () => dispatch => {
 
   dispatch(addSpinner())
   return api.fetchTitles()
-  // FIXME: fetch only projects that a user was mentioned in or modifiedBy a user
     .then(titles => {
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))
@@ -117,10 +121,8 @@ export const checkCreds = () => dispatch => {
 
 export const openGuestSession = () => dispatch => {
   dispatch({ type: '__ASYNC__OPEN_GUEST_SESSION' })
-
-  dispatch(redirect(''))
-  setTimeout(() => dispatch(closeAuthScreen()))
-  setTimeout(() => dispatch(redirect('/estimate/new')))
+  dispatch(closeAuthScreen())
+  dispatch(redirect('/estimate/new'))
 }
 
 // FIXME: del OR modify

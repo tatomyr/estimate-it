@@ -4,28 +4,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactHighcharts from 'react-highcharts'
 
-const config = minifiedView => (minifiedView
-  ? ({
+const config = ({
+  minified: ({
     title: { text: null },
-    yAxis: { min: 0, max: 100, title: { text: null }, labels: { enabled: false } },
-    xAxis: { title: { text: null }, labels: { enabled: false } },
+    yAxis: {
+      min: 0, max: 100, title: { text: null }, labels: { enabled: false },
+    },
+    xAxis: { title: { text: null }, labels: { enabled: true } },
     legend: { enabled: false },
     tooltip: { enabled: false },
     chart: { height: 150, width: 200 },
 
-  })
-  : ({
+  }),
+  full: ({
     title: { text: 'Cumulative distribution function' },
     yAxis: { min: 0, max: 100, title: { text: 'Probability (%)' } },
     xAxis: { title: { text: 'Time (h)' } },
     legend: { enabled: false },
 
-  }))
+  }),
+})
 
-const Graph = ({ data, minifiedView }) => (
+const Graph = ({ data, graphView }) => (
   <ReactHighcharts
     config={{
-      ...config(minifiedView),
+      ...config[graphView],
       series: [{
         name: 'Cumulative distribution function',
         step: true,
@@ -37,12 +40,11 @@ const Graph = ({ data, minifiedView }) => (
 
 Graph.propTypes = {
   data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  minifiedView: PropTypes.bool,
+  graphView: PropTypes.string.isRequired,
 }
 
 Graph.defaultProps = {
   data: [],
-  minifiedView: false,
 }
 
 export default Graph
