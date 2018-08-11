@@ -11,6 +11,7 @@
     "precommit": "npm run lint && npm run test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "eslint-plugin-react": "^7.10.0",
     "gh-pages": "^1.2.0",
     "husky": "^0.14.3",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.4.2",
+    "source-map-explorer": "^1.5.0"
   }
 }

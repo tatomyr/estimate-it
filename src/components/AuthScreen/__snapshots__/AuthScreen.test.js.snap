@@ -1,6 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
+<div
+  className="overlay auth-screen"
+>
+  <div
+    className="panel"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="username"
+      >
+        Public Name
+      </label>
+      <div
+        className="input-group"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+          >
+            @
+          </span>
+        </div>
+        <input
+          autoFocus={true}
+          className="form-control"
+          id="username"
+          name="username"
+          placeholder="Enter your public name…"
+          required={true}
+          type="text"
+        />
+      </div>
+      <label
+        htmlFor="credentials"
+      >
+        Access Key
+      </label>
+      <div
+        className="input-group"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+          >
+            **
+          </span>
+        </div>
+        <input
+          className="form-control"
+          id="credentials"
+          name="credentials"
+          placeholder="Enter access key…"
+          required={true}
+          type="password"
+        />
+      </div>
+      <button
+        className="btn btn-outline-primary"
+        onClick={[Function]}
+        type={undefined}
+      >
+        Sign In
+      </button>
+    </form>
+    Or
+    <br />
+    <button
+      className="btn btn-outline-primary"
+      onClick={[Function]}
+      type="button"
+    >
+      Guest Session
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AuthScreen behavior renders correctly for authorized user 1`] = `
 <div
   className="overlay auth-screen"
 >

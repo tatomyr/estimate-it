@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // TODO: put into separate module
 // TODO: consider import diff function from discrete-uniform-distribution
 
