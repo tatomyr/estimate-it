@@ -111,6 +111,7 @@ export const checkCreds = () => dispatch => {
   dispatch(addSpinner())
   return api.fetchTitles()
     .then(titles => {
+      // eslint-disable-next-line no-console
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))
       dispatch(setCreds())

@@ -1,7 +1,22 @@
 .auth-screen {
-  background-color: rgba(240, 248, 255, 0.5);
+  background-color: rgba(240, 248, 255, 0.99);
+}
+
+.auth-screen .panel {
+  max-width: 400px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .auth-screen form label {
   display: block;
 }
+
+.auth-screen .input-group {
+  margin-bottom: .5rem;
+}
+
+.auth-screen button {
+  margin: 5px;
+}
+

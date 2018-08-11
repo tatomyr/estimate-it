@@ -1,5 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  Button,
+  InputGroup,
+  InputGroupAddon,
+  Input,
+} from 'reactstrap'
 import * as api from '../../helpers/api'
 
 const AuthScreen = ({
@@ -13,15 +19,21 @@ const AuthScreen = ({
 }) => (
   <div className="overlay auth-screen">
     {username ? (
-      <Fragment>
-        <button
-          type="button"
+      <div className="panel">
+        <div>
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          Welcome, {username}!
+        </div>
+        <Button
+          color="primary"
+          outline
           onClick={closeAuthScreen}
         >
           Close
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          color="danger"
+          outline
           onClick={() => {
             api.removeCreds()
             resetCreds()
@@ -29,10 +41,10 @@ const AuthScreen = ({
           }}
         >
           Log Out
-        </button>
-      </Fragment>
+        </Button>
+      </div>
     ) : (
-      <Fragment>
+      <div className="panel">
         <form
           onSubmit={e => {
             e.preventDefault()
@@ -44,38 +56,47 @@ const AuthScreen = ({
           <label htmlFor="username">
             Public Name
           </label>
-          <input
-            name="username"
-            id="username"
-            placeholder="Enter your public name…"
-            required
-            autoFocus // eslint-disable-line
-          />
-          <br />
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              @
+            </InputGroupAddon>
+            <Input
+              name="username"
+              id="username"
+              placeholder="Enter your public name…"
+              required
+              autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+            />
+          </InputGroup>
           <label htmlFor="credentials">
             Access Key
           </label>
-          <input
-            type="password"
-            name="credentials"
-            id="credentials"
-            placeholder="Enter access key…"
-            required
-          />
-          <br />
-          <button type="submit">
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              **
+            </InputGroupAddon>
+            <Input
+              type="password"
+              name="credentials"
+              id="credentials"
+              placeholder="Enter access key…"
+              required
+            />
+          </InputGroup>
+          <Button color="primary" outline>
             Sign In
-          </button>
+          </Button>
         </form>
         Or
         <br />
-        <button
-          type="button"
+        <Button
+          color="primary"
+          outline
           onClick={openGuestSession}
         >
           Guest Session
-        </button>
-      </Fragment>
+        </Button>
+      </div>
     )}
   </div>
 )

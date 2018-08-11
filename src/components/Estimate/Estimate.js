@@ -19,10 +19,10 @@ class Estimate extends React.Component {
       .filter(({ saved }) => !saved)
       .map(({ _id, project }) => (project || _id))
     // Setting up hook to prevent of accidental window closing/refreshing
-    window.onbeforeunload = () => {
+    window.onbeforeunload = unsavedEstimates.length ? () => {
       showUnsaved(unsavedEstimates)
-      return !!unsavedEstimates.length
-    }
+      return true
+    } : null
   }
 
   fetchHelper = () => {
