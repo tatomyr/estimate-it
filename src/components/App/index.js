@@ -5,7 +5,10 @@ import {
   checkCreds,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ visualEffects: { showAuthScreen }, creds: { username } }) => ({
+const mapStateToProps = ({
+  visualEffects: { showAuthScreen },
+  creds: { username },
+}) => ({
   showAuthScreen,
   username,
 })

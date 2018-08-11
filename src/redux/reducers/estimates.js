@@ -14,7 +14,7 @@ export const emptyEstimate = ({
   project: '',
   participants: [],
   calculated: true,
-  saved: false,
+  saved: true,
 })
 
 const getProjectName = text => parseParam(text)('@project')

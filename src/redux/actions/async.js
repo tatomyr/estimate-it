@@ -13,6 +13,7 @@ import {
   defaultError,
   noName,
   noParticipants,
+  unsavedEstimatesList,
 } from '../../helpers/messages'
 import {
   addSpinner,
@@ -140,3 +141,7 @@ export const openGuestSession = () => dispatch => {
 //     })
 //     .finally(() => { dispatch(delSpinner()) })
 // }
+
+export const showUnsaved = unsavedEstimates => () => {
+  toastr.warning(...unsavedEstimatesList(unsavedEstimates))
+}

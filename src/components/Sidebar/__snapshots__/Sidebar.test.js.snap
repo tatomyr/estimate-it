@@ -13,7 +13,7 @@ ShallowWrapper {
               "graphData": Array [],
               "participants": Array [],
               "project": "",
-              "saved": false,
+              "saved": true,
               "text": "",
             },
           }
@@ -63,8 +63,8 @@ ShallowWrapper {
           title="Calculate"
 />,
         <Connect(SideButton)
-          color="primary"
-          disabled={false}
+          color="secondary"
+          disabled={true}
           name="save"
           onClick={[Function]}
           title="Save"
@@ -144,8 +144,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "color": "primary",
-          "disabled": false,
+          "color": "secondary",
+          "disabled": true,
           "name": "save",
           "onClick": [Function],
           "title": "Save",
@@ -247,8 +247,8 @@ ShallowWrapper {
             title="Calculate"
 />,
           <Connect(SideButton)
-            color="primary"
-            disabled={false}
+            color="secondary"
+            disabled={true}
             name="save"
             onClick={[Function]}
             title="Save"
@@ -328,8 +328,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "color": "primary",
-            "disabled": false,
+            "color": "secondary",
+            "disabled": true,
             "name": "save",
             "onClick": [Function],
             "title": "Save",
