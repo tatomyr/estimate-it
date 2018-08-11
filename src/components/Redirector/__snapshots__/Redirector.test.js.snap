@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Redirector's behavior renders correctly 1`] = `""`;
+
+exports[`Redirector's behavior renders correctly 2`] = `null`;
