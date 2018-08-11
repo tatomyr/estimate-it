@@ -7,8 +7,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src/",
-    "test": "react-scripts test --env=jsdom",
-    "precommit": "npm run lint",
+    "test": "react-scripts test --env=jsdom --coverage",
+    "precommit": "npm run lint && npm run test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
@@ -33,12 +33,15 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "enzyme": "^3.4.1",
+    "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.10.0",
     "gh-pages": "^1.2.0",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "react-test-renderer": "^16.4.2"
   }
 }

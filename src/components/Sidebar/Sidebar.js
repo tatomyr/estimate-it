@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SideButton from './SideButton'
+import SideButton from '../SideButton'
 import { estimateType } from '../Estimate/propTypes'
 
 const Sidebar = ({
@@ -60,19 +60,18 @@ const Sidebar = ({
         disabled={!username}
         link="/dashboard"
       />
-      <div className="sidebar-bottom">
-        <SideButton
-          title="Auth"
-          name="key"
-          color={username ? 'success' : 'warning'}
-          onClick={openAuthScreen}
-        />
-        <SideButton
-          title="Home"
-          name="home"
-          link="/"
-        />
-      </div>
+      <div className="sidebar-padding" />
+      <SideButton
+        title="Auth"
+        name="key"
+        color={username ? 'success' : 'warning'}
+        onClick={openAuthScreen}
+      />
+      <SideButton
+        title="Home"
+        name="home"
+        link="/"
+      />
     </aside>
   )
 }

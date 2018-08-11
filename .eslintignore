@@ -1,3 +1,4 @@
 /node_modules
 registerServiceWorker.js
 *.test.js
+__mocks__

@@ -1,0 +1,426 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Sidebar
+    enlargeGraph={[Function]}
+    estimates={
+        Object {
+            "new": Object {
+              "_id": "new",
+              "calculated": true,
+              "graphData": Array [],
+              "participants": Array [],
+              "project": "",
+              "saved": false,
+              "text": "",
+            },
+          }
+    }
+    graphView="minified"
+    match={
+        Object {
+            "params": Object {
+              "estimateId": "new",
+            },
+          }
+    }
+    minifyGraph={[Function]}
+    openAuthScreen={[Function]}
+    recalc={[Function]}
+    saveEstimate={[Function]}
+    username="Test User"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Connect(SideButton)
+          disabled={true}
+          link="/estimate/new"
+          name="file"
+          title="New"
+/>,
+        <Connect(SideButton)
+          color="danger"
+          name="eraser"
+          title="Erase"
+/>,
+        <Connect(SideButton)
+          disabled={true}
+          name="rocket"
+          onClick={[Function]}
+          title="Calculate"
+/>,
+        <Connect(SideButton)
+          color="primary"
+          disabled={false}
+          name="save"
+          onClick={[Function]}
+          title="Save"
+/>,
+        <Connect(SideButton)
+          name="bar-chart"
+          onClick={[Function]}
+          title="Graph"
+/>,
+        <Connect(SideButton)
+          disabled={false}
+          link="/dashboard"
+          name="list-ul"
+          title="Dashboard"
+/>,
+        <div
+          className="sidebar-padding"
+/>,
+        <Connect(SideButton)
+          color="success"
+          name="key"
+          onClick={[Function]}
+          title="Auth"
+/>,
+        <Connect(SideButton)
+          link="/"
+          name="home"
+          title="Home"
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": true,
+          "link": "/estimate/new",
+          "name": "file",
+          "title": "New",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": "danger",
+          "name": "eraser",
+          "title": "Erase",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": true,
+          "name": "rocket",
+          "onClick": [Function],
+          "title": "Calculate",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": "primary",
+          "disabled": false,
+          "name": "save",
+          "onClick": [Function],
+          "title": "Save",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "name": "bar-chart",
+          "onClick": [Function],
+          "title": "Graph",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": false,
+          "link": "/dashboard",
+          "name": "list-ul",
+          "title": "Dashboard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "sidebar-padding",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": "success",
+          "name": "key",
+          "onClick": [Function],
+          "title": "Auth",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "link": "/",
+          "name": "home",
+          "title": "Home",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "aside",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Connect(SideButton)
+            disabled={true}
+            link="/estimate/new"
+            name="file"
+            title="New"
+/>,
+          <Connect(SideButton)
+            color="danger"
+            name="eraser"
+            title="Erase"
+/>,
+          <Connect(SideButton)
+            disabled={true}
+            name="rocket"
+            onClick={[Function]}
+            title="Calculate"
+/>,
+          <Connect(SideButton)
+            color="primary"
+            disabled={false}
+            name="save"
+            onClick={[Function]}
+            title="Save"
+/>,
+          <Connect(SideButton)
+            name="bar-chart"
+            onClick={[Function]}
+            title="Graph"
+/>,
+          <Connect(SideButton)
+            disabled={false}
+            link="/dashboard"
+            name="list-ul"
+            title="Dashboard"
+/>,
+          <div
+            className="sidebar-padding"
+/>,
+          <Connect(SideButton)
+            color="success"
+            name="key"
+            onClick={[Function]}
+            title="Auth"
+/>,
+          <Connect(SideButton)
+            link="/"
+            name="home"
+            title="Home"
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": true,
+            "link": "/estimate/new",
+            "name": "file",
+            "title": "New",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": "danger",
+            "name": "eraser",
+            "title": "Erase",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": true,
+            "name": "rocket",
+            "onClick": [Function],
+            "title": "Calculate",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": "primary",
+            "disabled": false,
+            "name": "save",
+            "onClick": [Function],
+            "title": "Save",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "name": "bar-chart",
+            "onClick": [Function],
+            "title": "Graph",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": false,
+            "link": "/dashboard",
+            "name": "list-ul",
+            "title": "Dashboard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "sidebar-padding",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": "success",
+            "name": "key",
+            "onClick": [Function],
+            "title": "Auth",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "link": "/",
+            "name": "home",
+            "title": "Home",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "aside",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

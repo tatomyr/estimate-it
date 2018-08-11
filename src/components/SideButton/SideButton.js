@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FA from 'react-fontawesome'
 import { Button } from 'reactstrap'
-import { connect } from 'react-redux'
-import { redirect } from '../../redux/actions/async'
 
 const SideButton = ({
   title,
@@ -12,9 +10,13 @@ const SideButton = ({
   onClick,
   link,
   disabled,
-  redirect, // eslint-disable-line no-shadow
+  redirect,
 }) => (
-  <div className="side-button" data-title={title} data-color={disabled ? 'secondary' : color}>
+  <div
+    className="side-button"
+    data-title={title}
+    data-color={disabled ? 'secondary' : color}
+  >
     <Button
       outline
       color={disabled ? 'secondary' : color}
@@ -43,4 +45,4 @@ SideButton.defaultProps = {
   disabled: false,
 }
 
-export default connect(null, ({ redirect }))(SideButton)
+export default SideButton
