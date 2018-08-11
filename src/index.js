@@ -9,7 +9,8 @@ import 'font-awesome/css/font-awesome.min.css'
 
 // Register Monaco Editor web worker before the other stuff
 window.MonacoEnvironment = {
-  getWorkerUrl: () => '/monaco-editor-worker-loader-proxy.js',
+  // We assume that we're using BrowerRouter from react-router-dom
+  getWorkerUrl: () => `${document.location.pathname}monaco-editor-worker-loader-proxy.js`,
 }
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'))

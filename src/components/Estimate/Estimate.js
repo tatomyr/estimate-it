@@ -10,21 +10,19 @@ class Estimate extends React.Component {
     this.fetchHelper()
   }
 
-  componentDidUpdate = prevProps => {
-    this.fetchHelper(prevProps)
+  componentDidUpdate = () => {
+    this.fetchHelper()
   }
 
-  fetchHelper = prevProps => {
+  fetchHelper = () => {
     const {
       getEstimate,
       match: { params: { estimateId } },
       estimates,
     } = this.props
-    // Fetch an appropriate estimate on route change. FIXME: do we still need this statement?
-    const routeHasBeenChanged = prevProps && prevProps.match.params.estimateId !== estimateId
+    // Fetching an appropriate estimate on route change.
     const estimate = estimates[estimateId]
     const estimateIsntLoaded = !estimate || estimate.text === undefined
-    console.log(prevProps, '?', routeHasBeenChanged, '&&', estimateIsntLoaded)
     if (estimateIsntLoaded) {
       getEstimate({ estimateId })
     }
