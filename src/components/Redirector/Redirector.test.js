@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 import { HashRouter as Router } from 'react-router-dom'
 import Redirector from './Redirector'
 
-describe("Redirector's behavior", () => {
+describe('Redirector', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(<Redirector

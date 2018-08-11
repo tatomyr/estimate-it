@@ -85,7 +85,7 @@ ShallowWrapper {
 />,
         <Connect(SideButton)
           color="success"
-          name="key"
+          name="unlock"
           onClick={[Function]}
           title="Auth"
 />,
@@ -198,7 +198,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "color": "success",
-          "name": "key",
+          "name": "unlock",
           "onClick": [Function],
           "title": "Auth",
         },
@@ -269,7 +269,7 @@ ShallowWrapper {
 />,
           <Connect(SideButton)
             color="success"
-            name="key"
+            name="unlock"
             onClick={[Function]}
             title="Auth"
 />,
@@ -382,7 +382,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "color": "success",
-            "name": "key",
+            "name": "unlock",
             "onClick": [Function],
             "title": "Auth",
           },

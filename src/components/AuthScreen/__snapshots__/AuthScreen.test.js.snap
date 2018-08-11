@@ -1,9 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
+exports[`AuthScreen renders correctly for anonymous user 1`] = `
 <div
   className="overlay auth-screen"
 >
+  <nav
+    className="navbar navbar-expand navbar-light bg-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Estimate It!
+    </a>
+    <ul
+      className="ml-auto navbar-nav"
+    >
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="https://github.com/tatomyr/estimate-it"
+          onClick={[Function]}
+        >
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </nav>
   <div
     className="panel"
   >
@@ -24,7 +49,10 @@ exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
           <span
             className="input-group-text"
           >
-            @
+            <span
+              aria-hidden={true}
+              className="fa fa-user"
+            />
           </span>
         </div>
         <input
@@ -32,7 +60,6 @@ exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
           className="form-control"
           id="username"
           name="username"
-          placeholder="Enter your public name…"
           required={true}
           type="text"
         />
@@ -51,14 +78,16 @@ exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
           <span
             className="input-group-text"
           >
-            **
+            <span
+              aria-hidden={true}
+              className="fa fa-key"
+            />
           </span>
         </div>
         <input
           className="form-control"
           id="credentials"
           name="credentials"
-          placeholder="Enter access key…"
           required={true}
           type="password"
         />
@@ -84,10 +113,35 @@ exports[`AuthScreen behavior renders correctly for anonymous user 1`] = `
 </div>
 `;
 
-exports[`AuthScreen behavior renders correctly for authorized user 1`] = `
+exports[`AuthScreen renders correctly for authorized user 1`] = `
 <div
   className="overlay auth-screen"
 >
+  <nav
+    className="navbar navbar-expand navbar-light bg-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Estimate It!
+    </a>
+    <ul
+      className="ml-auto navbar-nav"
+    >
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="https://github.com/tatomyr/estimate-it"
+          onClick={[Function]}
+        >
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </nav>
   <div
     className="panel"
   >

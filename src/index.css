@@ -1,12 +1,24 @@
 /* Here to put css resets and imports */
 
-* {
+html {
+  font-size: 12px;
+}
+
+*, *::before, *::after {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+
+body div#root {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-monospace);
+  font-size: 12px;
+  font-weight: normal;
 }
 
 /* Generic styles */
@@ -26,5 +38,11 @@ pre {
   bottom: 0;
   left: 0;
   text-align: center;
-  padding: 200px 50px;
+}
+
+.panel {
+  max-width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 100px 0 0 0;
 }

@@ -5,11 +5,14 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
+  Alert,
 } from 'reactstrap'
+import FA from 'react-fontawesome'
 import * as api from '../../helpers/api'
+import Header from '../Header'
 
 const AuthScreen = ({
-  match: { params },
+  match: { url, params },
   username,
   checkCreds,
   resetCreds,
@@ -18,6 +21,7 @@ const AuthScreen = ({
   openGuestSession,
 }) => (
   <div className="overlay auth-screen">
+    <Header />
     {username ? (
       <div className="panel">
         <div>
@@ -45,6 +49,11 @@ const AuthScreen = ({
       </div>
     ) : (
       <div className="panel">
+        {(url.startsWith('/estimate/') && params.estimateId !== 'new') ? (
+          <Alert color="warning">
+            Please enter a valid credentials to get access to this estimate
+          </Alert>
+        ) : null}
         <form
           onSubmit={e => {
             e.preventDefault()
@@ -58,12 +67,13 @@ const AuthScreen = ({
           </label>
           <InputGroup>
             <InputGroupAddon addonType="prepend">
-              @
+              <span className="input-group-text">
+                <FA name="user" />
+              </span>
             </InputGroupAddon>
             <Input
               name="username"
               id="username"
-              placeholder="Enter your public name…"
               required
               autoFocus // eslint-disable-line jsx-a11y/no-autofocus
             />
@@ -73,13 +83,14 @@ const AuthScreen = ({
           </label>
           <InputGroup>
             <InputGroupAddon addonType="prepend">
-              **
+              <span className="input-group-text">
+                <FA name="key" />
+              </span>
             </InputGroupAddon>
             <Input
               type="password"
               name="credentials"
               id="credentials"
-              placeholder="Enter access key…"
               required
             />
           </InputGroup>
@@ -103,6 +114,7 @@ const AuthScreen = ({
 
 AuthScreen.propTypes = {
   match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
     params: PropTypes.shape({
       estimateId: PropTypes.string,
     }).isRequired,

@@ -1,0 +1,4 @@
+/* Workaround for reactstrap */
+nav a.navbar-brand {
+  font-size: 1em;
+}

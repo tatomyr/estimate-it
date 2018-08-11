@@ -18,7 +18,7 @@ import Header from '../Header'
 import { estimateType } from '../Estimate/propTypes'
 
 const Dashboard = ({ estimates }) => (
-  <div>
+  <div className="dashboard">
     <Header />
     <Container>
       <Row>

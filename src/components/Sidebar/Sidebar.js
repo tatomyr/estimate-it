@@ -63,7 +63,7 @@ const Sidebar = ({
       <div className="sidebar-padding" />
       <SideButton
         title="Auth"
-        name="key"
+        name={username ? 'unlock' : 'lock'}
         color={username ? 'success' : 'warning'}
         onClick={openAuthScreen}
       />

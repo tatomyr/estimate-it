@@ -2,12 +2,6 @@
   background-color: rgba(240, 248, 255, 0.99);
 }
 
-.auth-screen .panel {
-  max-width: 400px;
-  text-align: center;
-  margin: 0 auto;
-}
-
 .auth-screen form label {
   display: block;
 }
@@ -20,3 +14,16 @@
   margin: 5px;
 }
 
+/* Workaround for reactstrap */
+.auth-screen span.input-group-text {
+  width: 2.5rem;
+  justify-content: center;
+}
+
+.auth-screen label,
+.auth-screen input,
+.auth-screen input:focus,
+.auth-screen span,
+.auth-screen div {
+  color: #007bff;
+}

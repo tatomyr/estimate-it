@@ -4,11 +4,11 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import AuthScreen from './AuthScreen'
 
-describe('AuthScreen behavior', () => {
+describe('AuthScreen', () => {
   it('renders correctly for authorized user', () => {
     const tree = renderer
       .create(<AuthScreen
-        match={{ params: { estimateId: 'new' } }}
+        match={{ url: '/estimate/new', params: { estimateId: 'new' } }}
         username="Test User"
         checkCreds={() => null}
         resetCreds={() => null}
@@ -23,7 +23,7 @@ describe('AuthScreen behavior', () => {
   it('renders correctly for anonymous user', () => {
     const tree = renderer
       .create(<AuthScreen
-        match={{ params: { estimateId: 'new' } }}
+        match={{ url: '/estimate/new', params: { estimateId: 'new' } }}
         username=""
         checkCreds={() => null}
         resetCreds={() => null}
