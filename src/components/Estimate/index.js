@@ -6,7 +6,6 @@ import {
 } from '../../redux/actions'
 import {
   getEstimate,
-  showUnsaved,
 } from '../../redux/actions/async'
 import Estimate from './Estimate'
 import './styles.css'
@@ -23,7 +22,6 @@ const mapDispatchToProps = ({
   updateEstimate,
   getEstimate,
   enlargeGraph,
-  showUnsaved,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Estimate))

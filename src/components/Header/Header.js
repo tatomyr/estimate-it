@@ -9,7 +9,8 @@ import {
 
 const Header = () => (
   <Navbar color="light" light expand="xs">
-    <NavbarBrand href="/">
+    {/* We assume that we're using HashRouter from react-router-dom */}
+    <NavbarBrand href={document.location.pathname}>
       Estimate It!
     </NavbarBrand>
     <Nav className="ml-auto" navbar>

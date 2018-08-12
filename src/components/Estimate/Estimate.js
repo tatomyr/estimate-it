@@ -13,16 +13,14 @@ class Estimate extends React.Component {
   componentDidUpdate = () => {
     this.fetchHelper()
     // Checking for unsaved estimates
-    const { estimates, showUnsaved } = this.props
-    const unsavedEstimates = Object
+    const { estimates } = this.props
+    const thereIsUnsavedEstimate = Object
       .values(estimates)
-      .filter(({ saved }) => !saved)
-      .map(({ _id, project }) => (project || _id))
+      .some(({ saved }) => !saved)
     // Setting up hook to prevent of accidental window closing/refreshing
-    window.onbeforeunload = unsavedEstimates.length ? () => {
-      showUnsaved(unsavedEstimates)
-      return true
-    } : null
+    window.onbeforeunload = thereIsUnsavedEstimate
+      ? () => true
+      : null
   }
 
   fetchHelper = () => {
@@ -80,7 +78,6 @@ Estimate.propTypes = {
   updateEstimate: PropTypes.func.isRequired,
   graphView: PropTypes.string.isRequired,
   enlargeGraph: PropTypes.func.isRequired,
-  showUnsaved: PropTypes.func.isRequired,
 }
 
 export default Estimate

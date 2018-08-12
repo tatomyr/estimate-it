@@ -1,4 +1,3 @@
-// FIXME: clean up here
 // TODO: rewrite with async-await syntax
 
 import { toastr } from 'react-redux-toastr'
@@ -13,7 +12,6 @@ import {
   defaultError,
   noName,
   noParticipants,
-  unsavedEstimatesList,
 } from '../../helpers/messages'
 import {
   addSpinner,
@@ -127,24 +125,4 @@ export const openGuestSession = () => dispatch => {
   dispatch({ type: '__ASYNC__OPEN_GUEST_SESSION' })
   dispatch(closeAuthScreen())
   dispatch(redirect('/estimate/new'))
-}
-
-// FIXME: del OR modify
-// export const fetchTitles = () => dispatch => {
-//   dispatch({ type: '__ASYNC__FETCH_TITLES' })
-
-//   dispatch(addSpinner())
-//   // TODO: implelment fetching only recent titles at first
-//   return api.fetchTitles()
-//     .then(titles => {
-//       dispatch(setTitles(titles))
-//     })
-//     .catch(err => {
-//       toastr.error(...defaultError(err))
-//     })
-//     .finally(() => { dispatch(delSpinner()) })
-// }
-
-export const showUnsaved = unsavedEstimates => () => {
-  toastr.warning(...unsavedEstimatesList(unsavedEstimates))
 }

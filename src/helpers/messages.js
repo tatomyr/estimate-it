@@ -38,14 +38,3 @@ export const cantSave = message => [
 ]
 
 export const noEstimate = "We can't find such a project :("
-
-export const unsavedEstimatesList = unsavedEstimates => [
-  `You have ${
-    unsavedEstimates.length
-  } ${
-    unsavedEstimates.length > 1 ? 'estimates' : 'an estimate'
-  } unsaved`,
-  unsavedEstimates
-    .map(item => `«${item}»`)
-    .join(', \n'),
-]

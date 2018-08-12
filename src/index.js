@@ -9,7 +9,7 @@ import 'font-awesome/css/font-awesome.min.css'
 
 // Register Monaco Editor web worker before the other stuff
 window.MonacoEnvironment = {
-  // We assume that we're using BrowerRouter from react-router-dom
+  // We assume that we're using HashRouter from react-router-dom
   getWorkerUrl: () => `${document.location.pathname}monaco-editor-worker-loader-proxy.js`,
 }
 
