@@ -5,7 +5,7 @@ import creds, { emptyCreds } from './creds'
 
 describe('authentication', () => {
   it('returns initial state', () => {
-    expect(creds(undefined, {})).toEqual({ ...emptyCreds })
+    expect(creds(undefined, {})).toEqual(emptyCreds)
   })
 
   it('sets checking creds status correctly', () => {

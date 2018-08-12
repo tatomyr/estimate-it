@@ -75,7 +75,6 @@ ShallowWrapper {
           title="Graph"
 />,
         <Connect(SideButton)
-          disabled={false}
           link="/dashboard"
           name="list-ul"
           title="Dashboard"
@@ -172,7 +171,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "disabled": false,
           "link": "/dashboard",
           "name": "list-ul",
           "title": "Dashboard",
@@ -259,7 +257,6 @@ ShallowWrapper {
             title="Graph"
 />,
           <Connect(SideButton)
-            disabled={false}
             link="/dashboard"
             name="list-ul"
             title="Dashboard"
@@ -356,7 +353,6 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "disabled": false,
             "link": "/dashboard",
             "name": "list-ul",
             "title": "Dashboard",

@@ -1,0 +1,20 @@
+/*  globals describe, it, expect */
+
+// import {
+//   UPDATE_ESTIMATE,
+//   RECALCULATE,
+//   CLEAN_ESTIMATE,
+//   SET_TITLES,
+//   MARK_ESTIMATE_SAVED,
+// } from '../actions/types'
+import estimates, { emptyEstimate } from './estimates'
+
+// FIXME: avoid duplicating 'new' estimates after logging out
+
+describe('estimates reducer', () => {
+  it('returns initial state', () => {
+    expect(estimates(undefined, {})).toEqual({ new: emptyEstimate })
+  })
+
+  // TODO: implement tests for CLEAN_ESTIMATE
+})

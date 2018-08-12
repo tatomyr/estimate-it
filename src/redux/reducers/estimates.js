@@ -48,7 +48,10 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         // Put 'new' here to avoid creating an estimate with an undefined `_id`
         // ...while logging out on different routes
         // ...(that may not contain an `:estimateId` param)
-        [payload || 'new']: emptyEstimate,
+        [payload || 'new']: {
+          ...emptyEstimate,
+          _id: payload || 'new',
+        }, // FIXME: !!
       })
 
     case RECALCULATE:

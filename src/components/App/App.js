@@ -4,10 +4,10 @@ import { Switch, Route } from 'react-router-dom'
 import Toastr from '../Toastr'
 import Redirector from '../Redirector'
 import Spinner from '../Spinner'
-import Private from '../Private'
 import Estimate from '../Estimate'
 import Dashboard from '../Dashboard'
 import AuthScreen from '../AuthScreen'
+import ProtectedRoute from '../ProtectedRoute'
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -18,13 +18,11 @@ class App extends React.Component {
   render = () => (
     <div>
       <Redirector />
-      <Private>
-        <Switch>
-          <Route path="/estimate/:estimateId" component={Estimate} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/auth" component={AuthScreen} />
-        </Switch>
-      </Private>
+      <Switch>
+        <ProtectedRoute path="/estimate/:estimateId" component={Estimate} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/auth" component={AuthScreen} />
+      </Switch>
       {/* eslint-disable-next-line react/destructuring-assignment */}
       {this.props.showAuthScreen && <AuthScreen />}
       <Spinner />

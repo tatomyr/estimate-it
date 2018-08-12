@@ -57,7 +57,6 @@ const Sidebar = ({
       <SideButton
         title="Dashboard"
         name="list-ul"
-        disabled={!username}
         link="/dashboard"
       />
       <div className="sidebar-padding" />
