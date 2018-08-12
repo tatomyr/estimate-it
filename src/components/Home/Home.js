@@ -32,6 +32,13 @@ const Home = () => (
               </Button>
             </Link>
           </Col>
+          <Col>
+            <Link to="/auth">
+              <Button>
+                Authenticate
+              </Button>
+            </Link>
+          </Col>
         </Row>
       </div>
 

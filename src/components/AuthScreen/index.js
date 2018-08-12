@@ -10,10 +10,17 @@ import {
 import {
   checkCreds,
   openGuestSession,
+  redirect,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({ creds: { username } }) => ({
+const mapStateToProps = ({
+  creds: {
+    username,
+    checkingCreds,
+  },
+}) => ({
   username,
+  checkingCreds,
 })
 
 const mapDispatchToProps = ({
@@ -22,6 +29,7 @@ const mapDispatchToProps = ({
   cleanEstimate,
   openGuestSession,
   resetCreds,
+  redirect,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthScreen))

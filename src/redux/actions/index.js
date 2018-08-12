@@ -14,6 +14,7 @@ import {
   MARK_ESTIMATE_SAVED,
   ENLARGE_GRAPH,
   MINIFY_GRAPH,
+  SET_CREDS_CHECKING,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -55,6 +56,10 @@ export const openAuthScreen = () => ({
 
 export const closeAuthScreen = () => ({
   type: CLOSE_AUTH_SCREEN,
+})
+
+export const setCredsChecking = () => ({
+  type: SET_CREDS_CHECKING,
 })
 
 export const setCreds = () => ({

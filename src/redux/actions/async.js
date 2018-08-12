@@ -26,6 +26,7 @@ import {
   resetCreds,
   setTitles,
   markEstimateSaved,
+  setCredsChecking,
 } from './index'
 
 export const redirect = href => dispatch => {
@@ -108,6 +109,7 @@ export const getEstimate = ({ estimateId }) => dispatch => {
 export const checkCreds = () => dispatch => {
   dispatch({ type: '__ASYNC__CHECK_CREDS' })
 
+  dispatch(setCredsChecking())
   dispatch(addSpinner())
   return api.fetchTitles()
     .then(titles => {

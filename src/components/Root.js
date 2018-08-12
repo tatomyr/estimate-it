@@ -12,6 +12,7 @@ const Root = ({ store }) => (
         <Route exact path="/" component={Home} />
         <Route path="/estimate/:estimateId" component={App} />
         <Route path="/dashboard" component={App} />
+        <Route path="/auth" component={App} />
       </Switch>
     </Router>
   </Provider>

@@ -22,9 +22,10 @@ class App extends React.Component {
         <Switch>
           <Route path="/estimate/:estimateId" component={Estimate} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/auth" component={AuthScreen} />
         </Switch>
       </Private>
-      {/* eslint-disable-next-line */}
+      {/* eslint-disable-next-line react/destructuring-assignment */}
       {this.props.showAuthScreen && <AuthScreen />}
       <Spinner />
       <Toastr />

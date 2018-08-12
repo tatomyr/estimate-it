@@ -5,7 +5,7 @@
   "homepage": "https://tatomyr.github.io/estimate-it/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run analyze",
     "lint": "eslint src/",
     "test": "react-scripts test --env=jsdom --coverage",
     "precommit": "npm run lint && npm run test",

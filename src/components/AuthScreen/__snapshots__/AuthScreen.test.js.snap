@@ -167,3 +167,40 @@ exports[`AuthScreen renders correctly for authorized user 1`] = `
   </div>
 </div>
 `;
+
+exports[`AuthScreen renders correctly when checking credentials 1`] = `
+<div
+  className="overlay auth-screen"
+>
+  <nav
+    className="navbar navbar-expand navbar-light bg-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Estimate It!
+    </a>
+    <ul
+      className="ml-auto navbar-nav"
+    >
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="https://github.com/tatomyr/estimate-it"
+          onClick={[Function]}
+        >
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="panel"
+  >
+    Checking permissions. Please wait…
+  </div>
+</div>
+`;
