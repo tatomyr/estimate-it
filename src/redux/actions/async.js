@@ -16,10 +16,9 @@ import {
 import {
   addSpinner,
   delSpinner,
-  setHref,
-  resetHref,
+  setLocation,
+  resetLocation,
   updateEstimate,
-  closeAuthScreen,
   setCreds,
   resetCreds,
   setTitles,
@@ -27,10 +26,10 @@ import {
   setCredsChecking,
 } from './index'
 
-export const redirect = href => dispatch => {
+export const redirect = location => dispatch => {
   dispatch({ type: '__ASYNC__REDIRECT' })
-  dispatch(setHref(href))
-  setTimeout(() => dispatch(resetHref()))
+  dispatch(setLocation(location))
+  setTimeout(() => dispatch(resetLocation()))
 }
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
@@ -115,14 +114,7 @@ export const checkCreds = () => dispatch => {
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))
       dispatch(setCreds())
-      dispatch(closeAuthScreen())
     })
     .catch(() => { dispatch(resetCreds()) })
     .finally(() => { dispatch(delSpinner()) })
-}
-
-export const openGuestSession = () => dispatch => {
-  dispatch({ type: '__ASYNC__OPEN_GUEST_SESSION' })
-  dispatch(closeAuthScreen())
-  dispatch(redirect('/estimate/new'))
 }

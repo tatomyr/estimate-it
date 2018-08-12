@@ -1,15 +1,14 @@
 import {
   UPDATE_ESTIMATE,
   CLEAN_ESTIMATE,
+  CLEAN_ALL_ESTIMATES,
   RECALCULATE,
-  SET_HREF,
-  RESET_HREF,
+  SET_LOCATION,
+  RESET_LOCATION,
   ADD_SPINNER,
   DEL_SPINNER,
   SET_CREDS,
   RESET_CREDS,
-  OPEN_AUTH_SCREEN,
-  CLOSE_AUTH_SCREEN,
   SET_TITLES,
   MARK_ESTIMATE_SAVED,
   ENLARGE_GRAPH,
@@ -28,18 +27,22 @@ export const cleanEstimate = ({ estimateId }) => ({
   payload: estimateId,
 })
 
+export const cleanAllEstimates = () => ({
+  type: CLEAN_ALL_ESTIMATES,
+})
+
 export const recalc = _id => ({
   type: RECALCULATE,
   payload: _id,
 })
 
-export const setHref = href => ({
-  type: SET_HREF,
-  payload: href,
+export const setLocation = location => ({
+  type: SET_LOCATION,
+  payload: location,
 })
 
-export const resetHref = () => ({
-  type: RESET_HREF,
+export const resetLocation = () => ({
+  type: RESET_LOCATION,
 })
 
 export const addSpinner = () => ({
@@ -48,14 +51,6 @@ export const addSpinner = () => ({
 
 export const delSpinner = () => ({
   type: DEL_SPINNER,
-})
-
-export const openAuthScreen = () => ({
-  type: OPEN_AUTH_SCREEN,
-})
-
-export const closeAuthScreen = () => ({
-  type: CLOSE_AUTH_SCREEN,
 })
 
 export const setCredsChecking = () => ({

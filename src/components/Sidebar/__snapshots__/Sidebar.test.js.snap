@@ -19,6 +19,11 @@ ShallowWrapper {
           }
     }
     graphView="minified"
+    location={
+        Object {
+            "pathname": "/",
+          }
+    }
     match={
         Object {
             "params": Object {
@@ -27,7 +32,6 @@ ShallowWrapper {
           }
     }
     minifyGraph={[Function]}
-    openAuthScreen={[Function]}
     recalc={[Function]}
     saveEstimate={[Function]}
     username="Test User"
@@ -84,8 +88,17 @@ ShallowWrapper {
 />,
         <Connect(SideButton)
           color="success"
+          link={
+                    Object {
+                              "pathname": "/auth",
+                              "state": Object {
+                                "from": Object {
+                                  "pathname": "/",
+                                },
+                              },
+                            }
+          }
           name="unlock"
-          onClick={[Function]}
           title="Auth"
 />,
         <Connect(SideButton)
@@ -196,8 +209,15 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "color": "success",
+          "link": Object {
+            "pathname": "/auth",
+            "state": Object {
+              "from": Object {
+                "pathname": "/",
+              },
+            },
+          },
           "name": "unlock",
-          "onClick": [Function],
           "title": "Auth",
         },
         "ref": null,
@@ -266,8 +286,17 @@ ShallowWrapper {
 />,
           <Connect(SideButton)
             color="success"
+            link={
+                        Object {
+                                    "pathname": "/auth",
+                                    "state": Object {
+                                      "from": Object {
+                                        "pathname": "/",
+                                      },
+                                    },
+                                  }
+            }
             name="unlock"
-            onClick={[Function]}
             title="Auth"
 />,
           <Connect(SideButton)
@@ -378,8 +407,15 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "color": "success",
+            "link": Object {
+              "pathname": "/auth",
+              "state": Object {
+                "from": Object {
+                  "pathname": "/",
+                },
+              },
+            },
             "name": "unlock",
-            "onClick": [Function],
             "title": "Auth",
           },
           "ref": null,

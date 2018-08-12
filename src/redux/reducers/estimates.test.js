@@ -4,6 +4,7 @@
 //   UPDATE_ESTIMATE,
 //   RECALCULATE,
 //   CLEAN_ESTIMATE,
+//   CLEAN_ALL_ESTIMATES,
 //   SET_TITLES,
 //   MARK_ESTIMATE_SAVED,
 // } from '../actions/types'

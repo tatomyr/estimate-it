@@ -102,13 +102,18 @@ exports[`AuthScreen renders correctly for anonymous user 1`] = `
     </form>
     Or
     <br />
-    <button
-      className="btn btn-outline-primary"
+    <a
+      href="#/estimate/new"
       onClick={[Function]}
-      type="button"
     >
-      Guest Session
-    </button>
+      <button
+        className="btn btn-outline-primary"
+        onClick={[Function]}
+        type={undefined}
+      >
+        Guest Session
+      </button>
+    </a>
   </div>
 </div>
 `;

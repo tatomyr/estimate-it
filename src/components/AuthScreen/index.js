@@ -3,13 +3,11 @@ import { withRouter } from 'react-router-dom'
 import AuthScreen from './AuthScreen'
 import './styles.css'
 import {
-  closeAuthScreen,
-  cleanEstimate,
+  cleanAllEstimates,
   resetCreds,
 } from '../../redux/actions'
 import {
   checkCreds,
-  openGuestSession,
   redirect,
 } from '../../redux/actions/async'
 
@@ -25,9 +23,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = ({
   checkCreds,
-  closeAuthScreen,
-  cleanEstimate,
-  openGuestSession,
+  cleanAllEstimates,
   resetCreds,
   redirect,
 })

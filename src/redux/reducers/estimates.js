@@ -3,6 +3,7 @@ import {
   UPDATE_ESTIMATE,
   RECALCULATE,
   CLEAN_ESTIMATE,
+  CLEAN_ALL_ESTIMATES,
   SET_TITLES,
   MARK_ESTIMATE_SAVED,
 } from '../actions/types'
@@ -51,7 +52,12 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
         [payload || 'new']: {
           ...emptyEstimate,
           _id: payload || 'new',
-        }, // FIXME: !!
+        }, // TODO: use it somewhere
+      })
+
+    case CLEAN_ALL_ESTIMATES:
+      return ({
+        new: emptyEstimate,
       })
 
     case RECALCULATE:

@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SideButton from '../SideButton'
 import { estimateType } from '../Estimate/propTypes'
+import { locationType } from '../Redirector/Redirector'
 
 const Sidebar = ({
   match: { params: { estimateId } },
+  location,
   recalc,
   saveEstimate,
-  openAuthScreen,
   estimates,
   username,
   graphView,
@@ -64,7 +65,10 @@ const Sidebar = ({
         title="Auth"
         name={username ? 'unlock' : 'lock'}
         color={username ? 'success' : 'warning'}
-        onClick={openAuthScreen}
+        link={{
+          pathname: '/auth',
+          state: { from: location },
+        }}
       />
       <SideButton
         title="Home"
@@ -81,9 +85,9 @@ Sidebar.propTypes = {
       estimateId: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  location: locationType.isRequired,
   recalc: PropTypes.func.isRequired,
   saveEstimate: PropTypes.func.isRequired,
-  openAuthScreen: PropTypes.func.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
   username: PropTypes.string,
   graphView: PropTypes.string.isRequired,

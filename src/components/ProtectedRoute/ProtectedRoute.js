@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route } from 'react-router-dom'
-import AuthScreen from '../AuthScreen'
+import { Route, Redirect } from 'react-router-dom'
+import { locationType } from '../Redirector/Redirector'
 
+// TODO: implement checkCreds here if !username instead of checkeng if App
 const ProtectedRoute = ({
   component: Component,
   username,
@@ -13,16 +14,14 @@ const ProtectedRoute = ({
     {...rest}
     render={props => (username || estimateId === 'new'
       ? <Component {...props} />
-      : <AuthScreen />
-      // TODO: implement redirection
-      // : (
-      //   <Redirect
-      //     to={{
-      //       pathname: '/auth',
-      //       state: { from: props.location },
-      //     }}
-      //   />
-      // )
+      : (
+        <Redirect
+          to={{
+            pathname: '/auth',
+            state: { from: props.location, redirectAutomatically: true },
+          }}
+        />
+      )
     )}
   />
 )
@@ -35,6 +34,7 @@ ProtectedRoute.propTypes = {
       estimateId: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  location: locationType.isRequired,
 }
 
 export default ProtectedRoute

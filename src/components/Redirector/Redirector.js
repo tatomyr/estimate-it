@@ -2,13 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
-const Redirector = ({ redirector: { href } }) => href && (
-  <Redirect to={href} />
+const Redirector = ({ redirector: { location } }) => location && (
+  <Redirect to={location} />
 )
+
+export const locationType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    state: PropTypes.any,
+  }),
+])
 
 Redirector.propTypes = {
   redirector: PropTypes.shape({
-    href: PropTypes.string.isRequired,
+    location: locationType,
   }).isRequired,
 }
 

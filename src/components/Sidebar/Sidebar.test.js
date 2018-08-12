@@ -11,9 +11,9 @@ describe('Sidebar', () => {
     configure({ adapter: new Adapter() })
     const tree = shallow(<Sidebar
       match={{ params: { estimateId: 'new' } }}
+      location={{ pathname: '/' }}
       recalc={() => null}
       saveEstimate={() => null}
-      openAuthScreen={() => null}
       estimates={{ new: emptyEstimate }}
       username="Test User"
       graphView="minified"

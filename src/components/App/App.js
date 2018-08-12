@@ -23,8 +23,6 @@ class App extends React.Component {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/auth" component={AuthScreen} />
       </Switch>
-      {/* eslint-disable-next-line react/destructuring-assignment */}
-      {this.props.showAuthScreen && <AuthScreen />}
       <Spinner />
       <Toastr />
     </div>
@@ -33,7 +31,6 @@ class App extends React.Component {
 
 App.propTypes = {
   checkCreds: PropTypes.func.isRequired,
-  showAuthScreen: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 }
 
