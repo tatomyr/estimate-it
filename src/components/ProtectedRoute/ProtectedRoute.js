@@ -1,18 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import { locationType } from '../Redirector/Redirector'
+import { locationType, matchType } from '../../helpers/propTypes'
 
 // TODO: implement checkCreds here if !username instead of checkeng if App
 const ProtectedRoute = ({
   component: Component,
+  isProtected,
   username,
   match: { params: { estimateId = '' } },
   ...rest
 }) => (
   <Route
     {...rest}
-    render={props => (username || estimateId === 'new'
+    render={props => (!isProtected || username || estimateId === 'new'
       ? <Component {...props} />
       : (
         <Redirect
@@ -28,13 +29,14 @@ const ProtectedRoute = ({
 
 ProtectedRoute.propTypes = {
   component: PropTypes.func.isRequired,
+  isProtected: PropTypes.bool,
   username: PropTypes.string.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: matchType.isRequired,
   location: locationType.isRequired,
+}
+
+ProtectedRoute.defaultProps = {
+  isProtected: false,
 }
 
 export default ProtectedRoute

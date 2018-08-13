@@ -10,7 +10,7 @@ import {
 } from 'reactstrap'
 import FA from 'react-fontawesome'
 import * as api from '../../helpers/api'
-import { locationType } from '../Redirector/Redirector'
+import { locationType } from '../../helpers/propTypes'
 
 const AlertAccessingEstimate = ({ from }) => ((from
   && from.pathname

@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SideButton from '../SideButton'
-import { estimateType } from '../Estimate/propTypes'
-import { locationType } from '../Redirector/Redirector'
+import { locationType, matchType, estimateType } from '../../helpers/propTypes'
 
 const Sidebar = ({
   match: { params: { estimateId } },
@@ -80,11 +79,7 @@ const Sidebar = ({
 }
 
 Sidebar.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: matchType.isRequired,
   location: locationType.isRequired,
   recalc: PropTypes.func.isRequired,
   saveEstimate: PropTypes.func.isRequired,

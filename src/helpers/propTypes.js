@@ -11,3 +11,17 @@ export const estimateType = PropTypes.shape({
   calculated: PropTypes.bool,
   saved: PropTypes.bool.isRequired,
 })
+
+export const matchType = PropTypes.shape({
+  params: PropTypes.shape({
+    estimateId: PropTypes.string,
+  }).isRequired,
+})
+
+export const locationType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    state: PropTypes.any,
+  }),
+])

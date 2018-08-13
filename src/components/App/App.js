@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import Toastr from '../Toastr'
 import Redirector from '../Redirector'
 import Spinner from '../Spinner'
 import Estimate from '../Estimate'
 import Dashboard from '../Dashboard'
 import AuthScreen from '../AuthScreen'
-import ProtectedRoute from '../ProtectedRoute'
+import Route from '../ProtectedRoute'
 
+// TODO: move to Root. Check creds in ProtectedRoute
 class App extends React.Component {
   componentDidMount = () => {
     const { checkCreds, username } = this.props
@@ -19,7 +20,7 @@ class App extends React.Component {
     <div>
       <Redirector />
       <Switch>
-        <ProtectedRoute path="/estimate/:estimateId" component={Estimate} />
+        <Route isProtected path="/estimate/:estimateId" component={Estimate} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/auth" component={AuthScreen} />
       </Switch>

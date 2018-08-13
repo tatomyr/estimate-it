@@ -11,7 +11,7 @@ import {
   Button,
 } from 'reactstrap'
 import FA from 'react-fontawesome'
-import { estimateType } from '../Estimate/propTypes'
+import { estimateType } from '../../helpers/propTypes'
 
 const Project = ({
   estimate: {

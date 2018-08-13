@@ -8,7 +8,7 @@ import {
 } from 'reactstrap'
 import Header from '../Header'
 import Project from './Project'
-import { estimateType } from '../Estimate/propTypes'
+import { estimateType } from '../../helpers/propTypes'
 
 const Dashboard = ({ estimates }) => (
   <div className="dashboard">

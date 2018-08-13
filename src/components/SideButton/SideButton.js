@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FA from 'react-fontawesome'
 import { Button } from 'reactstrap'
-import { locationType } from '../Redirector/Redirector'
+import { locationType } from '../../helpers/propTypes'
 
 const SideButton = ({
   title,

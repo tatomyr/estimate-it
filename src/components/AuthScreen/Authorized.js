@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import * as api from '../../helpers/api'
-import { locationType } from '../Redirector/Redirector'
+import { locationType } from '../../helpers/propTypes'
 
 const Authorized = ({
   username,

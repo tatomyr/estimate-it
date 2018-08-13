@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
-import { estimateType } from './propTypes'
+import { matchType, estimateType } from '../../helpers/propTypes'
 
 class Estimate extends React.Component {
   componentDidMount = () => {
@@ -68,11 +68,7 @@ class Estimate extends React.Component {
 }
 
 Estimate.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: matchType.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
   getEstimate: PropTypes.func.isRequired,
   updateEstimate: PropTypes.func.isRequired,

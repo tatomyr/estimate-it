@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from '../Header'
 import Authorized from './Authorized'
 import Anonymous from './Anonymous'
-import { locationType } from '../Redirector/Redirector'
+import { locationType } from '../../helpers/propTypes'
 
 const AuthScreen = ({
   username,
