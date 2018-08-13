@@ -5,11 +5,11 @@
   "homepage": "https://tatomyr.github.io/estimate-it/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run analyze",
+    "build": "react-scripts build",
     "lint": "eslint src/",
     "test": "react-scripts test --env=jsdom --coverage",
     "precommit": "npm run lint && npm run test",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && npm run analyze",
     "deploy": "gh-pages -d build",
     "analyze": "source-map-explorer build/static/js/main.*",
     "eject": "react-scripts eject"

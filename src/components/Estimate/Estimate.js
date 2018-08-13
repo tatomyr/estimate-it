@@ -18,6 +18,7 @@ class Estimate extends React.Component {
       .values(estimates)
       .some(({ saved }) => !saved)
     // Setting up hook to prevent of accidental window closing/refreshing
+    // FIXME: after clearing all estimates this doesn't change
     window.onbeforeunload = thereIsUnsavedEstimate
       ? () => true
       : null

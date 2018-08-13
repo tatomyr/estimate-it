@@ -25,3 +25,10 @@ export const locationType = PropTypes.oneOfType([
     state: PropTypes.any,
   }),
 ])
+
+export const credsType = PropTypes.shape({
+  haveBeenChecked: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
+  dbName: PropTypes.string.isRequired,
+  apiKey: PropTypes.string.isRequired,
+})

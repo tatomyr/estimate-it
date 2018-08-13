@@ -20,8 +20,10 @@ describe('AuthScreen', () => {
       .create(
         <Router>
           <AuthScreen
-            username="Test User"
-            checkingCreds={false}
+            creds={{
+              haveBeenChecked: true,
+              username: 'Test User',
+            }}
             {...commons}
           />
         </Router> // eslint-disable-line comma-dangle
@@ -35,8 +37,10 @@ describe('AuthScreen', () => {
       .create(
         <Router>
           <AuthScreen
-            username=""
-            checkingCreds={false}
+            creds={{
+              haveBeenChecked: true,
+              username: '',
+            }}
             {...commons}
           />
         </Router> // eslint-disable-line comma-dangle
@@ -50,8 +54,10 @@ describe('AuthScreen', () => {
       .create(
         <Router>
           <AuthScreen
-            username=""
-            checkingCreds
+            creds={{
+              haveBeenChecked: false,
+              username: '',
+            }}
             {...commons}
           />
         </Router> // eslint-disable-line comma-dangle

@@ -11,20 +11,12 @@ import {
   redirect,
 } from '../../redux/actions/async'
 
-const mapStateToProps = ({
-  creds: {
-    username,
-    checkingCreds,
-  },
-}) => ({
-  username,
-  checkingCreds,
-})
+const mapStateToProps = ({ creds }) => ({ creds })
 
 const mapDispatchToProps = ({
   checkCreds,
-  cleanAllEstimates,
   resetCreds,
+  cleanAllEstimates,
   redirect,
 })
 

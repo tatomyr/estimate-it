@@ -35,7 +35,7 @@ const Home = () => (
           <Col>
             <Link to="/auth">
               <Button>
-                Authenticate
+                User
               </Button>
             </Link>
           </Col>

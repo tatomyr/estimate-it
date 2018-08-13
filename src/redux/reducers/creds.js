@@ -1,29 +1,25 @@
-// TODO: Implement login route: .../login/:dbName/:apiKey
-import { SET_CREDS_CHECKING, SET_CREDS, RESET_CREDS } from '../actions/types'
+import { SET_CREDS, RESET_CREDS } from '../actions/types'
 
 export const emptyCreds = ({
+  haveBeenChecked: false,
+  username: '',
   dbName: '',
   apiKey: '',
-  username: '',
-  checkingCreds: false,
 })
 
 export default (state = emptyCreds, { type, payload }) => {
   switch (type) {
-    case SET_CREDS_CHECKING:
-      return ({
-        ...state,
-        checkingCreds: true,
-      })
-
     case SET_CREDS:
       return ({
         ...payload,
-        checkingCreds: false,
+        haveBeenChecked: true,
       })
 
     case RESET_CREDS:
-      return emptyCreds
+      return ({
+        ...emptyCreds,
+        haveBeenChecked: true,
+      })
 
     default:
       return state
