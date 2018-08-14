@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SideButton from '../SideButton'
-import { locationType, matchType, estimateType } from '../../helpers/propTypes'
+import { matchType, estimateType } from '../../helpers/propTypes'
 
 const Sidebar = ({
-  match: { params: { estimateId } },
-  location,
+  match: { params: { estimateId = 'new' } },
   recalc,
   saveEstimate,
   estimates,
@@ -64,10 +63,7 @@ const Sidebar = ({
         title="Auth"
         name={username ? 'unlock' : 'lock'}
         color={username ? 'success' : 'warning'}
-        link={{
-          pathname: '/auth',
-          state: { from: location },
-        }}
+        link="/auth"
       />
       <SideButton
         title="Home"
@@ -80,18 +76,13 @@ const Sidebar = ({
 
 Sidebar.propTypes = {
   match: matchType.isRequired,
-  location: locationType.isRequired,
   recalc: PropTypes.func.isRequired,
   saveEstimate: PropTypes.func.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
-  username: PropTypes.string,
+  username: PropTypes.string.isRequired,
   graphView: PropTypes.string.isRequired,
   minifyGraph: PropTypes.func.isRequired,
   enlargeGraph: PropTypes.func.isRequired,
-}
-
-Sidebar.defaultProps = {
-  username: undefined,
 }
 
 export default Sidebar

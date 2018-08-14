@@ -21,7 +21,7 @@ const AuthScreen = ({
           <Authorized
             username={username}
             from={state ? state.from : '/'}
-            redirectAutomatically={state && state.redirectAutomatically}
+            redirectToReferrer={state && state.redirectToReferrer}
             {...rest}
           />))
         || <Anonymous from={state ? state.from : '/'} {...rest} />}

@@ -9,12 +9,12 @@ const Authorized = ({
   username,
   resetCreds,
   cleanAllEstimates,
-  redirect,
   from,
-  redirectAutomatically,
+  redirectToReferrer,
+  history,
 }) => (
   <Fragment>
-    {redirectAutomatically && <Redirect to={from} />}
+    {redirectToReferrer && <Redirect to={from} />}
     <div>
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       Welcome, {username}!
@@ -22,7 +22,7 @@ const Authorized = ({
     <Button
       color="primary"
       outline
-      onClick={() => redirect(from)}
+      onClick={history.goBack}
     >
       Close
     </Button>
@@ -44,13 +44,13 @@ Authorized.propTypes = {
   username: PropTypes.string.isRequired,
   resetCreds: PropTypes.func.isRequired,
   cleanAllEstimates: PropTypes.func.isRequired,
-  redirect: PropTypes.func.isRequired,
   from: locationType.isRequired,
-  redirectAutomatically: PropTypes.bool,
+  redirectToReferrer: PropTypes.bool,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 Authorized.defaultProps = {
-  redirectAutomatically: false,
+  redirectToReferrer: false,
 }
 
 export default Authorized

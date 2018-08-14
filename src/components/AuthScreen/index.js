@@ -8,7 +8,6 @@ import {
 } from '../../redux/actions'
 import {
   checkCreds,
-  redirect,
 } from '../../redux/actions/async'
 
 const mapStateToProps = ({ creds }) => ({ creds })
@@ -17,7 +16,6 @@ const mapDispatchToProps = ({
   checkCreds,
   resetCreds,
   cleanAllEstimates,
-  redirect,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthScreen))

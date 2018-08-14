@@ -88,16 +88,7 @@ ShallowWrapper {
 />,
         <Connect(SideButton)
           color="success"
-          link={
-                    Object {
-                              "pathname": "/auth",
-                              "state": Object {
-                                "from": Object {
-                                  "pathname": "/",
-                                },
-                              },
-                            }
-          }
+          link="/auth"
           name="unlock"
           title="Auth"
 />,
@@ -209,14 +200,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "color": "success",
-          "link": Object {
-            "pathname": "/auth",
-            "state": Object {
-              "from": Object {
-                "pathname": "/",
-              },
-            },
-          },
+          "link": "/auth",
           "name": "unlock",
           "title": "Auth",
         },
@@ -286,16 +270,7 @@ ShallowWrapper {
 />,
           <Connect(SideButton)
             color="success"
-            link={
-                        Object {
-                                    "pathname": "/auth",
-                                    "state": Object {
-                                      "from": Object {
-                                        "pathname": "/",
-                                      },
-                                    },
-                                  }
-            }
+            link="/auth"
             name="unlock"
             title="Auth"
 />,
@@ -407,14 +382,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "color": "success",
-            "link": Object {
-              "pathname": "/auth",
-              "state": Object {
-                "from": Object {
-                  "pathname": "/",
-                },
-              },
-            },
+            "link": "/auth",
             "name": "unlock",
             "title": "Auth",
           },

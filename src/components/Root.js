@@ -20,10 +20,12 @@ const Root = ({ store }) => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Private>
-            {/* TODO: <Route path="/estimate/new" component={Estimate} /> */}
-            <Route isProtected path="/estimate/:estimateId" component={Estimate} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/auth" component={AuthScreen} />
+            <Switch>
+              <Route path="/estimate/new" component={Estimate} />
+              <Route isProtected path="/estimate/:estimateId" component={Estimate} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/auth" component={AuthScreen} />
+            </Switch>
           </Private>
         </Switch>
         <Spinner />

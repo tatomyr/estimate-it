@@ -27,10 +27,10 @@ class Estimate extends React.Component {
   fetchHelper = () => {
     const {
       getEstimate,
-      match: { params: { estimateId } },
+      match: { params: { estimateId = 'new' } },
       estimates,
     } = this.props
-    // Fetching an appropriate estimate on route change.
+    // Fetching an appropriate estimate if such doesn't exist
     const estimate = estimates[estimateId]
     const estimateIsntLoaded = !estimate || estimate.text === undefined
     if (estimateIsntLoaded) {
@@ -40,7 +40,7 @@ class Estimate extends React.Component {
 
   render = () => {
     const {
-      match: { params: { estimateId } },
+      match: { params: { estimateId = 'new' } },
       estimates,
       updateEstimate,
       graphView,

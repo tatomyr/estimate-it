@@ -12,6 +12,7 @@ const commons = {
   resetCreds: () => null,
   cleanAllEstimates: () => null,
   redirect: () => null,
+  history: { goBack: () => null },
 }
 
 describe('AuthScreen', () => {
@@ -23,6 +24,8 @@ describe('AuthScreen', () => {
             creds={{
               haveBeenChecked: true,
               username: 'Test User',
+              dbName: 'dbName',
+              apiKey: 'apiKey',
             }}
             {...commons}
           />
@@ -40,6 +43,8 @@ describe('AuthScreen', () => {
             creds={{
               haveBeenChecked: true,
               username: '',
+              dbName: '',
+              apiKey: '',
             }}
             {...commons}
           />
@@ -57,6 +62,8 @@ describe('AuthScreen', () => {
             creds={{
               haveBeenChecked: false,
               username: '',
+              dbName: '',
+              apiKey: '',
             }}
             {...commons}
           />

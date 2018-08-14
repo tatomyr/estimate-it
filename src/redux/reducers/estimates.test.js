@@ -10,8 +10,6 @@
 // } from '../actions/types'
 import estimates, { emptyEstimate } from './estimates'
 
-// FIXME: avoid duplicating 'new' estimates after logging out
-
 describe('estimates reducer', () => {
   it('returns initial state', () => {
     expect(estimates(undefined, {})).toEqual({ new: emptyEstimate })

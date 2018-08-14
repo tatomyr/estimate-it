@@ -11,16 +11,16 @@ const ProtectedRoute = ({
 }) => (
   <Route
     {...rest}
-    render={props => (!isProtected || username || props.location.pathname === '/estimate/new'
-      ? <Component {...props} />
-      : (
+    render={props => (isProtected && !username
+      ? (
         <Redirect
           to={{
             pathname: '/auth',
-            state: { from: props.location, redirectAutomatically: true },
+            state: { from: props.location, redirectToReferrer: true },
           }}
         />
       )
+      : <Component {...props} />
     )}
   />
 )

@@ -23,6 +23,7 @@ import {
   resetCreds,
   setTitles,
   markEstimateSaved,
+  cleanEstimate,
 } from './index'
 
 export const redirect = location => dispatch => {
@@ -67,6 +68,9 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
         .then(savedEstimate => {
           dispatch(updateEstimate(savedEstimate))
           dispatch(markEstimateSaved(savedEstimate._id))
+          if (estimateId === 'new') {
+            dispatch(cleanEstimate('new'))
+          }
           dispatch(redirect(`/estimate/${savedEstimate._id}`))
           toastr.success(...saved(savedEstimate))
         })
