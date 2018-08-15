@@ -14,7 +14,7 @@ describe('authentication', () => {
     const action = {
       type: SET_CREDS,
       payload: {
-        user: 'Test User',
+        username: 'Test User',
         dbName: 'dbName',
         apiKey: 'apiKey',
       },
@@ -24,7 +24,7 @@ describe('authentication', () => {
     // Then
     expect(afterState).toEqual({
       haveBeenChecked: true,
-      user: 'Test User',
+      username: 'Test User',
       dbName: 'dbName',
       apiKey: 'apiKey',
     })
@@ -34,7 +34,7 @@ describe('authentication', () => {
     // Given
     const beforeState = {
       haveBeenChecked: false,
-      user: 'Test User',
+      username: 'Test User',
       dbName: 'dbName',
       apiKey: 'apiKey',
     }

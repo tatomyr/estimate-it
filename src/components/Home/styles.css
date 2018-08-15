@@ -1,4 +1,8 @@
-article pre {
+.home .options button {
+  margin: 10px;
+}
+
+.home article pre {
   max-width: 300px;
   margin: 0 auto;
   padding: 10px 30px;
@@ -6,3 +10,4 @@ article pre {
   color: wheat;
   border-radius: 3px;
 }
+
