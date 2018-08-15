@@ -44,16 +44,19 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
     }
 
     case CLEAN_ESTIMATE:
+    {
+      // Putting 'new' here to avoid creating an estimate with an undefined `_id`
+      // ...while logging out on different routes
+      // ...(that may not contain an `:estimateId` param)
+      const { _id = 'new' } = payload
       return ({
         ...state,
-        // Put 'new' here to avoid creating an estimate with an undefined `_id`
-        // ...while logging out on different routes
-        // ...(that may not contain an `:estimateId` param)
-        [payload || 'new']: {
+        [_id]: {
           ...emptyEstimate,
-          _id: payload || 'new',
-        }, // TODO: use it somewhere
+          _id,
+        },
       })
+    }
 
     case CLEAN_ALL_ESTIMATES:
       return ({
@@ -61,21 +64,26 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
       })
 
     case RECALCULATE:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload]: {
-          ...state[payload],
-          payload,
-          ...handleText(state[payload].text),
+        [_id]: {
+          ...state[_id],
+          _id,
+          ...handleText(state[_id].text),
           calculated: true,
           saved: false,
         },
       })
+    }
 
     case SET_TITLES:
+    {
+      const { projects } = payload
       return ({
         ...state,
-        ...payload.reduce(($, project) => ({
+        ...projects.reduce(($, project) => ({
           ...$,
           [project._id]: {
             ...project,
@@ -83,15 +91,19 @@ export default (state = ({ new: emptyEstimate }), { type, payload }) => {
           },
         }), {}),
       })
+    }
 
     case MARK_ESTIMATE_SAVED:
+    {
+      const { _id } = payload
       return ({
         ...state,
-        [payload]: {
-          ...state[payload],
+        [_id]: {
+          ...state[_id],
           saved: true,
         },
       })
+    }
 
     default:
       return state

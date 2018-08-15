@@ -56,11 +56,6 @@ ShallowWrapper {
           title="New"
 />,
         <Connect(SideButton)
-          color="danger"
-          name="eraser"
-          title="Erase"
-/>,
-        <Connect(SideButton)
           disabled={true}
           name="rocket"
           onClick={[Function]}
@@ -78,13 +73,13 @@ ShallowWrapper {
           onClick={[Function]}
           title="Graph"
 />,
+        <div
+          className="sidebar-padding"
+/>,
         <Connect(SideButton)
           link="/dashboard"
           name="list-ul"
           title="Dashboard"
-/>,
-        <div
-          className="sidebar-padding"
 />,
         <Connect(SideButton)
           color="success"
@@ -110,19 +105,6 @@ ShallowWrapper {
           "link": "/estimate/new",
           "name": "file",
           "title": "New",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "color": "danger",
-          "name": "eraser",
-          "title": "Erase",
         },
         "ref": null,
         "rendered": null,
@@ -173,6 +155,17 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "sidebar-padding",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "link": "/dashboard",
@@ -182,17 +175,6 @@ ShallowWrapper {
         "ref": null,
         "rendered": null,
         "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "className": "sidebar-padding",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": "div",
       },
       Object {
         "instance": null,
@@ -238,11 +220,6 @@ ShallowWrapper {
             title="New"
 />,
           <Connect(SideButton)
-            color="danger"
-            name="eraser"
-            title="Erase"
-/>,
-          <Connect(SideButton)
             disabled={true}
             name="rocket"
             onClick={[Function]}
@@ -260,13 +237,13 @@ ShallowWrapper {
             onClick={[Function]}
             title="Graph"
 />,
+          <div
+            className="sidebar-padding"
+/>,
           <Connect(SideButton)
             link="/dashboard"
             name="list-ul"
             title="Dashboard"
-/>,
-          <div
-            className="sidebar-padding"
 />,
           <Connect(SideButton)
             color="success"
@@ -292,19 +269,6 @@ ShallowWrapper {
             "link": "/estimate/new",
             "name": "file",
             "title": "New",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "color": "danger",
-            "name": "eraser",
-            "title": "Erase",
           },
           "ref": null,
           "rendered": null,
@@ -355,6 +319,17 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "sidebar-padding",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
           "nodeType": "class",
           "props": Object {
             "link": "/dashboard",
@@ -364,17 +339,6 @@ ShallowWrapper {
           "ref": null,
           "rendered": null,
           "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "className": "sidebar-padding",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "div",
         },
         Object {
           "instance": null,

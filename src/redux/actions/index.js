@@ -21,9 +21,9 @@ export const updateEstimate = estimate => ({
   payload: estimate,
 })
 
-export const cleanEstimate = ({ estimateId }) => ({
+export const cleanEstimate = _id => ({
   type: CLEAN_ESTIMATE,
-  payload: estimateId,
+  payload: { _id },
 })
 
 export const cleanAllEstimates = () => ({
@@ -32,7 +32,7 @@ export const cleanAllEstimates = () => ({
 
 export const recalc = _id => ({
   type: RECALCULATE,
-  payload: _id,
+  payload: { _id },
 })
 
 export const setLocation = location => ({
@@ -61,14 +61,14 @@ export const resetCreds = () => ({
   type: RESET_CREDS,
 })
 
-export const setTitles = payload => ({
+export const setTitles = projects => ({
   type: SET_TITLES,
-  payload,
+  payload: { projects },
 })
 
-export const markEstimateSaved = payload => ({
+export const markEstimateSaved = _id => ({
   type: MARK_ESTIMATE_SAVED,
-  payload,
+  payload: { _id },
 })
 
 export const enlargeGraph = () => ({

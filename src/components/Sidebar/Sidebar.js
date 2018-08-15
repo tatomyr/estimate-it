@@ -23,11 +23,6 @@ const Sidebar = ({
         link="/estimate/new"
       />
       <SideButton
-        title="Erase"
-        name="eraser"
-        color="danger"
-      />
-      <SideButton
         title="Calculate"
         name="rocket"
         disabled={calculated}
@@ -53,12 +48,12 @@ const Sidebar = ({
           onClick={minifyGraph}
         />
       )}
+      <div className="sidebar-padding" />
       <SideButton
         title="Dashboard"
         name="list-ul"
         link="/dashboard"
       />
-      <div className="sidebar-padding" />
       <SideButton
         title="Auth"
         name={username ? 'unlock' : 'lock'}

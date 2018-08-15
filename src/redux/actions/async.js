@@ -1,4 +1,4 @@
-// TODO: rewrite with async-await syntax
+// TODO: rewrite with async-await syntax, fix nested promises
 
 import { toastr } from 'react-redux-toastr'
 import * as api from '../../helpers/api'

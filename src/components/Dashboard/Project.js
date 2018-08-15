@@ -1,4 +1,4 @@
-// TODO: implement delete project
+// TODO: implement deleting project
 
 import React from 'react'
 import { Link } from 'react-router-dom'
