@@ -1,19 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import App from './App'
-import Home from './Home'
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/estimate/:estimateId" component={App} />
-        <Route path="/dashboard" component={App} />
-        <Route path="/auth" component={App} />
-      </Switch>
+      <App />
     </Router>
   </Provider>
 )

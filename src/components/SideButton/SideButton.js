@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FA from 'react-fontawesome'
 import { Button } from 'reactstrap'
+import { locationType } from '../../helpers/propTypes'
 
 const SideButton = ({
   title,
@@ -33,7 +34,7 @@ SideButton.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
   onClick: PropTypes.func,
-  link: PropTypes.string,
+  link: locationType,
   disabled: PropTypes.bool,
   redirect: PropTypes.func.isRequired,
 }

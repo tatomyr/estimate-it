@@ -1,20 +1,18 @@
 import {
   UPDATE_ESTIMATE,
   CLEAN_ESTIMATE,
+  CLEAN_ALL_ESTIMATES,
   RECALCULATE,
-  SET_HREF,
-  RESET_HREF,
+  SET_LOCATION,
+  RESET_LOCATION,
   ADD_SPINNER,
   DEL_SPINNER,
   SET_CREDS,
   RESET_CREDS,
-  OPEN_AUTH_SCREEN,
-  CLOSE_AUTH_SCREEN,
   SET_TITLES,
   MARK_ESTIMATE_SAVED,
   ENLARGE_GRAPH,
   MINIFY_GRAPH,
-  SET_CREDS_CHECKING,
 } from './types'
 import * as api from '../../helpers/api'
 
@@ -23,23 +21,27 @@ export const updateEstimate = estimate => ({
   payload: estimate,
 })
 
-export const cleanEstimate = ({ estimateId }) => ({
+export const cleanEstimate = _id => ({
   type: CLEAN_ESTIMATE,
-  payload: estimateId,
+  payload: { _id },
+})
+
+export const cleanAllEstimates = () => ({
+  type: CLEAN_ALL_ESTIMATES,
 })
 
 export const recalc = _id => ({
   type: RECALCULATE,
-  payload: _id,
+  payload: { _id },
 })
 
-export const setHref = href => ({
-  type: SET_HREF,
-  payload: href,
+export const setLocation = location => ({
+  type: SET_LOCATION,
+  payload: location,
 })
 
-export const resetHref = () => ({
-  type: RESET_HREF,
+export const resetLocation = () => ({
+  type: RESET_LOCATION,
 })
 
 export const addSpinner = () => ({
@@ -48,18 +50,6 @@ export const addSpinner = () => ({
 
 export const delSpinner = () => ({
   type: DEL_SPINNER,
-})
-
-export const openAuthScreen = () => ({
-  type: OPEN_AUTH_SCREEN,
-})
-
-export const closeAuthScreen = () => ({
-  type: CLOSE_AUTH_SCREEN,
-})
-
-export const setCredsChecking = () => ({
-  type: SET_CREDS_CHECKING,
 })
 
 export const setCreds = () => ({
@@ -71,14 +61,14 @@ export const resetCreds = () => ({
   type: RESET_CREDS,
 })
 
-export const setTitles = payload => ({
+export const setTitles = projects => ({
   type: SET_TITLES,
-  payload,
+  payload: { projects },
 })
 
-export const markEstimateSaved = payload => ({
+export const markEstimateSaved = _id => ({
   type: MARK_ESTIMATE_SAVED,
-  payload,
+  payload: { _id },
 })
 
 export const enlargeGraph = () => ({

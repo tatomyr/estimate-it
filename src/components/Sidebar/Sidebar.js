@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SideButton from '../SideButton'
-import { estimateType } from '../Estimate/propTypes'
+import { matchType, estimateType } from '../../helpers/propTypes'
 
 const Sidebar = ({
-  match: { params: { estimateId } },
+  match: { params: { estimateId = 'new' } },
   recalc,
   saveEstimate,
-  openAuthScreen,
   estimates,
   username,
   graphView,
@@ -22,11 +21,6 @@ const Sidebar = ({
         name="file"
         disabled={estimateId === 'new'}
         link="/estimate/new"
-      />
-      <SideButton
-        title="Erase"
-        name="eraser"
-        color="danger"
       />
       <SideButton
         title="Calculate"
@@ -54,18 +48,17 @@ const Sidebar = ({
           onClick={minifyGraph}
         />
       )}
+      <div className="sidebar-padding" />
       <SideButton
         title="Dashboard"
         name="list-ul"
-        disabled={!username}
         link="/dashboard"
       />
-      <div className="sidebar-padding" />
       <SideButton
         title="Auth"
         name={username ? 'unlock' : 'lock'}
         color={username ? 'success' : 'warning'}
-        onClick={openAuthScreen}
+        link="/auth"
       />
       <SideButton
         title="Home"
@@ -77,23 +70,14 @@ const Sidebar = ({
 }
 
 Sidebar.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: matchType.isRequired,
   recalc: PropTypes.func.isRequired,
   saveEstimate: PropTypes.func.isRequired,
-  openAuthScreen: PropTypes.func.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
-  username: PropTypes.string,
+  username: PropTypes.string.isRequired,
   graphView: PropTypes.string.isRequired,
   minifyGraph: PropTypes.func.isRequired,
   enlargeGraph: PropTypes.func.isRequired,
-}
-
-Sidebar.defaultProps = {
-  username: undefined,
 }
 
 export default Sidebar

@@ -4,8 +4,6 @@ import Sidebar from './Sidebar'
 import './styles.css'
 import {
   recalc,
-  openAuthScreen,
-  closeAuthScreen,
   minifyGraph,
   enlargeGraph,
 } from '../../redux/actions'
@@ -26,8 +24,6 @@ const mapStateToProps = ({
 const mapDispatchToProps = ({
   recalc,
   saveEstimate,
-  openAuthScreen,
-  closeAuthScreen,
   minifyGraph,
   enlargeGraph,
 })

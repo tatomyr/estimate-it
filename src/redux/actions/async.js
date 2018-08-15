@@ -1,4 +1,4 @@
-// TODO: rewrite with async-await syntax
+// TODO: rewrite with async-await syntax, fix nested promises
 
 import { toastr } from 'react-redux-toastr'
 import * as api from '../../helpers/api'
@@ -16,21 +16,20 @@ import {
 import {
   addSpinner,
   delSpinner,
-  setHref,
-  resetHref,
+  setLocation,
+  resetLocation,
   updateEstimate,
-  closeAuthScreen,
   setCreds,
   resetCreds,
   setTitles,
   markEstimateSaved,
-  setCredsChecking,
+  cleanEstimate,
 } from './index'
 
-export const redirect = href => dispatch => {
+export const redirect = location => dispatch => {
   dispatch({ type: '__ASYNC__REDIRECT' })
-  dispatch(setHref(href))
-  setTimeout(() => dispatch(resetHref()))
+  dispatch(setLocation(location))
+  setTimeout(() => dispatch(resetLocation()))
 }
 
 export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
@@ -69,6 +68,9 @@ export const saveEstimate = ({ estimateId }) => (dispatch, getState) => {
         .then(savedEstimate => {
           dispatch(updateEstimate(savedEstimate))
           dispatch(markEstimateSaved(savedEstimate._id))
+          if (estimateId === 'new') {
+            dispatch(cleanEstimate('new'))
+          }
           dispatch(redirect(`/estimate/${savedEstimate._id}`))
           toastr.success(...saved(savedEstimate))
         })
@@ -107,7 +109,6 @@ export const getEstimate = ({ estimateId }) => dispatch => {
 export const checkCreds = () => dispatch => {
   dispatch({ type: '__ASYNC__CHECK_CREDS' })
 
-  dispatch(setCredsChecking())
   dispatch(addSpinner())
   return api.fetchTitles()
     .then(titles => {
@@ -115,14 +116,7 @@ export const checkCreds = () => dispatch => {
       console.info(`${titles.length} record(s) found in the DB.`)
       dispatch(setTitles(titles))
       dispatch(setCreds())
-      dispatch(closeAuthScreen())
     })
     .catch(() => { dispatch(resetCreds()) })
     .finally(() => { dispatch(delSpinner()) })
-}
-
-export const openGuestSession = () => dispatch => {
-  dispatch({ type: '__ASYNC__OPEN_GUEST_SESSION' })
-  dispatch(closeAuthScreen())
-  dispatch(redirect('/estimate/new'))
 }

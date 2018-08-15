@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react'
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import * as api from '../../helpers/api'
+import { locationType } from '../../helpers/propTypes'
 
 const Authorized = ({
-  match: { url, params },
   username,
   resetCreds,
-  cleanEstimate,
-  closeAuthScreen,
-  redirect,
+  cleanAllEstimates,
+  from,
+  redirectToReferrer,
+  history,
 }) => (
   <Fragment>
+    {redirectToReferrer && <Redirect to={from} />}
     <div>
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       Welcome, {username}!
@@ -19,7 +22,7 @@ const Authorized = ({
     <Button
       color="primary"
       outline
-      onClick={url === '/auth' ? () => redirect('/') : closeAuthScreen}
+      onClick={history.goBack}
     >
       Close
     </Button>
@@ -29,7 +32,7 @@ const Authorized = ({
       onClick={() => {
         api.removeCreds()
         resetCreds()
-        cleanEstimate(params)
+        cleanAllEstimates()
       }}
     >
       Log Out
@@ -38,17 +41,16 @@ const Authorized = ({
 )
 
 Authorized.propTypes = {
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
   username: PropTypes.string.isRequired,
   resetCreds: PropTypes.func.isRequired,
-  cleanEstimate: PropTypes.func.isRequired,
-  closeAuthScreen: PropTypes.func.isRequired,
-  redirect: PropTypes.func.isRequired,
+  cleanAllEstimates: PropTypes.func.isRequired,
+  from: locationType.isRequired,
+  redirectToReferrer: PropTypes.bool,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+Authorized.defaultProps = {
+  redirectToReferrer: false,
 }
 
 export default Authorized

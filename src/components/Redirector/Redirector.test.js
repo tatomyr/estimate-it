@@ -9,7 +9,7 @@ describe('Redirector', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(<Redirector
-        redirector={{ href: '' }}
+        redirector={{ location: '' }}
       />)
       .toJSON()
     expect(tree).toMatchSnapshot()
@@ -20,7 +20,7 @@ describe('Redirector', () => {
       .create(
         <Router>
           <Redirector
-            redirector={{ href: '/estimate/new' }}
+            redirector={{ location: '/estimate/new' }}
           />
         </Router> /* eslint-disable-line comma-dangle */
       )

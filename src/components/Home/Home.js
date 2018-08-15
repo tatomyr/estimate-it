@@ -2,44 +2,36 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   Container,
-  Row,
-  Col,
   Button,
 } from 'reactstrap'
 import Header from '../Header'
 import example from '../../helpers/example'
 
 const Home = () => (
-  <div>
+  <div className="home">
     <Header />
     <Container>
       <div className="panel">
         <h2>
           Get started!
         </h2>
-        <Row>
-          <Col>
-            <Link to="/estimate/new">
-              <Button>
-                New estimate
-              </Button>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/dashboard">
-              <Button>
-                Dashboard
-              </Button>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/auth">
-              <Button>
-                Authenticate
-              </Button>
-            </Link>
-          </Col>
-        </Row>
+        <div className="options">
+          <Link to="/estimate/new">
+            <Button>
+              New estimate
+            </Button>
+          </Link>
+          <Link to="/dashboard">
+            <Button>
+              Dashboard
+            </Button>
+          </Link>
+          <Link to="/auth">
+            <Button>
+              User
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="panel">

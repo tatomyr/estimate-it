@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Editor from './Editor'
 import Graph from './Graph'
 import Sidebar from '../Sidebar'
-import { estimateType } from './propTypes'
+import { matchType, estimateType } from '../../helpers/propTypes'
 
 class Estimate extends React.Component {
   componentDidMount = () => {
@@ -18,6 +18,7 @@ class Estimate extends React.Component {
       .values(estimates)
       .some(({ saved }) => !saved)
     // Setting up hook to prevent of accidental window closing/refreshing
+    // FIXME: after clearing all estimates this doesn't change
     window.onbeforeunload = thereIsUnsavedEstimate
       ? () => true
       : null
@@ -26,10 +27,10 @@ class Estimate extends React.Component {
   fetchHelper = () => {
     const {
       getEstimate,
-      match: { params: { estimateId } },
+      match: { params: { estimateId = 'new' } },
       estimates,
     } = this.props
-    // Fetching an appropriate estimate on route change.
+    // Fetching an appropriate estimate if such doesn't exist
     const estimate = estimates[estimateId]
     const estimateIsntLoaded = !estimate || estimate.text === undefined
     if (estimateIsntLoaded) {
@@ -39,7 +40,7 @@ class Estimate extends React.Component {
 
   render = () => {
     const {
-      match: { params: { estimateId } },
+      match: { params: { estimateId = 'new' } },
       estimates,
       updateEstimate,
       graphView,
@@ -68,11 +69,7 @@ class Estimate extends React.Component {
 }
 
 Estimate.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: matchType.isRequired,
   estimates: PropTypes.objectOf(estimateType).isRequired,
   getEstimate: PropTypes.func.isRequired,
   updateEstimate: PropTypes.func.isRequired,

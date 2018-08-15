@@ -1,17 +1,17 @@
-import { SET_HREF, RESET_HREF } from '../actions/types'
+import { SET_LOCATION, RESET_LOCATION } from '../actions/types'
 
 export default (state = ({
-  href: '',
+  location: '',
 }), { type, payload }) => {
   switch (type) {
-    case SET_HREF:
+    case SET_LOCATION:
       return ({
-        href: payload,
+        location: payload,
       })
 
-    case RESET_HREF:
+    case RESET_LOCATION:
       return ({
-        href: '',
+        location: '',
       })
 
     default:

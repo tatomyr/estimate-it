@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Button,
@@ -9,18 +10,30 @@ import {
 } from 'reactstrap'
 import FA from 'react-fontawesome'
 import * as api from '../../helpers/api'
+import { locationType } from '../../helpers/propTypes'
+
+const AlertAccessingEstimate = ({ from }) => ((from
+  && from.pathname
+  && from.pathname.startsWith('/estimate/')
+  && from.pathname !== '/estimate/new'
+)
+  ? (
+    <Alert color="warning">
+      Please enter a valid credentials to get access to this estimate
+    </Alert>
+  )
+  : null)
+
+AlertAccessingEstimate.propTypes = {
+  from: locationType.isRequired,
+}
 
 const Anonymous = ({
-  match: { url, params },
   checkCreds,
-  openGuestSession,
+  from,
 }) => (
   <Fragment>
-    {(url.startsWith('/estimate/') && params.estimateId !== 'new') ? (
-      <Alert color="warning">
-        Please enter a valid credentials to get access to this estimate
-      </Alert>
-    ) : null}
+    <AlertAccessingEstimate from={from} />
     <form
       onSubmit={e => {
         e.preventDefault()
@@ -67,25 +80,17 @@ const Anonymous = ({
     </form>
     Or
     <br />
-    <Button
-      color="primary"
-      outline
-      onClick={openGuestSession}
-    >
-      Guest Session
-    </Button>
+    <Link to="/estimate/new">
+      <Button color="primary" outline>
+        Guest Session
+      </Button>
+    </Link>
   </Fragment>
 )
 
 Anonymous.propTypes = {
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    params: PropTypes.shape({
-      estimateId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
   checkCreds: PropTypes.func.isRequired,
-  openGuestSession: PropTypes.func.isRequired,
+  from: locationType.isRequired,
 }
 
 export default Anonymous

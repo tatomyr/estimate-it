@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
 import { options, languageDef, configuration } from './editor-config'
-import { estimateType } from './propTypes'
+import { estimateType } from '../../helpers/propTypes'
 
 const editorWillMount = monaco => {
   this.editor = monaco

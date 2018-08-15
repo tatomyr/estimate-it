@@ -1,4 +1,4 @@
-// TODO: implement delete project
+// TODO: implement deleting project
 
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ import {
   Button,
 } from 'reactstrap'
 import FA from 'react-fontawesome'
-import { estimateType } from '../Estimate/propTypes'
+import { estimateType } from '../../helpers/propTypes'
 
 const Project = ({
   estimate: {
